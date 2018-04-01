@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <br><br><br>
+    <div class="row center">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <div id="desc" class="container">
+                <h4 class="light">Modification profil</h4>
+                <br><br><br>
+                {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                {{ form_widget(form) }}
+                <br><br><br>
+                <div class="waves-effect waves-light btn light">
+                    <input type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+                </div>
+                {{ form_end(form) }}
+                <ul>
+                    <li>
+                        <a href="{{ path('user_show', { 'id': app.user.id }) }}">Retour</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+    <br>
+
+{% endblock fos_user_content %}

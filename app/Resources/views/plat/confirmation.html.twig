@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br><br><br><br><br><br><br>
+    <div class="row center">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <div id="desc" class="container">
+
+                <p>Félicitation votre commande a été enregistré</p>
+                <br>
+                <p>Contacte le préparateur des à présent : {{ tel }}</p>
+                <br><br>
+                <a href="{{ path('plat_listeCommande', {'id' : plat.id }) }}" class="waves-effect waves-light btn light">Mes commandes</a>
+            </div>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    {# N'affiche pas bouton connexion #}
+    {% block headerConnexion %}
+    {% endblock %}
+
+    {# S'il y a une erreur, on l'affiche dans un cadre #}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+
+    {% if csrf_token %}
+        <div class="center">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        </div>
+    {% endif %}
+    <br><br>
+    <main class="center">
+        <br>
+        <h5 class="light-blue-text">Connectez vous !</h5>
+        <br><br>
+        <div class="container">
+            <div class="z-depth-1 grey lighten-4 row"
+                 style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+                <form class="col s12" action="{{ path("fos_user_security_check") }}" method="post">
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}"
+                                   required="required"/>
+                            <label for='username'>Entrez votre pseudo</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input type="password" id="password" name="_password" required="required"/>
+                            <label for='password'>Entrez votre mot de passe</label>
+                        </div>
+
+                        <input id="remember_me" name="_remember_me" type="checkbox" class="filled-in"
+                               checked="checked"/>
+                        <label class="light-blue-text" for="remember_me">Se souvenir de moi</label>
+                        <br>
+                        <label>
+                            <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+                        </label>
+                    </div>
+
+                    <div class='row'>
+                        <button type='submit' name='btn_login' class=" waves-effect waves-light btn light">
+                            <input type="submit" id="_submit" name="_submit"
+                                   value="Se connecter"/>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br><br><br><br><br>
+    </main>
+
+{% endblock fos_user_content %}

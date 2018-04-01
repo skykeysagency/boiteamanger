@@ -1,0 +1,26 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <div class="row center">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <div id="desc" class="container">
+
+                <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                <br><br>
+                <a href="{{ path('menu') }}" class="waves-effect waves-light btn light">Aller au menu</a>
+
+                {% if targetUrl %}
+                    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock fos_user_content %}

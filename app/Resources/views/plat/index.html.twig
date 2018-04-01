@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br>
+    <h4 class="light center">Liste de vos plats</h4>
+    <br><br><br><br>
+    <table class="container">
+        <thead>
+        <tr>
+            <th class="center">Nom plat</th>
+            <th class="center">Categorie plat</th>
+            <th class="center">Description plat</th>
+            <th class="center">Duree de validité du plat</th>
+            <th class="center">Plat crée le</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for plat in app.user.platsPoste %}
+                <tr>
+                    <td class="center">{{ plat.nomPlat }}</td>
+                    <td class="center">{{ plat.categoriePlat }}</td>
+                    <td class="center">{{ plat.descriptionPlat }}</td>
+                    <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
+                    <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('plat_show', { 'id': plat.id }) }}">Voir</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('plat_edit', { 'id': plat.id }) }}">Modifier</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br><br><br><br>
+
+    <div class="row center">
+        <div class="waves-effect waves-light btn light">
+            <a class="white-text" href="{{ path('plat_new') }}">Poster un nouveau plat</a>
+        </div>
+    </div>
+    <br><br><br><br>
+{% endblock %}

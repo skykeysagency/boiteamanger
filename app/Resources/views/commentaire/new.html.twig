@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br><br><br>
+    <div class="row center">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <div id="desc" class="container">
+                <h5 class="light">Ajouter un commentaire</h5>
+                <br><br><br>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <br><br><br>
+                <div class=" waves-effect waves-light btn light">
+                    <input type="submit" value="Ajouter"/>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+    <ul class="center">
+        <li>
+            <a href="{{ path('menu') }}">Retour</a>
+        </li>
+    </ul>
+    <br><br><br><br><br><br><br>
+{% endblock %}

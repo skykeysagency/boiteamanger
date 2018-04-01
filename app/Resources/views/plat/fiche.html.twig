@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="utilisateur" class="center container">
+        <br><br>
+        <h4 class="light">Description Plat</h4>
+        <br><br>
+        <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="200px" width="400px">
+        <br><br>
+        <table class="striped">
+            <tbody>
+            <tr>
+                <th class="center">Identifiant Plat</th>
+                <td class="center">{{ plat.id }}</td>
+            </tr>
+            <tr>
+                <th class="center">Nom plat</th>
+                <td class="center">{{ plat.nomPlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Categorie plat</th>
+                <td class="center">{{ plat.categoriePlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Description plat</th>
+                <td class="center">{{ plat.descriptionPlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Duree de validité du plat</th>
+                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th class="center">Plat crée le</th>
+                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m:s') }}{% endif %}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <div class=" waves-effect waves-light btn light">
+            <a class="white-text" href="{{ path('plat_reserve', { 'id': plat.id }) }}">Commander</a>
+        </div>
+        <br><br><br>
+        <div class="divider"></div>
+        <br>
+        <h4 class="light">Commentaire</h4>
+        <br>
+        {% for commentaire in plat.commentaires %}
+
+            <div class="section no-pad-bot container">
+                <div class='card horizontal'>
+
+                    <div class='card-stacked'>
+                        <div class='card-content'>
+                            <a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">
+                                <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" alt="imageProfil"
+                                     class="circle"
+                                     style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                            </a>
+
+                            <p class='corps'>{{ commentaire.contenu }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <br><br>
+        <ul>
+            <li>
+                <div class=" waves-effect waves-light btn light">
+                    <a class="white-text" href="{{ path('commentaire_new', {'id': plat.id}) }}">Ajouter</a>
+                </div>
+            </li>
+            <br>
+            <li>
+                <a href="{{ path('menu') }}">Retour</a>
+            </li>
+        </ul>
+    </div>
+    <br><br>
+{% endblock %}

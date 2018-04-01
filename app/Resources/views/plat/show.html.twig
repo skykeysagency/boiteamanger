@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="utilisateur" class="center container">
+        <br><br>
+        <h4 class="light">Description Plat</h4>
+        <br><br>
+        <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="100px" width="250px">
+        <br><br>
+        <table class="striped">
+            <tbody>
+
+            <tr>
+                <th class="center">Nom plat</th>
+                <td class="center">{{ plat.nomPlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Categorie plat</th>
+                <td class="center">{{ plat.categoriePlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Description plat</th>
+                <td class="center">{{ plat.descriptionPlat }}</td>
+            </tr>
+            <tr>
+                <th class="center">Duree de validité du plat</th>
+                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th class="center">Plat crée le</th>
+                <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m') }}{% endif %}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <ul>
+            <br>
+            <li>
+                {{ form_start(delete_form) }}
+                <div class=" waves-effect waves-light btn light">
+                    <input type="submit" value="Supprimer">
+                </div>
+                {{ form_end(delete_form) }}
+            </li>
+            <br>
+            <li>
+                <a href="{{ path('plat_index') }}">Retour</a>
+            </li>
+        </ul>
+    </div>
+    <br><br>
+{% endblock %}
+

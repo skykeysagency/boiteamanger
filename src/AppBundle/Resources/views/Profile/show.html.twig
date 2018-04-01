@@ -1,0 +1,28 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <br><br><br><br><br><br>
+    <div class="row center">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <div id="desc" class="container">
+                <h4 class="light">Modification profil réussi</h4>
+                <br><br><br>
+
+                <div class="fos_user_user_show">
+                    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+                    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                </div>
+                <br><br>
+                <ul>
+                    <div class="waves-effect waves-light btn light">
+                        <a class="white-text" href="{{ path('etudiant_index') }}">Retour</a>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+{% endblock fos_user_content %}

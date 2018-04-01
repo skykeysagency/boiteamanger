@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br><br>
+    <h4 class="light center">Liste de vos plats commandés</h4>
+    <br><br><br><br>
+    <table class="container">
+        <thead>
+        <tr>
+            <th class="center">Nom plat</th>
+            <th class="center">Categorie plat</th>
+            <th class="center">Description plat</th>
+            <th class="center">Contact</th>
+            <th class="center">Duree de validité du plat</th>
+            <th class="center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for plat in user.plats %}
+            <tr>
+                <td class="center">{{ plat.nomPlat }}</td>
+                <td class="center">{{ plat.categoriePlat }}</td>
+                <td class="center">{{ plat.descriptionPlat }}</td>
+                {% if plat.userPoste.tel is defined %}
+                    <td class="center">{{ plat.userPoste.tel }}</td>
+                {% else %}
+                    <td class="center">Non renseigné</td>
+                {% endif %}
+                <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
+                <td>
+                    <div>
+                        <a href="{{ path('plats_annuler', { 'id': plat.id }) }}">Annuler la commande</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br><br><br><br><br>
+
+    <div class="row center">
+        <div class="waves-effect waves-light btn light">
+            <a class="white-text" href="{{ path('plat_index') }}">Revenir sur votre liste de plat</a>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br>
+{% endblock %}
