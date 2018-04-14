@@ -1,6 +1,26 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% extends "@FOSUser/layout.html.twig" %}
 
+{% block javascripts %}
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '189609251826575',
+            xfbml      : true,
+            version    : 'v2.12'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/fr_FR/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+{% endblock %}
 {% block fos_user_content %}
 
     <br><br>
@@ -13,9 +33,7 @@
                     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
                     {{ form_widget(form) }}
                     <br>
-                <a class="waves-effect waves-light btn social facebook ">
-                    <i class="fa fa-facebook"></i> S'inscrire avec facebook</a>
-
+                <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true"></div>
                     <div class=" waves-effect waves-light btn light">
                         <input type="submit" value="{{ 'registration.submit'|trans }}"/>
                     </div>
