@@ -64,6 +64,7 @@ doctrine:
 swiftmailer:
     transport: '%mailer_transport%'
     host: '%mailer_host%'
+    port:      "%mailer_port%"
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
@@ -102,6 +103,10 @@ hwi_oauth:
             client_secret:       3ee547671970a76757a6a16d1d599a4b
             options:
                 display: popup
+            login_path: /login
+            failure_path: /login
+            default_target_path: /home
+
         google:
             type:                google
             client_id:           193663188726-4nguhjvip2a0aa2ofpva5lvosrktpct3.apps.googleusercontent.com

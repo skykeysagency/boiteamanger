@@ -39,7 +39,7 @@ security:
 
             oauth:
                 resource_owners:
-                      facebook:           "/login/check-facebook"
+                      facebook:         "/login/check-facebook"
                       google:           "/login/check-google"
 
                 login_path:        /login
