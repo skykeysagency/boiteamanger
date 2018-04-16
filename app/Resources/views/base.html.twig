@@ -15,6 +15,8 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     {% endblock %}
 
 </head>
@@ -108,11 +110,24 @@
 
 {% block footer %}
 
-    <footer class="page-footer teal center ">
+    <footer class="page-footer teal center fixed ">
         <div class="container">
             Copyright © 2018  <a class="brown-text text-lighten-3" href="{{ path('accueil') }}">Tup'My Lunch</a>
         </div>
     </footer>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons ">add</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
 
 {% endblock %}
 
@@ -140,6 +155,7 @@
             );
         });
     </script>
+
 {% endblock %}
 
 </html>
