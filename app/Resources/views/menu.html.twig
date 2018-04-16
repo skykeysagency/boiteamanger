@@ -23,6 +23,7 @@
                 <div class="section no-pad-bot container">
                     <div class='card horizontal'>
                         <div class='card-image'>
+                            <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
                             <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
                             <span class='card-title'>{{ plat.nomPlat }}</span>
                         </div>
@@ -49,6 +50,8 @@
                 <div class="section no-pad-bot container">
                     <div class='card horizontal'>
                         <div class='card-image'>
+                            <a class="btn-floating btn-large btn-price waves-effect waves-light red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
+
                             <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
                             <span class='card-title'>{{ plat.nomPlat }}</span>
                         </div>
@@ -77,6 +80,7 @@
             <div class="section no-pad-bot container">
                 <div class='card horizontal'>
                     <div class='card-image'>
+                        <a href="{{ path('fos_user_security_login') }}" class="btn-floating btn-large btn-price waves-effect waves-light red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
                         <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
                         <span class='card-title'>{{ plat.nomPlat }}</span>
                     </div>
