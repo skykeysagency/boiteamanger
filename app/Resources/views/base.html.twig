@@ -137,11 +137,13 @@
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
     <script>
-        $(document).ready(function () {
+
+        // TODO: fix dropdown (bloque execution du reste du script)
+
+        /*$(document).ready(function () {
             $('.dropdown-button').dropdown({
                     inDuration: 300,
                     outDuration: 225,
@@ -153,7 +155,7 @@
                     stopPropagation: false // Stops event propagation
                 }
             );
-        });
+        });*/
     </script>
 
 {% endblock %}

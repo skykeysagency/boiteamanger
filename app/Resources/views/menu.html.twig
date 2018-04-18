@@ -19,7 +19,7 @@
     <br>
     {% for plat in plats %}
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {% if date() < date(plat.dureeValide) %}
+            {% if 'now'|date() >= plat.dureeValide %}
                 <div class="section no-pad-bot container">
                     <div class='card horizontal'>
                         <div class='card-image'>
@@ -36,7 +36,7 @@
                                 <p class='corps'>{{ plat.descriptionPlat }}</p>
                                 <br>
                                 <p class='corps'><i class="tiny material-icons">timer</i>
-                                    {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
+                                <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d h:i:s') }}"></div>
                                 </p>
                             </div>
                             <div class='card-action center'>
@@ -47,37 +47,12 @@
                 </div>
                 <br><br>
             {% else %}
-                <div class="section no-pad-bot container">
-                    <div class='card horizontal'>
-                        <div class='card-image'>
-                            <a class="btn-floating btn-large btn-price waves-effect waves-light red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
 
-                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                            <span class='card-title'>{{ plat.nomPlat }}</span>
-                        </div>
-                        <div class='card-stacked'>
-                            <div class='card-content center'>
-                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil"
-                                     class="circle"
-                                     style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
-                                <br><br>
-                                <p class='corps'>{{ plat.descriptionPlat }}</p>
-                                <br>
-                                <p class='corps'><i class="tiny material-icons">timer</i>
-                                    {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
-                                </p>
-                                <p>Temps épuisé</p>
-                            </div>
-                            <div class='card-action center'>
-                                <a class="btn-flat disabled" href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
             {% endif %}
         {% else %}
-            <div class="section no-pad-bot container">
+            {% if 'now'|date() >= plat.dureeValide %}
+
+                <div class="section no-pad-bot container">
                 <div class='card horizontal'>
                     <div class='card-image'>
                         <a href="{{ path('fos_user_security_login') }}" class="btn-floating btn-large btn-price waves-effect waves-light red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
@@ -92,7 +67,7 @@
                             <p class='corps'>{{ plat.descriptionPlat }}</p>
                             <br>
                             <p class='corps'><i class="tiny material-icons">timer</i>
-                                {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}
+                            <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d h:i:s') }}"></div>
                             </p>
                             <p>Temps épuisé</p>
                         </div>
@@ -101,13 +76,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br>
+                </div>
+                <br><br>
+            {% endif %}
         {% endif %}
     {% endfor %}
     <br><br><br>
     {% block javascripts %}
         {{ parent() }}
+        <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>
+        <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+
         <script>
 
             $(document).ready(function () {
@@ -117,16 +96,30 @@
                     url_get: '/?term='
                 });
 
-
                 $("#ui-id-1").click(function(){
                     var id = $("#PlatType").val();
 
                     if(id.toString().length > 0){
                         $(location).attr('href', '/plat/'+id.toString());
                     }
-                })
+                });
 
-            });
+
+
+                $(".duree").each(function() {
+                    $(this).countdown($(this).data("due-date"), function(event) {
+                        $(this).text(event.strftime('%H:%M:%S'));
+                    });
+                });
+
+                });
+
+
+
+
+
+
+
         </script>
     {% endblock %}
 {% endblock %}
