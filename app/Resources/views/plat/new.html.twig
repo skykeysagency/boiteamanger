@@ -12,7 +12,7 @@
                 {{ form_widget(form) }}
                 <br><br><br>
                 <div class=" waves-effect waves-light btn light">
-                    <input type="submit" value="Poster"/>
+                    <input class="submit" type="submit" value="Poster"/>
                 </div>
                 {{ form_end(form) }}
             </div>
@@ -21,10 +21,21 @@
     </div>
     <ul class="center">
         <li>
-            <a href="{{ path('plat_index') }}">Retour</a>
+            <a class="ret" href="{{ path('plat_index') }}">Retour</a>
         </li>
     </ul>
 <br><br>
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(document).ready(function () {
+                $( "form" ).submit(function( event ) {
+                    swal("Good job!", "Vous venez d'ajouter un plat!", "success");
+                });
+            });
+        </script>
+
+    {% endblock %}
 {% endblock %}
 
 
