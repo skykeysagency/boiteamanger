@@ -36,7 +36,7 @@
                                 <p class='corps'>{{ plat.descriptionPlat }}</p>
                                 <br>
                                 <p class='corps'><i class="tiny material-icons">timer</i>
-                                <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d h:i:s') }}"></div>
+                                <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
                                 </p>
                             </div>
                             <div class='card-action center'>
@@ -66,7 +66,7 @@
                             <p class='corps'>{{ plat.descriptionPlat }}</p>
                             <br>
                             <p class='corps'><i class="tiny material-icons">timer</i>
-                            <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d h:i:s') }}"></div>
+                            <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
                             </p>
                             <p>Temps épuisé</p>
                         </div>
@@ -83,8 +83,6 @@
     <br><br><br>
     {% block javascripts %}
         {{ parent() }}
-        <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>
-        <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
 
         <script>
 

@@ -46,7 +46,7 @@
                             <div class="col s4 countdown_hours">
                                 <span class="col s4"></span>
                                 <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
-                                    <span class="col s12 hours"></span>
+                                    <span class="col s12 hours" style="color:black;"></span>
                                 </h5>
                                 <span class="col s4"></span>
                                 <h6 class="col s12 countdown_label">Heures</h6>
@@ -54,7 +54,7 @@
                             <div class="col s4 countdown_minutes">
                                 <span class="col s4"></span>
                                 <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
-                                    <span class="col s12 minutes"></span>
+                                    <span class="col s12 minutes" style="color:black;"></span>
                                 </h5>
                                 <span class="col s4"></span>
                                 <h6 class="col s12 countdown_label">Minutes</h6>
@@ -62,7 +62,7 @@
                             <div class="col s4 countdown_seconds">
                                 <span class="col s4"></span>
                                 <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
-                                    <span class="col s12 seconds"></span>
+                                    <span class="col s12 seconds" style="color:black;"></span>
                                 </h5>
                                 <span class="col s4"></span>
                                 <h6 class="col s12 countdown_label">Secondes</h6>
@@ -241,11 +241,8 @@
 
         <script>
             $(document).ready(function () {
-
-        // TODO: Carousel et parallax pas reconnue comme fonction
-
-                /*$('.carousel.carousel-slider').carousel({fullWidth: true});
-                $('.parallax').parallax();*/
+                $('.carousel.carousel-slider').carousel({fullWidth: true});
+                $('.parallax').parallax();
 
                 $(".duree").each(function() {
                     $(this).countdown($(this).data("due-date"), function(event) {

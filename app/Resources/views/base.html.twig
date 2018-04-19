@@ -134,28 +134,28 @@
 {% block javascripts %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>
+    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+
     <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
-    <script>
 
-        // TODO: fix dropdown (bloque execution du reste du script)
-
-        /*$(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
             $('.dropdown-button').dropdown({
                     inDuration: 300,
                     outDuration: 225,
                     constrainWidth: false, // Does not change width of dropdown to that of the activator
                     hover: true, // Activate on hover
                     gutter: 0, // Spacing from edge
-                    belowOrigin: false, // Displays dropdown below the button
+                    belowOrigin: true, // Displays dropdown below the button
                     alignment: 'left', // Displays dropdown with edge aligned to the left of button
                     stopPropagation: false // Stops event propagation
                 }
             );
-        });*/
+        });
     </script>
 
 {% endblock %}
