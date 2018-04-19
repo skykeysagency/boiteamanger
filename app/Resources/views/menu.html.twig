@@ -19,7 +19,7 @@
     <br>
     {% for plat in plats %}
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {% if 'now'|date() >= plat.dureeValide %}
+            {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
                 <div class="section no-pad-bot container">
                     <div class='card horizontal'>
                         <div class='card-image'>
@@ -50,8 +50,7 @@
 
             {% endif %}
         {% else %}
-            {% if 'now'|date() >= plat.dureeValide %}
-
+            {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
                 <div class="section no-pad-bot container">
                 <div class='card horizontal'>
                     <div class='card-image'>
