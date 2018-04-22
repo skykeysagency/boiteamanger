@@ -29,9 +29,9 @@
                         </div>
                         <div class='card-stacked'>
                             <div class='card-content center'>
-                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil"
+                                <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
                                      class="circle"
-                                     style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                                     style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
                                 <br><br>
                                 <p class='corps'>{{ plat.descriptionPlat }}</p>
                                 <br>
@@ -60,8 +60,9 @@
                     </div>
                     <div class='card-stacked'>
                         <div class='card-content center'>
-                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="imageProfil" class="circle"
-                                 style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
+                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
+                                 class="circle"
+                                 style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
                             <br><br>
                             <p class='corps'>{{ plat.descriptionPlat }}</p>
                             <br>
