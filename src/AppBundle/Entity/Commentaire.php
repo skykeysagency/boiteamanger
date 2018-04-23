@@ -30,7 +30,7 @@ class Commentaire
 
     /**
      * @var Plat
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Plat",inversedBy="commentaire")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Plat",inversedBy="commentaires")
      * @ORM\JoinColumn(name="plat_id",referencedColumnName="id")
      */
     private $plat;

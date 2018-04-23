@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,12 +37,15 @@ class Plat
      */
     private $nomPlat;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categoriePlat", type="string", length=255)
+     * @ManyToMany(targetEntity="Categorie", inversedBy="plat")
+     * @JoinTable(name="Plat_categorie",
+     *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id")}
+     * )
      */
-    private $categoriePlat;
+    private $categorie;
 
     /**
      * @var string
@@ -67,7 +73,7 @@ class Plat
     /**
      * @var prix
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="integer", nullable=true)
      */
 
     private $prix;
@@ -87,7 +93,8 @@ class Plat
     private $commentaires;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="plats")
+     *
      */
     private $users;
 
