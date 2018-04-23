@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,8 +23,10 @@ class PlatType extends AbstractType
         $builder->add('nomPlat', TextType::class, array(
             'label' => 'Nom plat',
         ))
-            ->add('categoriePlat', TextType::class, array(
-                'label' => 'Categorie plat',
+            ->add('categorie', EntityType::class, array(
+                'class' => Categorie::class,
+                'choice_label' => 'libelle',
+                 'multiple' => true,
             ))
             ->add('descriptionPlat', TextType::class, array(
                 'label' => 'Description plat',

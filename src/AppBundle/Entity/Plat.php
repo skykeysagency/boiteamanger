@@ -40,7 +40,7 @@ class Plat
 
     /**
      * @ManyToMany(targetEntity="Categorie", inversedBy="plat")
-     * @JoinTable(name="Plat_categorie",
+     * @JoinTable(name="plat_categorie",
      *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id")},
      *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id")}
      * )
@@ -225,27 +225,27 @@ class Plat
     }
 
     /**
-     * Set categoriePlat
+     * Set categorie
      *
-     * @param string $categoriePlat
+     * @param string $categorie
      *
      * @return Plat
      */
-    public function setCategoriePlat($categoriePlat)
+    public function setCategorie($categorie)
     {
-        $this->categoriePlat = $categoriePlat;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     /**
-     * Get categoriePlat
+     * Get categorie
      *
      * @return string
      */
-    public function getCategoriePlat()
+    public function getCategorie()
     {
-        return $this->categoriePlat;
+        return $this->categorie;
     }
 
     /**
