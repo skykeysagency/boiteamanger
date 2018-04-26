@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Groupes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Proprietaire</th>
+                <th>Isprivate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupe in groupes %}
+            {% if groupe.isPrivate %}
+            {% for participant in groupe.participant %}
+            {% if app.user.id == participant.id %}
+            <tr>
+                <td><a href="{{ path('groupe_show', { 'id': groupe.id }) }}">{{ groupe.id }}</a></td>
+                <td>{{ groupe.nom }}</td>
+                <td>{{ groupe.proprietaire }}</td>
+                <td>{% if groupe.isPrivate %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('groupe_show', { 'id': groupe.id }) }}">show</a>
+                        </li>
+                        {% if app.user.id == groupe.proprietaire %}
+                        <li>
+                            <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">edit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td><a href="{{ path('groupe_show', { 'id': groupe.id }) }}">{{ groupe.id }}</a></td>
+                    <td>{{ groupe.nom }}</td>
+                    <td>{{ groupe.proprietaire }}</td>
+                    <td>{% if groupe.isPrivate %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('groupe_show', { 'id': groupe.id }) }}">show</a>
+                            </li>
+                            {% if app.user.id == groupe.proprietaire %}
+                                <li>
+                                    <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">edit</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupe_new') }}">Create a new groupe</a>
+        </li>
+    </ul>
+{% endblock %}

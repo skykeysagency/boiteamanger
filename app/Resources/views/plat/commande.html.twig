@@ -19,7 +19,9 @@
         {% for plat in user.plats %}
             <tr>
                 <td class="center">{{ plat.nomPlat }}</td>
-                <td class="center">{{ plat.categoriePlat }}</td>
+                <td class="center">{% for cat in plat.categorie %}
+                        {{ cat.getLibelle() }},
+                    {% endfor %}</td>
                 <td class="center">{{ plat.descriptionPlat }}</td>
                 {% if plat.userPoste.tel is defined %}
                     <td class="center">{{ plat.userPoste.tel }}</td>

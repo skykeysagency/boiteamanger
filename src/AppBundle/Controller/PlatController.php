@@ -42,7 +42,10 @@ class PlatController extends Controller
     public function newAction(Request $request)
     {
         $plat = new Plat();
+        $userId= $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        $plat->setUserPoste($userId);
         $form = $this->createForm('AppBundle\Form\PlatType', $plat);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

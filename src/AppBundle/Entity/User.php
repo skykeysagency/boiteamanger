@@ -3,6 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToMany;
 use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -82,12 +86,28 @@ class User extends FOSUser
      */
     protected $plats;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="participant")
+     * @ORM\JoinTable(name="user_groupe",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
+     * )
+     *
+     *
+     */
+    protected $groupe;
+
+
     public function __construct()
     {
         parent::__construct();
         $this->plats = new ArrayCollection();
 
         $this->platsPoste = new ArrayCollection();
+
+        $this->groupe = new ArrayCollection();
     }
 
     /**
@@ -302,4 +322,54 @@ class User extends FOSUser
     {
         $this->platsPoste->removeElement($platsPoste);
     }
+
+    /**
+     * Set groupe
+     *
+     * @param Groupe $groupe
+     *
+     * @return User
+     */
+    public function setGroupe($groupe)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return Groupe[]|ArrayCollection|\Doctrine\Common\Collections\Collection
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+
+    /**
+     * @param Groupe $Group
+     */
+    public function addUserGroup(Groupe $Group)
+    {
+        if ($this->groupe->contains($Group)) {
+            return;
+        }
+        $this->groupe->add($Group);
+        $Group->addUser($this);
+    }
+    /**
+     * @param Groupe $Group
+     */
+    public function removeUserGroup(Groupe $Group)
+    {
+        if (!$this->groupe->contains($Group)) {
+            return;
+        }
+        $this->groupe->removeElement($Group);
+        $Group->removeUser($this);
+    }
+
+
 }

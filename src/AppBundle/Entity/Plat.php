@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use AppBundle\Entity\User;
 
 
 /**
@@ -104,6 +103,33 @@ class Plat
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $userPoste;
+
+    /**
+     * @var Groupe
+     * @ORM\ManyToOne(targetEntity="Groupe", inversedBy="plat")
+     * @ORM\JoinTable(name="plat_groupe",
+     *     joinColumns={@ORM\JoinColumn(name="plat_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
+     * )
+     */
+    private $groupe;
+
+    /**
+     * @return Groupe
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+    /**
+     * @param Groupe $groupe
+     */
+    public function setGroupe(Groupe $groupe)
+    {
+        $this->groupe = $groupe;
+    }
+
 
     public function __construct()
     {

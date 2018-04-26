@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for participant in groupe.participant %}
+    {% if app.user.id == participant.id %}
+
+    <h1>{{ groupe.nom }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Privé?</th>
+                <td>Ce groupe est{% if groupe.isPrivate %} privée{% else %} public{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Participant</th>
+                <td>{% for participant in groupe.participant %}
+                        {{ participant }}
+                        <a href='{{ path('del_participant', {'userId': participant.id, 'groupeId' : groupe.id}) }}'>Supprimer</a>
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Plats</th>
+                <td>{% for plat in groupe.plat %}
+                    {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+
+                    {#<a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>{{ plat.nomPlat() }}</a>#}
+
+
+                    <div class="section no-pad-bot container">
+                        <div class='card horizontal'>
+                            <div class='card-image'>
+                                <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
+                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                                <span class='card-title'>{{ plat.nomPlat }}</span>
+                            </div>
+                            <div class='card-stacked'>
+                                <div class='card-content center'>
+                                    <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
+                                         class="circle"
+                                         style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
+                                    <br><br>
+                                    <p class='corps'>{{ plat.descriptionPlat }}</p>
+                                    <br>
+                                    <p class='corps'><i class="tiny material-icons">timer</i>
+                                    <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                    </p>
+                                </div>
+                                <div class='card-action center'>
+                                    <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                                </div>
+                            </div>
+                        </div>
+                  {% endif %}
+                    </div>
+                        {% endfor %}
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupe_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+    {% endif %}
+    {% endfor %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script>
+
+            $(document).ready(function () {
+                'use strict';
+                $('#form_titre').autocompleter({
+                    url_list: '/search-article',
+                    url_get: '/?term='
+                });
+
+                $("#ui-id-1").click(function(){
+                    var id = $("#PlatType").val();
+
+                    if(id.toString().length > 0){
+                        $(location).attr('href', '/plat/'+id.toString());
+                    }
+                });
+
+
+
+                $(".duree").each(function() {
+                    $(this).countdown($(this).data("due-date"), function(event) {
+                        $(this).text(event.strftime('%H:%M:%S'));
+                    });
+                });
+
+            });
+        </script>
+    {% endblock %}
+{% endblock %}
