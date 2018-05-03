@@ -12,6 +12,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/vizeat.css') }}" />
+
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -43,7 +45,7 @@
                 <div class="row">
                     <div class="col s2">
                         <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
-                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
+                            <img style="width: 35%; height: 35%; margin-top: -5px; margin-left: 0px;"
                                  src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
                         </a>
                     </div>
@@ -78,7 +80,7 @@
                 <div class="row">
                     <div class="col s2">
                         <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
-                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
+                            <img style="width: 35%; height: 35%; margin-top: -5px; margin-left: 0px;"
                                  src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
                         </a>
                     </div>
@@ -104,8 +106,8 @@
 
 
 <div role="main">
-{% block body %}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 </div>
 
 

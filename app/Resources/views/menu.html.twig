@@ -1,125 +1,597 @@
 {% extends "base.html.twig" %}
 
-{% block body %}
-    <br><br>
-    <h4 class="light center">Découvrez nos repas !</h4>
-    <br>
-    <div class="row container">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">search</i>
-                    <input type="text" id="autocomplete-input" class="autocomplete">
-                    <label for="autocomplete-input">Rechercher un plat</label>
 
+
+
+{% block body %}
+    <div>
+        {#    header   #}
+
+        <div class="SearchPage-Destination"><!-- react-empty: 1720 -->
+            <div class="vz-city-banner"
+                 style="background-image: url(http://fooddy.ancorathemes.com/wp-content/uploads/2016/12/home2_slide1.jpg?id=506);">
+                <div class="vz-city-banner-content"><h1>Menu</h1>
+                    <h2>Prepare , Poste , Partage </h2>
+                    <div class="__InputField">
+                        <div class="OpenSearchInput __SearchInputContainer"><input class="__SearchInput" name="q"
+                                                                                   placeholder="Rechercher une plat"
+                                                                                   value="Pate, Salade"
+                                                                                   autocomplete="one">
+                            <!-- react-empty: 1728 --></div>
+                        <a class="__Button" disabled=""
+                           href="/search?c=USD&amp;page=1&amp;pricemax=99999999&amp;pricemin=0&amp;q=Tokyo%2C+Japan&amp;view=list">Découvrez</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- react-empty: 1730 -->
+        <div class="vz-search-filters-section">
+            <div class="filters-list container-fluid">
+                <div class="text-center vz-filters-row-6 row">
+                    <div class="vz-filter-wrapper">
+                        <div class="DropdownLayout SearchDatesDropdown SearchFilter-Date">
+                            <div class="__innerInvisibleDimmer vz-hidden"></div>
+                            <div class="__trigger">
+                                <div class="vz-filter"><a class="vz-filter-button date-filter"><i type="calendar"
+                                                                                                  color="gray"
+                                                                                                  class="vz-icon vz-icon-small vz-icon-calendar vz-icon-gray"></i><span
+                                                class="vz-text"><span class="vz-filter-dropdown"><!-- react-text: 1743 -->Dates
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                            <div class="__dropdown">
+                                <div class="__wrapperForMobile"><!-- react-empty: 1748 -->
+                                    <div class="HomePage-CalendarWidget">
+                                        <div class="__calendarMenu">
+                                            <div class="__calendarMenuItem" tabindex="-1">Cette semaine</div>
+                                            <div class="__calendarMenuItem" tabindex="-1">Ce week-end</div>
+                                            <div class="__calendarMenuItem" tabindex="-1">Semaine prochaine</div>
+                                        </div>
+                                        <div class="DayPicker vz-DayPicker" role="application" lang="fr" tabindex="0">
+                                            <div class="DayPicker-NavBar"><span role="button"
+                                                                                aria-label="Previous Month"
+                                                                                class="DayPicker-NavButton DayPicker-NavButton--prev"></span><span
+                                                        role="button" aria-label="Next Month"
+                                                        class="DayPicker-NavButton DayPicker-NavButton--next"></span>
+                                            </div>
+                                            <div class="DayPicker-Month" role="grid">
+                                                <div class="DayPicker-Caption"><span
+                                                            class="DayPicker--previous-month"></span>
+                                                    <!-- react-text: 1761 -->avril 2018<!-- /react-text --><span
+                                                            class="DayPicker--next-month"></span></div>
+                                                <div class="DayPicker-Weekdays" role="rowgroup">
+                                                    <div class="DayPicker-WeekdaysRow" role="row">
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="lundi">lu</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="mardi">ma</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="mercredi">me</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="jeudi">je</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="vendredi">ve</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="samedi">sa</abbr></div>
+                                                        <div class="DayPicker-Weekday" role="columnheader"><abbr
+                                                                    title="dimanche">di</abbr></div>
+                                                    </div>
+                                                </div>
+                                                <div class="DayPicker-Body" role="rowgroup">
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"></div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="0"
+                                                             role="gridcell" aria-label="dim. 1 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">1
+                                                        </div>
+                                                    </div>
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="lun. 2 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">2
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mar. 3 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">3
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mer. 4 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">4
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="jeu. 5 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">5
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="ven. 6 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">6
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="sam. 7 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">7
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="dim. 8 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">8
+                                                        </div>
+                                                    </div>
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="lun. 9 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">9
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mar. 10 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">10
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mer. 11 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">11
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="jeu. 12 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">12
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="ven. 13 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">13
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="sam. 14 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">14
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="dim. 15 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">15
+                                                        </div>
+                                                    </div>
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="lun. 16 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">16
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mar. 17 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">17
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mer. 18 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">18
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="jeu. 19 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">19
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="ven. 20 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">20
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="sam. 21 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">21
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="dim. 22 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">22
+                                                        </div>
+                                                    </div>
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="lun. 23 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">23
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mar. 24 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">24
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="mer. 25 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">25
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="jeu. 26 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">26
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="ven. 27 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">27
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="sam. 28 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">28
+                                                        </div>
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled" tabindex="-1"
+                                                             role="gridcell" aria-label="dim. 29 avr. 2018"
+                                                             aria-disabled="true" aria-selected="false">29
+                                                        </div>
+                                                    </div>
+                                                    <div class="DayPicker-Week" role="row">
+                                                        <div class="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--today"
+                                                             tabindex="-1" role="gridcell"
+                                                             aria-label="lun. 30 avr. 2018" aria-disabled="true"
+                                                             aria-selected="false">30
+                                                        </div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                        <div role="gridcell" aria-disabled="true"
+                                                             class="DayPicker-Day DayPicker-Day--outside"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- react-empty: 1828 --></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="people" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-people vz-icon-gray"></i><span
+                                                class="vz-text"><span class="vz-filter-dropdown"><!-- react-text: 1837 -->Invités
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="price" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-price vz-icon-gray"></i><span
+                                                class="vz-text"><span class="vz-filter-dropdown"><!-- react-text: 1848 -->$1 - $150+
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper">
+                        <div class="vz-filter vz-text-primary vz-border-primary"><a class="vz-filter-button"><i
+                                        type="map" color="red"
+                                        class="vz-icon vz-icon-small vz-icon-map vz-icon-red"></i><span class="vz-text">Carte</span></a>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper vz-more-filter">
+                        <div class="vz-filter vz-text-primary vz-border-primary"><a class="vz-filter-button"><span
+                                        class="vz-text">Plus de filtres</span></a></div>
+                    </div>
+                </div>
+                <div class="text-center vz-secondary-filters row">
+                    <div class="vz-filter-wrapper vz-hidden">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="event" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-event vz-icon-gray"></i><span
+                                                class="vz-text"><span><!-- react-text: 1869 -->Type d'événement
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper vz-hidden">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="plate" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-plate vz-icon-gray"></i><span
+                                                class="vz-text"><span><!-- react-text: 1880 -->Type de cuisine
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper vz-hidden">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="language" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-language vz-icon-gray"></i><span
+                                                class="vz-text"><span><!-- react-text: 1891 -->L'hôte parle
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper vz-hidden">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="accommodation" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-accommodation vz-icon-gray"></i><span
+                                                class="vz-text"><span><!-- react-text: 1902 -->Options
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vz-filter-wrapper vz-hidden">
+                        <div>
+                            <div>
+                                <div class="vz-filter"><a class="vz-filter-button"><i type="diet" color="gray"
+                                                                                      class="vz-icon vz-icon-small vz-icon-diet vz-icon-gray"></i><span
+                                                class="vz-text"><span><!-- react-text: 1913 -->Régimes alimentaires
+                                                <!-- /react-text --><span class="vz-filter-right-icon"><span
+                                                            class="caret"></span></span></span></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#    header   #}
+
+        {#    Affichage plat   #}
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="">
+            <div name="eventsList">
+                <div class="container menulist">
+                    <div class="row">
+                        <div class="vz-col-events col-xl-12">
+                            <div>
+                                <div class="">
+                                    <div class="vz-event-section">
+                                        <div class="vz-events-list">
+
+                                            {% for plat in plats %}
+
+                                                    {% if plat.groupe.id != '78' %}
+                                                        {% for userGroupe in app.user.getGroupe() %}
+                                                            {% if plat.groupe.id == userGroupe.id %}
+
+                                                                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                                    <div class="vz-EventCard vz-SearchEventCard">
+                                                                        <button class="vz-wishlist-button EventCard__wishlist-button">
+                                                                            <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
+                                                                        </button>
+                                                                        <div class="EventCard-HeroContainer">
+                                                                            <div class="EventCard-NextDate">
+                                                                                <div class="EventCard-NextDate__dateContainer">
+                                                                        <span class="EventCard-NextDate__dateValue">
+                                                                              <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                                                        </span>
+                                                                                </div>
+                                                                                <div class="EventCard-NextDate__seatsContainer">
+                                                                                    <span class="EventCard-NextDate__seatsLabel">Temps restant</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="EventCard__priceTag">
+                                                                                <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
+                                                                            </div>
+                                                                            <div class="EventCard__image"
+                                                                                 style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="EventCard-InfoContainer">
+                                                                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
+                                                                                 class="EventCard__hostPic avatar img-responsive img-circle">
+                                                                            <div class="EventCard-HostInfo">
+                                                                                <small class="EventCard__hostText"><!-- react-text: 5529 -->Manger avec
+                                                                                    <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
+                                                                                    <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->75012
+                                                                                    <!-- /react-text --></small>
+                                                                                {% for cat in plat.categorie %}
+                                                                                    <span class="EventCard__eventType">{{ cat.libelle }}</span>
+                                                                                {% endfor %}
+                                                                                <div class="EventCard__eventTitleContainer"><a class="EventCard__eventTitle" dir="auto"
+                                                                                                                               href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>{{ plat.nomPlat }}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="EventCard-MoreInfoContainer">
+                                                                            <div class="EventCard-RatingContainer"><span class="vz-review-rating"><div
+                                                                                            class="vz-review-rating-container"><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span></div><span
+                                                                                            class="vz-review-count"> (18)</span></span></div>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        {% else %}
+                                                         {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                             <div class="vz-EventCard vz-SearchEventCard">
+                                                                 <button class="vz-wishlist-button EventCard__wishlist-button">
+                                                                     <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
+                                                                 </button>
+                                                                 <div class="EventCard-HeroContainer">
+                                                                     <div class="EventCard-NextDate">
+                                                                         <div class="EventCard-NextDate__dateContainer">
+                                                             <span class="EventCard-NextDate__dateValue">
+                                                                   <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                                             </span>
+                                                                         </div>
+                                                                         <div class="EventCard-NextDate__seatsContainer">
+                                                                             <span class="EventCard-NextDate__seatsLabel">Temps restant</span>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="EventCard__priceTag">
+                                                                         <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
+                                                                     </div>
+                                                                     <div class="EventCard__image"
+                                                                          style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class="EventCard-InfoContainer">
+                                                                     <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
+                                                                          class="EventCard__hostPic avatar img-responsive img-circle">
+                                                                     <div class="EventCard-HostInfo">
+                                                                         <small class="EventCard__hostText"><!-- react-text: 5529 -->Manger avec
+                                                                             <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
+                                                                             <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->75012
+                                                                             <!-- /react-text --></small>
+                                                                         {% for cat in plat.categorie %}
+                                                                             <span class="EventCard__eventType">{{ cat.libelle }}</span>
+                                                                         {% endfor %}
+                                                                         <div class="EventCard__eventTitleContainer"><a class="EventCard__eventTitle" dir="auto"
+                                                                                                                        href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>{{ plat.nomPlat }}</a>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class="EventCard-MoreInfoContainer">
+                                                                     <div class="EventCard-RatingContainer"><span class="vz-review-rating"><div
+                                                                                     class="vz-review-rating-container"><span
+                                                                                         class="vz-review-icon star active"></span><span
+                                                                                         class="vz-review-icon star active"></span><span
+                                                                                         class="vz-review-icon star active"></span><span
+                                                                                         class="vz-review-icon star active"></span><span
+                                                                                         class="vz-review-icon star active"></span></div><span
+                                                                                     class="vz-review-count"> (18)</span></span></div>
+                                                                 </div>
+                                                             </div>
+                                                         {% endif %}
+                                                    {% endif %}
+                                            {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- react-empty: 2309 --></div>
+        {#filter#}
+        <div class="vz-too-many-filters vz-hidden">
+            <div class="container">
+                <div style="text-align: center;">
+                    <div class="compass-container"><img
+                                src="https://static.eatwith.com/806558d245f5cf11b922c8ef8d85ed26.png" width="60"
+                                height="60" class="compass"><img
+                                src="https://static.eatwith.com/35b64f6708d4df90080286f6f21a1b22.png" width="60"
+                                height="60" class="needle"></div>
+                </div>
+                <h2 class="vz-title" style="margin-top: 16px;">Nous savons que vous avez faim, mais nous n'avons pas
+                    encore d'hôtes ici.</h2>
+                <p class="no-results-text">Assurez-vous de n'avoir pas mis trop de filtres ou essayez de faire un zoom
+                    arrière sur la carte pour voir les expériences les plus proches</p>
+                <div class="vz-action-btn">
+                    <button type="button" class="btn btn-default">Élargir votre recherche.</button>
+                    <button type="button" class="btn btn-default">Voir la carte</button>
+                </div>
+            </div>
+            <div class="section-become-a-host">
+                <div class="container"><h2 class="vz-title">Soyez le premier hôte à Tokyo</h2>
+                    <p class="no-results-text">Il semblerait qu'il n'y ait pas encore d'hôte à Tokyo. Devenez le premier
+                        hôte et recevez des invités du monde entier à votre table</p>
+                    <div style="text-align: center;"><a class="host-btn btn btn-primary" href="/landings/become-a-host">Devenez
+                            hôte à Tokyo</a></div>
+                </div>
+            </div>
+        </div>
+        {#filter#}
+    </div>
+<br><br>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
+    <div class="">
+        <div name="eventsList">
+            <div class="container menulist">
+                <div class="row">
+                    <div class="vz-col-events col-xl-12">
+                        <div>
+                            <div class="">
+                                <div class="vz-event-section">
+                                    <div class="vz-events-list">
+                                        {% for plat in plats %}
+
+                                            {% if plat.groupe.id == "78" %}
+                                                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+
+
+                                                        <div class="vz-EventCard vz-SearchEventCard">
+                                                            <button class="vz-wishlist-button EventCard__wishlist-button">
+                                                                <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
+                                                            </button>
+                                                            <div class="EventCard-HeroContainer">
+                                                                <div class="EventCard-NextDate">
+                                                                    <div class="EventCard-NextDate__dateContainer">
+                                                        <span class="EventCard-NextDate__dateValue">
+                                                              <div class="duree"
+                                                                   data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                                        </span>
+                                                                    </div>
+                                                                    <div class="EventCard-NextDate__seatsContainer">
+                                                                        <span class="EventCard-NextDate__seatsLabel">Temps restant</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="EventCard__priceTag">
+                                                                    <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
+                                                                </div>
+                                                                <div class="EventCard__image"
+                                                                     style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="EventCard-InfoContainer">
+                                                                <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
+                                                                     class="EventCard__hostPic avatar img-responsive img-circle">
+                                                                <div class="EventCard-HostInfo">
+                                                                    <small class="EventCard__hostText">
+                                                                        <!-- react-text: 5529 -->
+                                                                        Rencontrez
+                                                                        <!-- /react-text --><a dir="auto"
+                                                                                               href="/users/73237">{{ plat.getUserPoste().username }}</a>
+                                                                        <!-- react-text: 5531 --> à <!-- /react-text -->
+                                                                        <!-- react-text: 5532 -->Amsterdam
+                                                                        <!-- /react-text --></small>
+                                                                    {% for cat in plat.categorie %}
+                                                                        <span class="EventCard__eventType">{{ cat.libelle }}</span>
+                                                                    {% endfor %}
+                                                                    <div class="EventCard__eventTitleContainer"><a
+                                                                                class="EventCard__eventTitle"
+                                                                                dir="auto"
+                                                                                href='{{ path('fos_user_security_login') }}'>{{ plat.nomPlat }}</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="EventCard-MoreInfoContainer">
+                                                                <div class="EventCard-RatingContainer"><span
+                                                                            class="vz-review-rating"><div
+                                                                                class="vz-review-rating-container"><span
+                                                                                    class="vz-review-icon star active"></span><span
+                                                                                    class="vz-review-icon star active"></span><span
+                                                                                    class="vz-review-icon star active"></span><span
+                                                                                    class="vz-review-icon star active"></span><span
+                                                                                    class="vz-review-icon star active"></span></div><span
+                                                                                class="vz-review-count"> (18)</span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    {% for plat in plats %}
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-            {# Si le plat appartient à un groupe privé#}
-
-            {% if plat.groupe.id != '78' %}
-            {% for userGroupe in app.user.getGroupe() %}
-                {% if plat.groupe.id == userGroupe.id %}
-
-                    {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
-                        <div class="section no-pad-bot container">
-                            <div class='card horizontal'>
-                                <div class='card-image'>
-                                    <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
-                                    <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                                    <span class='card-title'>{{ plat.nomPlat }}</span>
-                                </div>
-                                <div class='card-stacked'>
-                                    <div class='card-content center'>
-                                        <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
-                                             class="circle"
-                                             style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
-                                        <br><br>
-                                        <p class='corps'>{{ plat.descriptionPlat }}</p>
-                                        <br>
-                                        <p class='corps'><i class="tiny material-icons">timer</i>
-                                        <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
-                                        </p>
-                                    </div>
-                                    <div class='card-action center'>
-                                        <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br><br>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-            {% else %}
-                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
-                    <div class="section no-pad-bot container">
-                        <div class='card horizontal'>
-                            <div class='card-image'>
-                                <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
-                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                                <span class='card-title'>{{ plat.nomPlat }}</span>
-                            </div>
-                            <div class='card-stacked'>
-                                <div class='card-content center'>
-                                    <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
-                                         class="circle"
-                                         style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
-                                    <br><br>
-                                    <p class='corps'>{{ plat.descriptionPlat }}</p>
-                                    <br>
-                                    <p class='corps'><i class="tiny material-icons">timer</i>
-                                    <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
-                                    </p>
-                                </div>
-                                <div class='card-action center'>
-                                    <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br><br>
-                {% endif %}
-            {% endif %}
-        {% else %}
-            {% if plat.groupe.id == "78" %}
-                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
-                <div class="section no-pad-bot container">
-                <div class='card horizontal'>
-                    <div class='card-image'>
-                        <a href="{{ path('fos_user_security_login') }}" class="btn-floating btn-large btn-price waves-effect waves-light red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
-                        <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                        <span class='card-title'>{{ plat.nomPlat }}</span>
-                    </div>
-                    <div class='card-stacked'>
-                        <div class='card-content center'>
-                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
-                                 class="circle"
-                                 style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
-                            <br><br>
-                            <p class='corps'>{{ plat.descriptionPlat }}</p>
-                            <br>
-                            <p class='corps'><i class="tiny material-icons">timer</i>
-                            <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
-                            </p>
-                            <p>Temps épuisé</p>
-                        </div>
-                        <div class='card-action center'>
-                            <a href='{{ path('fos_user_security_login') }}'>Commander</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <br><br>
-            {% endif %}
-                {% endif %}
-        {% endif %}
-    {% endfor %}
+    <br><br>
     <br><br><br>
     {% block javascripts %}
         {{ parent() }}
@@ -133,28 +605,22 @@
                     url_get: '/?term='
                 });
 
-                $("#ui-id-1").click(function(){
+                $("#ui-id-1").click(function () {
                     var id = $("#PlatType").val();
 
-                    if(id.toString().length > 0){
-                        $(location).attr('href', '/plat/'+id.toString());
+                    if (id.toString().length > 0) {
+                        $(location).attr('href', '/plat/' + id.toString());
                     }
                 });
 
 
-
-                $(".duree").each(function() {
-                    $(this).countdown($(this).data("due-date"), function(event) {
+                $(".duree").each(function () {
+                    $(this).countdown($(this).data("due-date"), function (event) {
                         $(this).text(event.strftime('%H:%M:%S'));
                     });
                 });
 
-                });
-
-
-
-
-
+            });
 
 
         </script>
