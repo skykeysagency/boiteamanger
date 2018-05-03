@@ -2,8 +2,15 @@
 
 {% block body %}
     <br><br><br>
+    <div class="left-align">
+    <div id="modal1" class="modal">
+        {{ render(controller("AppBundle:Groupe:newModal")) }}
+    </div>
+    </div>
     <div class="row center">
-        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l2">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="margin-left: 5px; ">Nouveau groupe</a>
+        </div>
         <div class="col s12 m4 l8">
             <div id="desc" class="container">
                 <h5 class="light">Poster un plat</h5>
@@ -29,15 +36,16 @@
         {{ parent() }}
         <script>
             $(document).ready(function () {
-                $( "form" ).submit(function( event ) {
+                /*$( "form" ).submit(function( event ) {
                     swal("Good job!", "Vous venez d'ajouter un plat!", "success");
-                });
+                });*/
                 $('#appbundle_plat_categorie').select2({
                     width: '100%'
                 });
                 $('#appbundle_plat_groupe').select2({
                     width: '100%'
                 });
+                $('.modal').modal();
             });
         </script>
 

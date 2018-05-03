@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class GroupeRepository extends EntityRepository
 {
-    public function addParticipant(int $participant, int $groupe)
+    public function addParticipant($participant,$groupe)
     {
        /* $sql = "INSERT INTO user_groupe (groupe_id,user_id) VALUES (participant, groupe)";
         $params = array(
@@ -36,7 +36,7 @@ class GroupeRepository extends EntityRepository
     public function findGroupeByUserId($userId)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql="SELECT nom FROM groupe g, user_groupe u WHERE g.id=u.groupe_id AND u.user_id= :userId";
+        $sql="SELECT nom FROM groupe g, user_groupe u WHERE g.id=u.groupe_id AND u.user_id= :userId ORDER BY u.groupe_id DESC";
         try {
             $stmt = $conn->prepare($sql);
         } catch (DBALException $e) {
@@ -45,7 +45,7 @@ class GroupeRepository extends EntityRepository
             $stmt->execute(array('userId' => $userId));
         } catch (DBALException $e) {
         }
-        $stmt->fetchAll();
+        //$stmt->fetchAll();
 
     }
 

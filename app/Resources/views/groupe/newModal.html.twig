@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
-
+{% block nav %}
+{% endblock %}
 {% block body %}
     <br><br><br>
     <div class="row center">
         <div class="col s12 m4 l2"></div>
         <div class="col s12 m4 l8">
             <div id="desc" class="container">
-                <h1>Création d'un nouveau groupe</h1>
+                <h5>Création d'un nouveau groupe</h5>
 
-                {{ form_start(form) }}
+                {{ form_start(form, {'action': path('groupe_newModal')}) }}
                 {{ form_widget(form) }}
                 <br><br><br>
                 <div class=" waves-effect waves-light btn light">
@@ -20,11 +21,6 @@
         <div class="col s12 m4 l2"></div>
     </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('groupe_index') }}">Back to the list</a>
-        </li>
-    </ul>
     {% block javascripts %}
         {{ parent() }}
         <script>
@@ -36,4 +32,6 @@
         </script>
 
     {% endblock %}
+    {% block footer %}
+        {% endblock %}
 {% endblock %}

@@ -87,7 +87,7 @@ class User extends FOSUser
     protected $plats;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     *
      *
      * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="participant")
      * @ORM\JoinTable(name="user_groupe",
@@ -340,7 +340,7 @@ class User extends FOSUser
     /**
      * Get groupe
      *
-     * @return Groupe[]|ArrayCollection|\Doctrine\Common\Collections\Collection
+     * @return ArrayCollection|\Doctrine\Common\Collections\Collection|Groupe[]
      */
     public function getGroupe()
     {

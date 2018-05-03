@@ -42,7 +42,7 @@ class Groupe
     private $proprietaire;
 
     /**
-     * @var User[]
+     * @var User
      *
      * @ORM\ManyToMany(targetEntity="User", mappedBy="groupe")
      */
@@ -165,7 +165,7 @@ class Groupe
     /**
      * Get participant.
      *
-     * @return User[]
+     * @return User
      */
     public function getParticipant()
     {

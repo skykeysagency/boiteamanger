@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Groupe;
 use AppBundle\Entity\User;
 use AppBundle\Repository\GroupeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -42,10 +43,18 @@ class GroupeController extends Controller
     public function newAction(Request $request)
     {
         $groupe = new Groupe();
+
+        //Current user=proprietaire
         $groupe->setProprietaire($this->getUser()->getId());
+
+        //current user fait partie du groupe par defaut
         $groupe->addUser($this->getUser());
+
+        //tout groupe est privé
+        $groupe->setIsPrivate(true);
+
         $form = $this->createForm('AppBundle\Form\GroupeType', $groupe);
-        $var=$groupe->getParticipant();
+        $part=$groupe->getParticipant();
 
         $form->handleRequest($request);
 
@@ -57,9 +66,12 @@ class GroupeController extends Controller
             $em->persist($groupe);
             $em->flush();
 
-            foreach ($var as $v){
-                $groupe->addUser($v);
-                $trad=$v->getId();
+            foreach ($part as $p){
+                $groupe->addUser($p);
+                if($groupe->getProprietaire() != $p->getId()){
+                    $this->sendMailGroupe($p->getEmail(), $p->getUsername(), $groupe->getNom(),$this->getUser()->getUsername());
+                }
+                $trad=$p->getId();
                 $repository->addParticipant($trad,$groupe->getId());
             }
 
@@ -71,6 +83,62 @@ class GroupeController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+    /**
+     * Creates a new groupe entity.
+     *
+     * @Route("/newMod", name="groupe_newModal")
+     * @Method({"GET", "POST"})
+     */
+    public function newModalAction(Request $request)
+    {
+        $groupe = new Groupe();
+
+        //Current user=proprietaire
+        $groupe->setProprietaire($this->getUser()->getId());
+
+        //current user fait partie du groupe par defaut
+        $groupe->addUser($this->getUser());
+
+        //tout groupe est privé
+        $groupe->setIsPrivate(true);
+
+        $form = $this->createForm('AppBundle\Form\GroupeType', $groupe);
+        $part=$groupe->getParticipant();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $repository = $this->getDoctrine()->getRepository(Groupe::class);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($groupe);
+            $em->flush();
+
+            foreach ($part as $p){
+                $groupe->addUser($p);
+                if($groupe->getProprietaire() != $p->getId()) {
+                    $this->sendMailGroupe($p->getEmail(), $p->getUsername(), $groupe->getNom(), $this->getUser()->getNom());
+                }
+                $trad=$p->getId();
+                $repository->addParticipant($trad,$groupe->getId());
+            }
+
+            return $this->redirectToRoute('plat_new');
+        }
+        $groupe->getParticipant();
+        return $this->render('groupe/newModal.html.twig', array(
+            'groupe' => $groupe,
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
+
+
 
     /**
      * Finds and displays a groupe entity.
@@ -99,8 +167,7 @@ class GroupeController extends Controller
         $deleteForm = $this->createDeleteForm($groupe);
         $editForm = $this->createForm('AppBundle\Form\GroupeType', $groupe);
         $editForm->handleRequest($request);
-        $var=$groupe->getParticipant();
-
+        $users=$groupe->getParticipant();
 
 
 
@@ -108,10 +175,13 @@ class GroupeController extends Controller
             $repository = $this->getDoctrine()->getRepository(Groupe::class);
             $this->getDoctrine()->getManager()->flush();
 
-            foreach ($var as $v){
-                $groupe->addUser($v);
-                $trad=$v->getId();
-                $repository->addParticipant($trad,$groupe->getId());
+            foreach ($users as $v) {
+                    $groupe->addUser($v);
+                    $this->sendMailGroupe($v->getEmail(), $v->getUsername() ,$groupe->getNom(),$this->getUser()->getUsername());
+                    $trad=$v->getId();
+                    $repository->addParticipant($trad,$groupe->getId());
+
+                       // $this->addParticipantAction($user, $groupe);
             }
             return $this->redirectToRoute('groupe_edit', array('id' => $groupe->getId()));
         }
@@ -163,6 +233,22 @@ class GroupeController extends Controller
 
     }
 
+    /**
+     * @param User $user
+     * @param Groupe $groupe
+     */
+    public function addParticipantAction($user,$groupe)
+    {
+        $repository = $this->getDoctrine()->getRepository(Groupe::class);
+
+        $groupe->addUser($user);
+        $this->sendMailGroupe($user->getEmail(), $user->getUsername() ,$groupe->getNom(),$this->getUser()->getNom());
+        $userId=$user->getId();
+        $repository->addParticipant($userId,$groupe->getId());
+
+
+    }
+
 
 
 
@@ -180,5 +266,25 @@ class GroupeController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    public function sendMailGroupe($mail,$nom,$groupe,$nomChef){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] ".$nomChef.' vous a ajouté à un groupe')
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'Emails/confirmationAjoutGroupe.html.twig',
+                    array('nom' => $nom,
+                        'groupe' => $groupe,
+                        'chef' => $nomChef)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
     }
 }

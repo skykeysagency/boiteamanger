@@ -19,37 +19,72 @@
     <br>
     {% for plat in plats %}
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {% if plat.groupe.id == "78" %}
-            {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
-                <div class="section no-pad-bot container">
-                    <div class='card horizontal'>
-                        <div class='card-image'>
-                            <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
-                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                            <span class='card-title'>{{ plat.nomPlat }}</span>
-                        </div>
-                        <div class='card-stacked'>
-                            <div class='card-content center'>
-                                <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
-                                     class="circle"
-                                     style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
-                                <br><br>
-                                <p class='corps'>{{ plat.descriptionPlat }}</p>
-                                <br>
-                                <p class='corps'><i class="tiny material-icons">timer</i>
-                                <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
-                                </p>
+
+            {# Si le plat appartient à un groupe privé#}
+
+            {% if plat.groupe.id != '78' %}
+            {% for userGroupe in app.user.getGroupe() %}
+                {% if plat.groupe.id == userGroupe.id %}
+
+                    {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                        <div class="section no-pad-bot container">
+                            <div class='card horizontal'>
+                                <div class='card-image'>
+                                    <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
+                                    <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                                    <span class='card-title'>{{ plat.nomPlat }}</span>
+                                </div>
+                                <div class='card-stacked'>
+                                    <div class='card-content center'>
+                                        <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
+                                             class="circle"
+                                             style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
+                                        <br><br>
+                                        <p class='corps'>{{ plat.descriptionPlat }}</p>
+                                        <br>
+                                        <p class='corps'><i class="tiny material-icons">timer</i>
+                                        <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                        </p>
+                                    </div>
+                                    <div class='card-action center'>
+                                        <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class='card-action center'>
-                                <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                        </div>
+                        <br><br>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% else %}
+                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                    <div class="section no-pad-bot container">
+                        <div class='card horizontal'>
+                            <div class='card-image'>
+                                <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
+                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
+                                <span class='card-title'>{{ plat.nomPlat }}</span>
+                            </div>
+                            <div class='card-stacked'>
+                                <div class='card-content center'>
+                                    <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
+                                         class="circle"
+                                         style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
+                                    <br><br>
+                                    <p class='corps'>{{ plat.descriptionPlat }}</p>
+                                    <br>
+                                    <p class='corps'><i class="tiny material-icons">timer</i>
+                                    <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
+                                    </p>
+                                </div>
+                                <div class='card-action center'>
+                                    <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br><br>
-            {% else %}
-
-            {% endif %}
+                    <br><br>
+                {% endif %}
             {% endif %}
         {% else %}
             {% if plat.groupe.id == "78" %}

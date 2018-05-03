@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Groupe;
 use AppBundle\Entity\Plat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -42,7 +43,7 @@ class PlatController extends Controller
     public function newAction(Request $request)
     {
         $plat = new Plat();
-        $userId= $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
         $plat->setUserPoste($userId);
         $form = $this->createForm('AppBundle\Form\PlatType', $plat);
 
@@ -68,6 +69,48 @@ class PlatController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+    /**
+     * Creates a new plat entity.
+     *
+     * @Route("/new/{id}", name="plat_newwithgroupe")
+     * @Method({"GET", "POST"})
+     */
+    public function newWithGroupeAction(Request $request, $id)
+    {
+        $plat = new Plat();
+        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
+        $plat->setUserPoste($userId);
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $repo->find($id);
+        $plat->setGroupe($groupe);
+        $form = $this->createForm('AppBundle\Form\PlatType', $plat);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupère user connecté
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+            $user->setPlatsPoste($plat);
+            $plat->setUserPoste($user);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($plat);
+            $em->flush($user, $plat);
+
+            return $this->redirectToRoute('plat_show', array('id' => $plat->getId()));
+        }
+
+        return $this->render('plat/new.html.twig', array(
+            'plat' => $plat,
+            'form' => $form->createView(),
+        ));
+    }
+
+
 
     /**
      * Finds and displays a plat entity.

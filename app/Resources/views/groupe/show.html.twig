@@ -15,47 +15,22 @@
             <tr>
                 <th>Participant</th>
                 <td>{% for participant in groupe.participant %}
+
                         {{ participant }}
-                        <a href='{{ path('del_participant', {'userId': participant.id, 'groupeId' : groupe.id}) }}'>Supprimer</a>
+                        {% if participant.id != groupe.proprietaire and app.user.id == groupe.proprietaire %}
+                            <a href='{{ path('del_participant', {'userId': participant.id, 'groupeId' : groupe.id}) }}'>Supprimer</a>
+                        {% endif %}
                     {% endfor %}</td>
             </tr>
             <tr>
-                <th>Plats</th>
-                <td>{% for plat in groupe.plat %}
-                    {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
 
-                    {#<a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>{{ plat.nomPlat() }}</a>#}
+                <li>
+                    <a href="{{ path('plat_newwithgroupe',{ 'id': groupe.id }) }}">Poster un plat</a>
+                </li>
+                <li>
+                    <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">Ajouter des membres</a>
+                </li>
 
-
-                    <div class="section no-pad-bot container">
-                        <div class='card horizontal'>
-                            <div class='card-image'>
-                                <a href="{{ path('plat_fiche', {'nom': plat.nomPlat}) }}" class="btn-floating btn-large btn-price waves-effect waves-light  red accent-2" style="position: absolute; left: 1%; top: 2%;">{% if plat.prix %}{{ plat.prix }}€{% else %}00€{% endif %}</a>
-                                <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" height="300px" width="500px">
-                                <span class='card-title'>{{ plat.nomPlat }}</span>
-                            </div>
-                            <div class='card-stacked'>
-                                <div class='card-content center'>
-                                    <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" alt="imageProfil"
-                                         class="circle"
-                                         style="border:1px rgb(225, 225, 225) solid;  width:65px; height: 65px;">
-                                    <br><br>
-                                    <p class='corps'>{{ plat.descriptionPlat }}</p>
-                                    <br>
-                                    <p class='corps'><i class="tiny material-icons">timer</i>
-                                    <div class="duree" data-due-date="{{ plat.dureeValide|date('Y/m/d H:i:s') }}"></div>
-                                    </p>
-                                </div>
-                                <div class='card-action center'>
-                                    <a href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>Commander</a>
-                                </div>
-                            </div>
-                        </div>
-                  {% endif %}
-                    </div>
-                        {% endfor %}
-
-                </td>
             </tr>
 
         </tbody>
@@ -65,19 +40,17 @@
         <li>
             <a href="{{ path('groupe_index') }}">Back to the list</a>
         </li>
-        <li>
-            <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">Edit</a>
-        </li>
+        {%  if app.user.id == groupe.proprietaire %}
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
 
     {% endif %}
     {% endfor %}
-
     {% block javascripts %}
         {{ parent() }}
 

@@ -48,19 +48,29 @@ class PlatType extends AbstractType
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $plat = $event->getData();
                 $userId = $plat->getUserPoste();
-
                 $form = $event->getForm();
 
                     $form->add('groupe', EntityType::class, array(
                         'class' => Groupe::class,
-                        'choice_label' => 'nom',
                         'query_builder' => function (GroupeRepository $ur) use ($userId) {
-                            $a=$ur->findGroupeByUserId($userId);
-                            return $a;
 
-                        },
-                        'label' => 'Attribuer un plat à un groupe : ',
-                        'preferred_choices' => array('General'),
+
+
+
+                            $query = $ur->createQueryBuilder('g')
+                                ->Select('g')
+                             //   ->from('AppBundle:Groupe', 'groupe')
+                                ->join('AppBundle:User', 'prt')
+                                ->where(':uId MEMBER OF g.participant')
+                                ->orWhere('g.isPrivate = false')
+                                ->setParameter('uId', $userId);
+                            $a=$query->getQuery();
+
+                           return $query;
+                       },
+                       'choice_label' => 'nom',
+                       'label' => 'Attribuer un plat à un groupe : ',
+                       'preferred_choices' => array('General'),
                 ));
             });
 
