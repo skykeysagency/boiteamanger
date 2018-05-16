@@ -338,7 +338,7 @@
         {#    Affichage plat   #}
 
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="">
+                <div class="">
             <div name="eventsList">
                 <div class="container menulist">
                     <div class="row">
@@ -355,7 +355,8 @@
                                                             {% if plat.groupe.id == userGroupe.id %}
 
                                                                 {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
-                                                                    <div class="vz-EventCard vz-SearchEventCard">
+                                                                    {% if plat.reservation.acheteur == null %}
+                                                                        <div class="vz-EventCard vz-SearchEventCard">
                                                                         <button class="vz-wishlist-button EventCard__wishlist-button">
                                                                             <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
                                                                         </button>
@@ -392,6 +393,7 @@
                                                                                 <div class="EventCard__eventTitleContainer"><a class="EventCard__eventTitle" dir="auto"
                                                                                                                                href='{{ path('plat_fiche', {'nom': plat.nomPlat}) }}'>{{ plat.nomPlat }}</a>
                                                                                 </div>
+
                                                                             </div>
                                                                         </div>
                                                                         <div class="EventCard-MoreInfoContainer">
@@ -406,10 +408,12 @@
                                                                         </div>
                                                                     </div>
                                                                 {% endif %}
+                                                                {% endif %}
                                                             {% endif %}
                                                         {% endfor %}
                                                         {% else %}
                                                          {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                         {% if plat.reservation.acheteur == null %}
                                                              <div class="vz-EventCard vz-SearchEventCard">
                                                                  <button class="vz-wishlist-button EventCard__wishlist-button">
                                                                      <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
@@ -459,6 +463,7 @@
                                                                                      class="vz-review-count"> (18)</span></span></div>
                                                                  </div>
                                                              </div>
+                                                             {% endif %}
                                                          {% endif %}
                                                     {% endif %}
                                             {% endfor %}
@@ -516,6 +521,7 @@
 
                                             {% if plat.groupe.id == "78" %}
                                                 {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                    {% if plat.reservation.acheteur == null %}
 
 
                                                         <div class="vz-EventCard vz-SearchEventCard">
@@ -578,6 +584,7 @@
                                                             </div>
                                                         </div>
 
+                                                    {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                             {% endfor %}

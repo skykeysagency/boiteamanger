@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\addReservationChild;
 use AppBundle\Entity\Groupe;
 use AppBundle\Entity\Plat;
+use AppBundle\Entity\Reservation;
+use AppBundle\Form\reservationFlow;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,40 +38,89 @@ class PlatController extends Controller
     }
 
     /**
-     * Creates a new plat entity.
-     *
+     * Create new plat with 2Step form
      * @Route("/new", name="plat_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
-        $plat = new Plat();
+    public function newAction(){
+        $formData = new addReservationChild(); // Your form data class. Has to be an object, won't work properly with an array.
+
+        $flow = $this->get('AppBundle.form.reservationFlow'); // must match the flow's service id
+        $flow->bind($formData);
+
         $userId= $this->container->get('security.token_storage')->getToken()->getUser();
-        $plat->setUserPoste($userId);
-        $form = $this->createForm('AppBundle\Form\PlatType', $plat);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Récupère user connecté
-            $user = $this->container->get('security.token_storage')->getToken()->getUser();
-
-            $user->setPlatsPoste($plat);
-            $plat->setUserPoste($user);
+        $formData->getPlat()->setUserPoste($userId);
 
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($plat);
-            $em->flush($user, $plat);
+        // form of the current step
+        $form = $flow->createForm();
+        if ($flow->isValid($form)) {
+            $flow->saveCurrentStepData($form);
 
-            return $this->redirectToRoute('plat_show', array('id' => $plat->getId()));
+            if ($flow->nextStep()) {
+                // form for the next step
+                $form = $flow->createForm();
+            } else {
+
+                $formData->getReservation()->setVendeur($userId);
+                $formData->getReservation()->setPlat($formData->getPlat());
+                dump($formData->getReservation());
+
+                // flow finished
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($formData->getPlat());
+                $em->persist($formData->getReservation());
+                $em->flush();
+
+                $flow->reset(); // remove step data from the session
+
+                return $this->redirect($this->generateUrl('menu')); // redirect when done
+            }
         }
 
         return $this->render('plat/new.html.twig', array(
-            'plat' => $plat,
+            'flow' => $flow,
             'form' => $form->createView(),
         ));
     }
+
+
+
+//    /**
+//     * Creates a new plat entity.
+//     *
+//     * @Route("/new", name="plat_new")
+//     * @Method({"GET", "POST"})
+//     */
+//    public function newAction(Request $request)
+//    {
+//        $plat = new Plat();
+//        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
+//        $plat->setUserPoste($userId);
+//        $form = $this->createForm('AppBundle\Form\PlatType', $plat);
+//
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            // Récupère user connecté
+//            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+//
+//            $user->setPlatsPoste($plat);
+//            $plat->setUserPoste($user);
+//
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($plat);
+//            $em->flush($user, $plat);
+//
+//            return $this->redirectToRoute('plat_show', array('id' => $plat->getId()));
+//        }
+//
+//        return $this->render('plat/new.html.twig', array(
+//            'plat' => $plat,
+//            'form' => $form->createView(),
+//        ));
+//    }
 
 
     /**
@@ -201,15 +253,19 @@ class PlatController extends Controller
     public function reserveAction(Plat $plat)
     {
         $em = $this->getDoctrine()->getManager();
-
         // Récupère user connecté
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $plat->getReservation()->setAcheteur($user);
 
         $tel = $plat->getUserPoste()->getTel();
 
         $plat->addUser($user);
         $user->addPlat($plat);
-        $em->flush($plat, $user);
+        $em->persist($plat);
+        $em->persist($user);
+        $em->flush();
+        $this->sendMailDemandeReservation($plat->getUserPoste()->getEmail(),$plat->getUserPoste()->getUsername(),$user,$plat->getNomPlat());
 
         return $this->render('plat/confirmation.html.twig', array(
             'plat' => $plat,
@@ -251,16 +307,89 @@ class PlatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $idUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
-
+        $plat->getReservation()->setAcheteur(null);
         $utilisateur = $em->getRepository('AppBundle\Entity\User')->findOneBy(['id' => $idUser]);
         $plat->removeUser($utilisateur);
         $utilisateur->removePlat($plat);
-        $em->flush($plat, $utilisateur);
+        $em->persist($plat);
+        $em->persist($utilisateur);
+        $em->flush();
 
         return $this->render('plat/commande.html.twig', array(
             'plat' => $plat,
             'user' => $utilisateur,
         ));
 
+    }
+    /**
+     *
+     * @Route("/{id}/confirm", name="plats_confirm")
+     * @Method({"GET", "POST"})
+     */
+    public function confirmAction(reservation $reservation)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $reservation->setIsClosed(true);
+        $this->sendMailConfirmation($reservation->getAcheteur()->getEmail(),$user,$reservation->getVendeur()->getUsername(),$reservation->getPlat()->getNomPlat());
+
+        $em->persist($reservation);
+        $em->flush();
+
+        return $this->render('reservation/index.html.twig', array(
+            'reservations' => $reservation,
+            'user' =>$user
+        ));
+
+    }
+
+    /**
+     * @Route("/{id}/reserv", name="reserv")
+     *
+     */
+    public function reservAction(reservation $reservation)
+    {
+        return $this->render('confirm.html.twig', array(
+        'reservation' => $reservation
+        ));
+    }
+
+    public function sendMailDemandeReservation($mail,$vendeur,$acheteur,$plat){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] ".$acheteur.' veut manger avec vous !')
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/demandeReservation.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
+    public function sendMailConfirmation($mail,$vendeur,$acheteur,$plat){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] ".$vendeur.' a accepté de manger avec vous !')
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/confirmRdv.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
     }
 }

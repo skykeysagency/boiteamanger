@@ -2,8 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Groupe;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -46,6 +48,15 @@ class RegistrationType extends AbstractType
                 'label' => 'Image(JPG)',
                 'data_class' => null,
             ));
+    //    ->add('groupe',EntityType::class, array(
+    //        'class' => Groupe::class,
+    //        'choice_label' => 'nom',
+    //        //'preferred_choices' => array('General'),
+    //        'multiple' => false,
+    //        'expanded' => false,
+    //        'empty_data' => array('General'),
+    //        'label' => ' ',
+    //    ))
 
     }
 

@@ -277,8 +277,8 @@ class GroupeController extends Controller
             ->setTo($mail)
             ->setBody(
                 $this->renderView(
-                // app/Resources/views/Emails/registration.html.twig
-                    'Emails/confirmationAjoutGroupe.html.twig',
+                // app/Resources/views/emails/registration.html.twig
+                    'emails/confirmationAjoutGroupe.html.twig',
                     array('nom' => $nom,
                         'groupe' => $groupe,
                         'chef' => $nomChef)

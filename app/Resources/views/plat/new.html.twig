@@ -32,6 +32,7 @@
         </li>
     </ul>
 <br><br>
+
     {% block javascripts %}
         {{ parent() }}
         <script>
@@ -39,16 +40,87 @@
                 /*$( "form" ).submit(function( event ) {
                     swal("Good job!", "Vous venez d'ajouter un plat!", "success");
                 });*/
-                $('#appbundle_plat_categorie').select2({
+                $('#add_step_new_plat_plat_categorie').select2({
                     width: '100%'
                 });
-                $('#appbundle_plat_groupe').select2({
+                $('#add_step_new_plat_plat_groupe').select2({
                     width: '100%'
                 });
                 $('.modal').modal();
             });
         </script>
 
+
+        <script type="text/javascript">
+            var placeSearch, autocomplete;
+            var componentResolver = {
+                street_number: 'add_step_new_reservation_reservation_num',
+                route: 'add_step_new_reservation_reservation_adresse',
+                locality: 'add_step_new_reservation_reservation_ville',
+                postal_code: 'add_step_new_reservation_reservation_cp'
+            };
+            var componentForm = {
+                add_step_new_reservation_reservation_num: 'short_name',
+                add_step_new_reservation_reservation_adresse: 'long_name',
+                add_step_new_reservation_reservation_ville: 'long_name',
+                add_step_new_reservation_reservation_cp: 'short_name'
+            };
+
+
+
+            function initAutocomplete() {
+                // Create the autocomplete object, restricting the search to geographical
+                // location types.
+                autocomplete = new google.maps.places.Autocomplete((document.getElementById('add_step_new_reservation_search')),
+                    {types: ['geocode']});
+
+                // When the user selects an address from the dropdown, populate the address
+                // fields in the form.
+                autocomplete.addListener('place_changed', fillInAddress);
+            }
+
+            function fillInAddress() {
+                // Get the place details from the autocomplete object.
+                var place = autocomplete.getPlace();
+                for (var component in componentForm) {
+                    document.getElementById(component).value = '';
+                    document.getElementById(component).disabled = false;
+                }
+
+                // Get each component of the address from the place details
+                // and fill the corresponding field on the form.
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[componentResolver[addressType]]) {
+                        var val = place.address_components[i][componentForm[componentResolver[addressType]]];
+                        document.getElementById(componentResolver[addressType]).value = val;
+
+                    }
+                }
+            }
+
+            // Bias the autocomplete object to the user's geographical location,
+            // as supplied by the browser's 'navigator.geolocation' object.
+            document.getElementById('add_step_new_reservation_search').onfocus = function geolocate() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var geolocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        var circle = new google.maps.Circle({
+                            center: geolocation,
+                            radius: position.coords.accuracy
+                        });
+                        autocomplete.setBounds(circle.getBounds());
+                    });
+                }
+            }
+
+        </script>
+
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZp6Z4MQBZsENJAfEMP-Dd0X3TTl5IHQE&libraries=places&location=48.85661400000001,2.3522219000000177&radius=110000&strictbounds&callback=initAutocomplete" async="" defer=""></script>
     {% endblock %}
 {% endblock %}
 

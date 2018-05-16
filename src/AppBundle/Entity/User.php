@@ -88,17 +88,31 @@ class User extends FOSUser
 
     /**
      *
-     *
      * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="participant")
      * @ORM\JoinTable(name="user_groupe",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
      * )
      *
-     *
      */
     protected $groupe;
 
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Reservation", mappedBy="vendeur")
+     *
+     */
+    protected $reservVendeur;
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Reservation", mappedBy="acheteur")
+     *
+     */
+    protected $reservAcheteur;
 
     public function __construct()
     {

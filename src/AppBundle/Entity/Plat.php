@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -41,7 +42,7 @@ class Plat
      * @ManyToMany(targetEntity="Categorie", inversedBy="plat")
      * @JoinTable(name="plat_categorie",
      *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id")}
+     *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $categorie;
@@ -113,6 +114,27 @@ class Plat
      * )
      */
     private $groupe;
+
+    /**
+     * @OneToOne(targetEntity="Reservation", mappedBy="plat")
+     */
+    private $reservation;
+
+    /**
+     * @return mixed
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param mixed $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
 
     /**
      * @return Groupe
