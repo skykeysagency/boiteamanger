@@ -265,7 +265,7 @@ class PlatController extends Controller
         $em->persist($plat);
         $em->persist($user);
         $em->flush();
-        $this->sendMailDemandeReservation($plat->getUserPoste()->getEmail(),$plat->getUserPoste()->getUsername(),$user,$plat->getNomPlat());
+        $this->sendMailDemandeReservation($plat->getUserPoste()->getEmail(),$plat->getUserPoste()->getUsername(),$user,$plat->getNomPlat(),$plat->getReservation());
 
         return $this->render('plat/confirmation.html.twig', array(
             'plat' => $plat,
@@ -321,10 +321,13 @@ class PlatController extends Controller
         ));
 
     }
+
     /**
      *
      * @Route("/{id}/confirm", name="plats_confirm")
      * @Method({"GET", "POST"})
+     * @param Reservation $reservation
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function confirmAction(reservation $reservation)
     {
@@ -355,7 +358,7 @@ class PlatController extends Controller
         ));
     }
 
-    public function sendMailDemandeReservation($mail,$vendeur,$acheteur,$plat){
+    public function sendMailDemandeReservation($mail,$vendeur,$acheteur,$plat,$reservation){
 
         $message = \Swift_Message::newInstance()
             ->setSubject("[Tup'My Lucnch] ".$acheteur.' veut manger avec vous !')
@@ -367,7 +370,8 @@ class PlatController extends Controller
                     array('acheteur' => $acheteur,
                         'plat' => $plat,
                         'mail' => $mail,
-                        'vendeur' => $vendeur)
+                        'vendeur' => $vendeur,
+                        'reservation' => $reservation)
                 ),
                 'text/html'
             );
@@ -386,7 +390,7 @@ class PlatController extends Controller
                     array('acheteur' => $acheteur,
                         'plat' => $plat,
                         'mail' => $mail,
-                        'vendeur' => $vendeur)
+                        'vendeur' => $vendeur,)
                 ),
                 'text/html'
             );
