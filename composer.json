@@ -16,6 +16,7 @@
     "require": {
         "php": ">=5.5.9",
         "blackknight467/star-rating-bundle": "2.*",
+        "craue/formflow-bundle": "~3.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0",
@@ -28,6 +29,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
+        "twig/extensions": "^1.5",
         "twig/twig": "^1.0||^2.0",
         "willdurand/propel-typehintable-behavior": "^1.0"
     },
