@@ -1,1 +1,19 @@
-GG
+<h3>Le rendez-vous est confirmé</h3>
+
+Bonjour {{ acheteur }}! <br>
+
+{{ vendeur }} a accepté de partager son repas ("{{ plat.getNomPlat() }}") avec vous. <br>
+Vous trouverez tous les details ci-dessous <br>
+
+Numero de commande: {{ plat.getReservation().getId() }}<br>
+Plat: {{ plat.getNomPlat() }} <br>
+Heure: {{ plat.getReservation().getDate() |date('Y/m/d H:i:s') }}<br>
+<br>
+<br>
+<br>
+Nom du vendeur: {{ vendeur }}<br>
+adresse: {{ plat.getReservation().getNum() }} {{ plat.getReservation().getAdresse() }},{{ plat.getReservation().getCp() }} {{ plat.getReservation().getVille() }} <br>
+mail: {{ vendeur.getEmail() }}
+<br>
+
+

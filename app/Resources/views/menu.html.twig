@@ -385,7 +385,7 @@
                                                                             <div class="EventCard-HostInfo">
                                                                                 <small class="EventCard__hostText"><!-- react-text: 5529 -->Manger avec
                                                                                     <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
-                                                                                    <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->75012
+                                                                                    <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
                                                                                     <!-- /react-text --></small>
                                                                                 {% for cat in plat.categorie %}
                                                                                     <span class="EventCard__eventType">{{ cat.libelle }}</span>
@@ -442,7 +442,7 @@
                                                                      <div class="EventCard-HostInfo">
                                                                          <small class="EventCard__hostText"><!-- react-text: 5529 -->Manger avec
                                                                              <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
-                                                                             <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->75012
+                                                                             <!-- react-text: 5531 --> à <!-- /react-text --><!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
                                                                              <!-- /react-text --></small>
                                                                          {% for cat in plat.categorie %}
                                                                              <span class="EventCard__eventType">{{ cat.libelle }}</span>
@@ -558,7 +558,7 @@
                                                                         <!-- /react-text --><a dir="auto"
                                                                                                href="/users/73237">{{ plat.getUserPoste().username }}</a>
                                                                         <!-- react-text: 5531 --> à <!-- /react-text -->
-                                                                        <!-- react-text: 5532 -->Amsterdam
+                                                                        <!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
                                                                         <!-- /react-text --></small>
                                                                     {% for cat in plat.categorie %}
                                                                         <span class="EventCard__eventType">{{ cat.libelle }}</span>

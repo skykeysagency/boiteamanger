@@ -5,5 +5,7 @@ Bonjour {{ vendeur }}! <br>
 {{ acheteur }} souhaite partager votre repas ("{{ plat }}") avec vous. <br>
 N'attendez plus et cliquer sur le lien ci-dessous pour accepter ou refuser sa demande <br>
 
+<a href="{{ url('reserv', { 'id': reservation.id }) }}">Cliquez ici !</a>
+
 
 Thanks!

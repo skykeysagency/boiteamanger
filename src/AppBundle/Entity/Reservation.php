@@ -51,6 +51,7 @@ class Reservation
     public function __construct()
     {
         $this->isClosed = false;
+        $this->date = (new \DateTime('now'))->modify('+10 minutes');
     }
 
     /**

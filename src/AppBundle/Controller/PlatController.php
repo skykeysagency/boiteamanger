@@ -308,6 +308,8 @@ class PlatController extends Controller
 
         $idUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
         $plat->getReservation()->setAcheteur(null);
+        $plat->getReservation()->setIsClosed(false);
+
         $utilisateur = $em->getRepository('AppBundle\Entity\User')->findOneBy(['id' => $idUser]);
         $plat->removeUser($utilisateur);
         $utilisateur->removePlat($plat);
@@ -335,7 +337,7 @@ class PlatController extends Controller
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         $reservation->setIsClosed(true);
-        $this->sendMailConfirmation($reservation->getAcheteur()->getEmail(),$user,$reservation->getVendeur()->getUsername(),$reservation->getPlat()->getNomPlat());
+        $this->sendMailConfirmation($reservation->getAcheteur()->getEmail(),$user,$reservation->getVendeur(),$reservation->getPlat());
 
         $em->persist($reservation);
         $em->flush();
@@ -378,7 +380,7 @@ class PlatController extends Controller
         $this->get('mailer')->send($message);
     }
 
-    public function sendMailConfirmation($mail,$vendeur,$acheteur,$plat){
+    public function sendMailConfirmation($mail,$acheteur,$vendeur,$plat){
 
         $message = \Swift_Message::newInstance()
             ->setSubject("[Tup'My Lucnch] ".$vendeur.' a accepté de manger avec vous !')
@@ -387,6 +389,25 @@ class PlatController extends Controller
             ->setBody(
                 $this->renderView(
                     'emails/confirmRdv.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur,)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
+    public function sendMailAnnulation($mail,$acheteur,$vendeur,$plat){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] Information importante concernant une commande")
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/annulRdv.html.twig',
                     array('acheteur' => $acheteur,
                         'plat' => $plat,
                         'mail' => $mail,
