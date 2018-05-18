@@ -12,6 +12,34 @@
             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="margin-left: 5px; ">Nouveau groupe</a>
         </div>
         <div class="col s12 m4 l8">
+
+            <div class="md-stepper-horizontal active">
+
+                <div class="md-step col s4 m4 18 step1 active">
+                    <div class="md-step-circle"><span>1</span></div>
+                    <div class="md-step-title">Plat</div>
+                    <div class="md-step-optional">-</div>
+                    <div class="md-step-bar-left"></div>
+                    <div class="md-step-bar-right"></div>
+                </div>
+                <div class="md-step col s4 m4 18 active step2 active">
+                    <div class="md-step-circle"><span>2</span></div>
+                    <div class="md-step-title">Rendez-vous</div>
+                    <div class="md-step-optional">-</div>
+                    <div class="md-step-bar-left"></div>
+                    <div class="md-step-bar-right"></div>
+                </div>
+                <div class="md-step col s4 m4 18 step3 active">
+                    <div class="md-step-circle"><span>3</span></div>
+                    <div class="md-step-title">Confirmation</div>
+                    <div class="md-step-optional">-</div>
+                    <div class="md-step-bar-left"></div>
+                    <div class="md-step-bar-right"></div>
+                </div>
+            </div>
+
+
+
             <div id="desc" class="container">
                 <h5 class="light">Poster un plat</h5>
                 <br><br>
@@ -19,7 +47,7 @@
                 {{ form_widget(form) }}
                 <br><br><br>
                 <div class=" waves-effect waves-light btn light">
-                    <input class="submit" type="submit" value="Poster"/>
+                    <input class="submit next-step" type="submit" value="Poster"/>
                 </div>
                 {{ form_end(form) }}
             </div>
@@ -64,9 +92,43 @@
                     aftershow: function(){} //Function for after opening timepicker
                 });
                 $('.modal').modal();
-
+                changementStepper();
             });
+
+
+            function changementStepper() {
+
+               if($('#add_step_new_plat').length){
+                   $('.step1').addClass('editable');
+                   $('.step1 .md-step-bar-right').addClass('step-bar-active');
+                   //$('.step1 .md-step-bar-left').addClass('step-bar-active');
+
+             }
+              else if($('#add_step_new_reservation').length){
+                    $('.step1').addClass('done');
+                    $('.step2').addClass('editable');
+                   $('.step1 .md-step-bar-right').addClass('step-bar-finish');
+
+                   $('.step2 .md-step-bar-left').addClass('step-bar-finish');
+                   $('.step2 .md-step-bar-right').addClass('step-bar-active');
+                }
+                else{
+                   $('.step1').addClass('done');
+                    $('.step2').addClass('done');
+                    $('.step3').addClass('done');
+
+                   $('.step1 .md-step-bar-right').addClass('step-bar-finish');
+
+                   $('.step2 .md-step-bar-left').addClass('step-bar-finish');
+                   $('.step2 .md-step-bar-right').addClass('step-bar-finish');
+
+                   $('.step3 .md-step-bar-left').addClass('step-bar-active');
+
+                }
+            }
+
         </script>
+
 
 
         <script type="text/javascript">
