@@ -354,7 +354,7 @@
                                                         {% for userGroupe in app.user.getGroupe() %}
                                                             {% if plat.groupe.id == userGroupe.id %}
 
-                                                                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                                {% if 'now'|date('y-m-d H:i:s') <= plat.dureeValide|date('y-m-d H:i:s') %}
                                                                     {% if plat.reservation.acheteur == null %}
                                                                         <div class="vz-EventCard vz-SearchEventCard">
                                                                         <button class="vz-wishlist-button EventCard__wishlist-button">
@@ -412,7 +412,7 @@
                                                             {% endif %}
                                                         {% endfor %}
                                                         {% else %}
-                                                         {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                         {% if 'now'|date('y-m-d H:i:s') <= plat.dureeValide|date('y-m-d H:i:s') %}
                                                          {% if plat.reservation.acheteur == null %}
                                                              <div class="vz-EventCard vz-SearchEventCard">
                                                                  <button class="vz-wishlist-button EventCard__wishlist-button">
@@ -520,7 +520,7 @@
                                         {% for plat in plats %}
 
                                             {% if plat.groupe.id == "78" %}
-                                                {% if 'now'|date('y-m-d h:i:s') <= plat.dureeValide|date('y-m-d h:i:s') %}
+                                                {% if 'now'|date('y-m-d H:i:s') <= plat.dureeValide|date('y-m-d H:i:s') %}
                                                     {% if plat.reservation.acheteur == null %}
 
 
