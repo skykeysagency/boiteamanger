@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <body>
     <br><br><br>
     <div class="left-align">
     <div id="modal1" class="modal">
@@ -60,7 +61,7 @@
         </li>
     </ul>
 <br><br>
-
+</body>
     {% block javascripts %}
         {{ parent() }}
         <script>
@@ -80,8 +81,13 @@
             //    $('#add_step_new_reservation_reservation_date_time_minute').select2({
             //        width: '100%'
             //    });
+                $("#add_step_new_reservation_reservation_date").val("");
                 $('#add_step_new_reservation_reservation_date').pickatime({
-                    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+                    default: 'now',
+                 //   min: new Date(2015,3,20),
+                 //   max: new Date(2015,7,14),
+                    min: 'now',
+                    max: 'now +1 days',
                     fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
                     twelvehour: false, // Use AM/PM or 24-hour format
                     donetext: 'OK', // text for done-button

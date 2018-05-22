@@ -7,6 +7,7 @@ use AppBundle\Entity\Groupe;
 use AppBundle\Entity\Plat;
 use AppBundle\Entity\Reservation;
 use AppBundle\Form\reservationFlow;
+use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,6 +42,7 @@ class PlatController extends Controller
      * Create new plat with 2Step form
      * @Route("/new", name="plat_new")
      * @Method({"GET", "POST"})
+     * @throws \Exception
      */
     public function newAction(){
         $formData = new addReservationChild(); // Your form data class. Has to be an object, won't work properly with an array.
@@ -61,7 +63,11 @@ class PlatController extends Controller
                 // form for the next step
                 $form = $flow->createForm();
             } else {
-
+                //si l'heure est inferieur à l'heure actuelle, on ajoute un jour
+                if($formData->getReservation()->getDate()<new \DateTime('now')){
+                    $formData->getReservation()->setDate($formData->getReservation()->getDate()->add(new DateInterval('P1D')));
+                    dump($formData->getReservation()->getDate());
+                }
                 $formData->getReservation()->setVendeur($userId);
                 $formData->getReservation()->setPlat($formData->getPlat());
                 dump($formData->getReservation());
@@ -342,7 +348,7 @@ class PlatController extends Controller
         $em->persist($reservation);
         $em->flush();
 
-        return $this->render('reservation/index.html.twig', array(
+        return $this->render('reservation/resumeReservation.html.twig', array(
             'reservations' => $reservation,
             'user' =>$user
         ));
