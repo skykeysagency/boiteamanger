@@ -3182,6 +3182,9 @@
 .vz-signup-social-buttons button {
     margin-bottom: 10px;
 }
+.vz-home-header .vz-header-logo {
+    background-image: url(https://static.eatwith.com/721bebe….svg);
+}
 .vz-login-form {
     text-align: center;
 }
