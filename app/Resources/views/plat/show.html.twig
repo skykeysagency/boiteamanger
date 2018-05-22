@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+
     <div id="utilisateur" class="center container">
         <br><br>
         <h4 class="light">Description Plat</h4>
@@ -17,8 +19,8 @@
             <tr>
                 <th class="center">Categorie plat</th>
                 <td class="center">{% for cat in plat.categorie %}
-                {{ cat.getLibelle() }},
-                {% endfor %}</td>
+                        {{ cat.getLibelle() }},
+                    {% endfor %}</td>
             </tr>
             <tr>
                 <th class="center">Description plat</th>

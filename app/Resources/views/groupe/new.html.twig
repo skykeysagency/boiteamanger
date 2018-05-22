@@ -12,7 +12,7 @@
                 {{ form_widget(form) }}
                 <br><br><br>
                 <div class=" waves-effect waves-light btn light">
-                    <input type="submit" value="Create" />
+                    <input type="submit" value="Crée" />
                 </div>
                 {{ form_end(form) }}
             </div>
@@ -29,6 +29,9 @@
         {{ parent() }}
         <script>
             $(document).ready(function () {
+                $( "form" ).submit(function( event ) {
+                    swal("Good job!", "Vous venez d'ajouter un groupe!", "success");
+                });
                 $('#appbundle_groupe_participant').select2({
                     width: '100%'
                 });
