@@ -6,6 +6,7 @@ use AppBundle\Entity\addReservationChild;
 use AppBundle\Entity\Groupe;
 use AppBundle\Entity\Plat;
 use AppBundle\Entity\Reservation;
+use AppBundle\Entity\User;
 use AppBundle\Form\reservationFlow;
 use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -286,17 +287,10 @@ class PlatController extends Controller
      * @Route("/{id}/listeCommande", name="plat_listeCommande")
      * @Method({"GET", "POST"})
      */
-    public function listeAction(Plat $plat)
+    public function listeAction(User $user)
     {
-        // Récupère user connecté
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-
-        $tel = $plat->getUserPoste()->getTel();
-
         return $this->render('plat/commande.html.twig', array(
-            'plat' => $plat,
             'user' => $user,
-            'tel' => $tel,
         ));
 
 
