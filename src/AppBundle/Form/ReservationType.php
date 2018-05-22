@@ -25,6 +25,8 @@ class ReservationType extends AbstractType
             ->add('ville')
             ->add('date', DateTimeType::class, array(
                 'widget' => 'single_text',
+                'input' => 'datetime',
+                'placeholder' => 'Maintenant'
                 ));
 
     }/**

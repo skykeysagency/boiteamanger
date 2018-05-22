@@ -19,6 +19,7 @@ class addStepNewReservation extends AbstractType
         $builder
             ->add('search', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
                 'mapped' => false,
+                'required' => false,
                 'label' => 'Recherchez automatiquement l\'adresse'
             ])
             ->add('reservation', ReservationType::class, array(
