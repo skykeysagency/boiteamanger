@@ -349,7 +349,7 @@ class PlatController extends Controller
         $em->flush();
 
         return $this->render('reservation/resumeReservation.html.twig', array(
-            'reservations' => $reservation,
+            'reservation' => $reservation,
             'user' =>$user
         ));
 
