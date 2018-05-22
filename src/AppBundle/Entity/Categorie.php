@@ -25,6 +25,7 @@ class Categorie
      *
      *
      */
+
     private $id;
 
     /**
@@ -39,6 +40,13 @@ class Categorie
      * @ManyToMany(targetEntity="Plat", mappedBy="categorie")
      */
     private $plat;
+
+
+    /** @var
+     *
+     *@ORM\Column(name="icon",type="string",length=255)
+     */
+    private $icon;
 
     /**
      * @return mixed
@@ -88,5 +96,29 @@ class Categorie
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Set icon.
+     *
+     * @param string $icon
+     *
+     * @return Categorie
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 }

@@ -46,6 +46,14 @@ class Plat
      * )
      */
     private $categorie;
+   /**
+     * @ORM\ManyToOne(targetEntity="Livraison", inversedBy="plat")
+     * @JoinTable(name="plat_livraison",
+     *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@JoinColumn(name="liv_id", referencedColumnName="id")}
+     * )
+     */
+    private $livraison;
 
     /**
      * @var string
@@ -440,5 +448,57 @@ class Plat
     public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
     {
         $this->commentaires->removeElement($commentaire);
+    }
+
+
+
+    /**
+     * Add categorie.
+     *
+     * @param \AppBundle\Entity\Categorie $categorie
+     *
+     * @return Plat
+     */
+    public function addCategorie(\AppBundle\Entity\Categorie $categorie)
+    {
+        $this->categorie[] = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Remove categorie.
+     *
+     * @param \AppBundle\Entity\Categorie $categorie
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCategorie(\AppBundle\Entity\Categorie $categorie)
+    {
+        return $this->categorie->removeElement($categorie);
+    }
+
+    /**
+     * Set livraison.
+     *
+     * @param \AppBundle\Entity\Livraison|null $livraison
+     *
+     * @return Plat
+     */
+    public function setLivraison(\AppBundle\Entity\Livraison $livraison = null)
+    {
+        $this->livraison = $livraison;
+
+        return $this;
+    }
+
+    /**
+     * Get livraison.
+     *
+     * @return \AppBundle\Entity\Livraison|null
+     */
+    public function getLivraison()
+    {
+        return $this->livraison;
     }
 }

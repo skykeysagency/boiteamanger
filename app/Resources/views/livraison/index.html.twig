@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Livraisons list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cp</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livraison in livraisons %}
+            <tr>
+                <td><a href="{{ path('livraison_show', { 'id': livraison.id }) }}">{{ livraison.id }}</a></td>
+                <td>{{ livraison.cp }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('livraison_show', { 'id': livraison.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

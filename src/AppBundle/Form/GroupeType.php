@@ -27,7 +27,6 @@ class GroupeType extends AbstractType
     {
         $builder
             ->add('nom')
-
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $groupe = $event->getData();
                 $groupeId = $groupe->getId();

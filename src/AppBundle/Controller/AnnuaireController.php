@@ -31,10 +31,12 @@ class AnnuaireController extends Controller
 
         // Cherche plat grâce au nom
         $plat = $em->getRepository('AppBundle:Plat')->findOneBy(array('nomPlat' => $nomPlat)); // Renvoie un objet
-
+        $plats = $em->getRepository('AppBundle:Plat')->findAll(); // Renvoie un objet
         if ($plat != null) {
             return $this->render('plat/fiche.html.twig', array(
                 'plat' => $plat,
+                'plats' => $plats,
+
             ));
         } else {
             return $this->render('menu.html.twig');
