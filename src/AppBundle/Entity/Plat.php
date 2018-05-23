@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -157,8 +158,8 @@ class Plat
     {
         $this->users = new ArrayCollection();
 
-        $this->dureeValide = (new \DateTime('now'))->modify('+1 days');
-        $this->creeA = (new \DateTime('now'));
+        $this->dureeValide = (new \DateTime('now', new DateTimeZone("Europe/Paris")))->modify('+1 days');
+        $this->creeA = (new \DateTime('now', new DateTimeZone("Europe/Paris")));
 
         $this->commentaires = new ArrayCollection();
 

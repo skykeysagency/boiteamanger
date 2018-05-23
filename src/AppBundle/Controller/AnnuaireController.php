@@ -25,12 +25,12 @@ class AnnuaireController extends Controller
     public function ficheAction(Request $request)
     {
         // Récupère paramètre de mon url
-        $nomPlat = $request->query->get('nom');
+        $idPlat = $request->query->get('id');
 
         $em = $this->getDoctrine()->getManager();
 
         // Cherche plat grâce au nom
-        $plat = $em->getRepository('AppBundle:Plat')->findOneBy(array('nomPlat' => $nomPlat)); // Renvoie un objet
+        $plat = $em->getRepository('AppBundle:Plat')->findOneBy(array('id' => $idPlat)); // Renvoie un objet
 
         if ($plat != null) {
             return $this->render('plat/fiche.html.twig', array(
