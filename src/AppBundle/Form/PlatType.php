@@ -14,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -42,7 +43,7 @@ class PlatType extends AbstractType
                 'choice_label' => 'libelle',
                  'multiple' => true,
             ))
-            ->add('descriptionPlat', TextType::class, array(
+            ->add('descriptionPlat', TextareaType::class, array(
                 'label' => 'Description plat',
             ))
             ->add('imagePlat', FileType::class, array(

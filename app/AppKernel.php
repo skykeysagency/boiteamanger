@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

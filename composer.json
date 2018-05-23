@@ -19,6 +19,7 @@
         "craue/formflow-bundle": "~3.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "easycorp/easyadmin-bundle": "^1.17",
         "friendsofsymfony/user-bundle": "~2.0",
         "hwi/oauth-bundle": "^0.5.3",
         "incenteev/composer-parameter-handler": "^2.0",
