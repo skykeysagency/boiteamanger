@@ -4,6 +4,7 @@
 
 
 {% block body %}
+    <body>
     <div>
         {#    header   #}
 
@@ -94,14 +95,34 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="EventCard-MoreInfoContainer">
-                                                                            <div class="EventCard-RatingContainer"><span class="vz-review-rating"><div
-                                                                                            class="vz-review-rating-container"><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span></div><span
-                                                                                            class="vz-review-count"> (18)</span></span></div>
+                                                                            <div class="EventCard-RatingContainer">
+                                                                                <span class="vz-review-rating">
+                                                                                    <div class="vz-review-rating-container">
+                                                                                        {% if plat.getUserPoste().noteMoyenne < 1.5 %}
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                        {% elseif plat.getUserPoste().noteMoyenne <= 2.5 %}
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                        {% elseif plat.getUserPoste().noteMoyenne < 3.5 %}
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                        {% elseif plat.getUserPoste().noteMoyenne <4.5 %}
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                        {% elseif plat.getUserPoste().noteMoyenne < 5 %}
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                            <span class="vz-review-icon star active"></span>
+                                                                                        {% endif %}
+                                                                                    </div>
+                                                                                    <span class="vz-review-count"> ({{ plat.getUserPoste().noteTot }})</span>
+                                                                                </span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 {% endif %}
@@ -150,14 +171,35 @@
                                                                      </div>
                                                                  </div>
                                                                  <div class="EventCard-MoreInfoContainer">
-                                                                     <div class="EventCard-RatingContainer"><span class="vz-review-rating"><div
-                                                                                     class="vz-review-rating-container"><span
-                                                                                         class="vz-review-icon star active"></span><span
-                                                                                         class="vz-review-icon star active"></span><span
-                                                                                         class="vz-review-icon star active"></span><span
-                                                                                         class="vz-review-icon star active"></span><span
-                                                                                         class="vz-review-icon star active"></span></div><span
-                                                                                     class="vz-review-count"> (18)</span></span></div>
+                                                                     <div class="EventCard-RatingContainer">
+                                                                         <span class="vz-review-rating">
+                                                                             <div class="vz-review-rating-container">
+                                                                             {% if plat.getUserPoste().noteMoyenne < 1.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne <= 2.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 3.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne <4.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% endif %}
+                                                                             </div>
+                                                                             <span class="vz-review-count"> ({{ plat.getUserPoste().noteTot }})</span>
+
+                                                                         </span>
+                                                                     </div>
                                                                  </div>
                                                              </div>
                                                              {% endif %}
@@ -239,15 +281,33 @@
                                                                 </div>
                                                             </div>
                                                             <div class="EventCard-MoreInfoContainer">
-                                                                <div class="EventCard-RatingContainer"><span
-                                                                            class="vz-review-rating"><div
-                                                                                class="vz-review-rating-container"><span
-                                                                                    class="vz-review-icon star active"></span><span
-                                                                                    class="vz-review-icon star active"></span><span
-                                                                                    class="vz-review-icon star active"></span><span
-                                                                                    class="vz-review-icon star active"></span><span
-                                                                                    class="vz-review-icon star active"></span></div><span
-                                                                                class="vz-review-count"> (18)</span></span>
+                                                                <div class="EventCard-RatingContainer">
+                                                                    <span class="vz-review-rating">
+                                                                        <div class="vz-review-rating-container">
+                                                                             {% if plat.getUserPoste().noteMoyenne < 1.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 2.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 3.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 4.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% endif %}
+                                                                             </div>
+                                                                        <span class="vz-review-count"> ({{ plat.getUserPoste().noteTot }})</span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -268,6 +328,7 @@
     </div>
     <br><br>
     <br><br><br>
+    </body>
     {% block javascripts %}
         {{ parent() }}
 

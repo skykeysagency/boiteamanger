@@ -24,9 +24,55 @@ class Commentaire
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=500)
+     * @ORM\Column(name="contenu", type="string", length=500, nullable=true)
      */
     private $contenu;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="commentaires")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
+     */
+    private $auteur;
+
+    /**
+     * @return User
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * @param User $auteur
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+    }
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="note", type="integer")
+     */
+    private $note;
+
+    /**
+     * @return int
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param int $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
 
     /**
      * @var Plat
