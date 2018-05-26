@@ -42,8 +42,13 @@ class CommentaireController extends Controller
     public function newAction(Request $request)
     {
         $idPlat = $request->query->get('id');
+        $user= $this->container->get('security.token_storage')->getToken()->getUser();
+
         $em = $this->getDoctrine()->getManager();
         $commentaire = new Commentaire();
+
+        $commentaire->setAuteur($user);
+        $commentaire->setPlat($idPlat);
 
         $form = $this->createForm('AppBundle\Form\CommentaireType', $commentaire);
         $form->handleRequest($request);
@@ -54,13 +59,24 @@ class CommentaireController extends Controller
             $plat->setCommentaires($commentaire);
             $commentaire->setPlat($plat);
 
-            $em->persist($commentaire);
-            $em->flush($plat, $commentaire);
+           //$nbNoteTot = $em->getRepository('AppBundle:Commentaire')->nbNoteByUser($plat->getUserPoste()->getId())+1;
+            $nbNoteTot = $plat->getUserPoste()->getNoteTot()+1;
 
-            return $this->redirectToRoute('plat_fiche', array(
-                'id' => $commentaire->getId(),
-                'nom' => $plat->getNomPlat(),
-            ));
+            $plat->getUserPoste()->setNoteTot($nbNoteTot);
+
+            $note= $em->getRepository('AppBundle\Entity\Commentaire')->sumNoteByUser($plat->getUserPoste()->getId())+$commentaire->getNote();
+
+            $plat->getUserPoste()->setNoteMoyenne($note/$nbNoteTot);
+
+
+
+            $em->persist($plat);
+            $em->persist($commentaire);
+            $em->persist($user);
+
+            $em->flush();
+
+            return $this->redirectToRoute('menu');
         }
 
         return $this->render('commentaire/new.html.twig', array(

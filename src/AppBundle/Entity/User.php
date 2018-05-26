@@ -114,6 +114,74 @@ class User extends FOSUser
      */
     protected $reservAcheteur;
 
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $noteTot;
+
+    /**
+     * @return int
+     */
+    public function getNoteTot()
+    {
+        return $this->noteTot;
+    }
+
+    /**
+     * @param int $noteTot
+     */
+    public function setNoteTot($noteTot)
+    {
+        $this->noteTot = $noteTot;
+    }
+
+    /**
+     * @var float
+     * @ORM\Column(type="float")
+     */
+    protected $noteMoyenne;
+
+    /**
+     * @return float
+     */
+    public function getNoteMoyenne()
+    {
+        return $this->noteMoyenne;
+    }
+
+    /**
+     * @param float $noteMoyenne
+     */
+    public function setNoteMoyenne($noteMoyenne)
+    {
+        $this->noteMoyenne = $noteMoyenne;
+    }
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Commentaire", mappedBy="auteur")
+     *
+     */
+    protected $commentaires;
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param mixed $commentaires
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -162,6 +230,22 @@ class User extends FOSUser
     public function getImageUser()
     {
         return $this->imageUser;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
