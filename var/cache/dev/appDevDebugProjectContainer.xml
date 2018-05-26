@@ -20,6 +20,8 @@
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="HWIOAuthBundle">HWI\Bundle\OAuthBundle\HWIOAuthBundle</parameter>
       <parameter key="PUGXAutocompleterBundle">PUGX\AutocompleterBundle\PUGXAutocompleterBundle</parameter>
+      <parameter key="CraueFormFlowBundle">Craue\FormFlowBundle\CraueFormFlowBundle</parameter>
+      <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -83,6 +85,16 @@
         <parameter key="path">/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/pugx/autocompleter-bundle</parameter>
         <parameter key="namespace">PUGX\AutocompleterBundle</parameter>
       </parameter>
+      <parameter key="CraueFormFlowBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle</parameter>
+        <parameter key="namespace">Craue\FormFlowBundle</parameter>
+      </parameter>
+      <parameter key="EasyAdminBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src</parameter>
+        <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
+      </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle</parameter>
@@ -123,7 +135,6 @@
     <parameter key="database_password">Jmfxzb9v</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">ns0.ovh.net</parameter>
-    <parameter key="mailer_port">587</parameter>
     <parameter key="mailer_user">contact@skykeys.fr</parameter>
     <parameter key="mailer_password">Jmfxzb9v</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
@@ -232,7 +243,7 @@
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">587</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.host">ns0.ovh.net</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.username">contact@skykeys.fr</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.password">Jmfxzb9v</parameter>
@@ -375,7 +386,7 @@
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
     <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
-    <parameter key="fos_user.registration.confirmation.template">@FOSUser/Registration/email.txt.twig</parameter>
+    <parameter key="fos_user.registration.confirmation.template">FOSUserBundle:Registration:email.txt.twig</parameter>
     <parameter key="fos_user.storage">orm</parameter>
     <parameter key="fos_user.firewall_name">main</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
@@ -389,7 +400,7 @@
     <parameter key="fos_user.registration.confirmation.from_email" type="collection">
       <parameter key="hongyue192447@gmail.com">ProjetCommun Email</parameter>
     </parameter>
-    <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
+    <parameter key="fos_user.registration.confirmation.enabled">true</parameter>
     <parameter key="fos_user.registration.form.type">AppBundle\Form\RegistrationType</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
       <parameter>AppBundleRegistration</parameter>
@@ -504,6 +515,87 @@
     <parameter key="hwi_oauth.templating.engine">twig</parameter>
     <parameter key="pugx_autocompleter.autocomplete.class">PUGX\AutocompleterBundle\Form\Type\AutocompleteType</parameter>
     <parameter key="pugx_autocompleter.filter_autocomplete.class">PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType</parameter>
+    <parameter key="craue.form.flow.class">Craue\FormFlowBundle\Form\FormFlow</parameter>
+    <parameter key="craue.form.flow.storage.class">Craue\FormFlowBundle\Storage\SessionStorage</parameter>
+    <parameter key="craue.form.flow.event_listener.previous_step_invalid.class">Craue\FormFlowBundle\EventListener\PreviousStepInvalidEventListener</parameter>
+    <parameter key="craue.form.flow.event_listener.previous_step_invalid.event">flow.previous_step_invalid</parameter>
+    <parameter key="craue.form.flow.event_listener.flow_expired.class">Craue\FormFlowBundle\EventListener\FlowExpiredEventListener</parameter>
+    <parameter key="craue.form.flow.event_listener.flow_expired.event">flow.flow_expired</parameter>
+    <parameter key="craue_twig_extensions.formflow.class">Craue\FormFlowBundle\Twig\Extension\FormFlowExtension</parameter>
+    <parameter key="craue_formflow.util.class">Craue\FormFlowBundle\Util\FormFlowUtil</parameter>
+    <parameter key="easyadmin.config" type="collection">
+      <parameter key="entities" type="collection">
+        <parameter key="Categorie" type="collection">
+          <parameter key="class">AppBundle\Entity\Categorie</parameter>
+          <parameter key="name">Categorie</parameter>
+        </parameter>
+        <parameter key="Commentaire" type="collection">
+          <parameter key="class">AppBundle\Entity\Commentaire</parameter>
+          <parameter key="name">Commentaire</parameter>
+        </parameter>
+        <parameter key="Groupe" type="collection">
+          <parameter key="class">AppBundle\Entity\Groupe</parameter>
+          <parameter key="name">Groupe</parameter>
+        </parameter>
+        <parameter key="Ingredient" type="collection">
+          <parameter key="class">AppBundle\Entity\Ingredient</parameter>
+          <parameter key="name">Ingredient</parameter>
+        </parameter>
+        <parameter key="Plat" type="collection">
+          <parameter key="class">AppBundle\Entity\Plat</parameter>
+          <parameter key="name">Plat</parameter>
+        </parameter>
+        <parameter key="Reservation" type="collection">
+          <parameter key="class">AppBundle\Entity\Reservation</parameter>
+          <parameter key="name">Reservation</parameter>
+        </parameter>
+        <parameter key="User" type="collection">
+          <parameter key="class">AppBundle\Entity\User</parameter>
+          <parameter key="name">User</parameter>
+        </parameter>
+      </parameter>
+      <parameter key="design" type="collection">
+        <parameter key="assets" type="collection">
+          <parameter key="css" type="collection"/>
+          <parameter key="js" type="collection"/>
+          <parameter key="favicon" type="collection">
+            <parameter key="path">favicon.ico</parameter>
+            <parameter key="mime_type">image/x-icon</parameter>
+          </parameter>
+        </parameter>
+        <parameter key="theme">default</parameter>
+        <parameter key="color_scheme">dark</parameter>
+        <parameter key="brand_color">#205081</parameter>
+        <parameter key="form_theme" type="collection">
+          <parameter>@EasyAdmin/form/bootstrap_3_horizontal_layout.html.twig</parameter>
+        </parameter>
+        <parameter key="menu" type="collection"/>
+      </parameter>
+      <parameter key="site_name">EasyAdmin</parameter>
+      <parameter key="formats" type="collection">
+        <parameter key="date">Y-m-d</parameter>
+        <parameter key="time">H:i:s</parameter>
+        <parameter key="datetime">F j, Y H:i</parameter>
+      </parameter>
+      <parameter key="disabled_actions" type="collection"/>
+      <parameter key="translation_domain">messages</parameter>
+      <parameter key="list" type="collection">
+        <parameter key="actions" type="collection"/>
+        <parameter key="max_results">15</parameter>
+      </parameter>
+      <parameter key="search" type="collection"/>
+      <parameter key="edit" type="collection">
+        <parameter key="actions" type="collection"/>
+      </parameter>
+      <parameter key="new" type="collection">
+        <parameter key="actions" type="collection"/>
+      </parameter>
+      <parameter key="show" type="collection">
+        <parameter key="actions" type="collection"/>
+        <parameter key="max_results">10</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="easyadmin.cache.dir">/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/easy_admin</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -572,6 +664,10 @@
         <parameter>dump</parameter>
         <parameter>@Debug/Profiler/dump.html.twig</parameter>
       </parameter>
+      <parameter key="easyadmin.data_collector" type="collection">
+        <parameter>easyadmin</parameter>
+        <parameter>@EasyAdmin/data_collector/easyadmin.html.twig</parameter>
+      </parameter>
       <parameter key="data_collector.config" type="collection">
         <parameter>config</parameter>
         <parameter>@WebProfiler/Collector/config.html.twig</parameter>
@@ -624,13 +720,22 @@
     <service id="AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\GroupeController" class="AppBundle\Controller\GroupeController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\PlatController" class="AppBundle\Controller\PlatController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
+    <service id="AppBundle\Controller\ReservationController" class="AppBundle\Controller\ReservationController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="AppBundle\Controller\SecurityController" class="AppBundle\Controller\SecurityController" autowire="true" autoconfigure="true">
@@ -642,7 +747,13 @@
     <service id="AppBundle\EventListener\ImageUploadListener" class="AppBundle\EventListener\ImageUploadListener" public="false" autowire="true" autoconfigure="true">
       <argument type="service" id="AppBundle\ImageUpload"/>
     </service>
+    <service id="AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\GroupeType" class="AppBundle\Form\GroupeType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\PlatType" class="AppBundle\Form\PlatType" public="false" autowire="true" autoconfigure="true">
@@ -651,6 +762,16 @@
     <service id="AppBundle\Form\RegistrationType" class="AppBundle\Form\RegistrationType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="AppBundle\Form\ReservationType" class="AppBundle\Form\ReservationType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\addStepNewPlat" class="AppBundle\Form\addStepNewPlat" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\addStepNewReservation" class="AppBundle\Form\addStepNewReservation" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\reservationFlow" class="AppBundle\Form\reservationFlow" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\ImageUpload" class="AppBundle\ImageUpload" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\Security\Core\User\MyFOSUBUserProvider" class="AppBundle\Security\Core\User\MyFOSUBUserProvider" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\Twig\Extension\AgeExtension" class="AppBundle\Twig\Extension\AgeExtension" public="false" autowire="true" autoconfigure="true">
@@ -669,6 +790,20 @@
       <argument type="collection">
         <argument>pass properties as array</argument>
       </argument>
+    </service>
+    <service id="AppBundle.form.reservationFlow" class="AppBundle\Form\reservationFlow" autowire="true">
+      <call method="setDataManager">
+        <argument type="service" id="craue.form.flow.data_manager_default"/>
+      </call>
+      <call method="setFormFactory">
+        <argument type="service" id="form.factory"/>
+      </call>
+      <call method="setRequestStack">
+        <argument type="service" id="request_stack"/>
+      </call>
+      <call method="setEventDispatcher">
+        <argument type="service" id="debug.event_dispatcher" on-invalid="ignore"/>
+      </call>
     </service>
     <service id="my.custom.user_provider" class="AppBundle\Security\Core\User\MyFOSUBUserProvider">
       <argument type="service" id="fos_user.user_manager.default"/>
@@ -692,7 +827,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.c8ddb233fb013822e16256e028397f31"/>
+      <argument type="service" id="service_locator.e7bfa0a6717bf9a39d1ef6cc254ef158"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -838,7 +973,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -848,7 +983,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -964,7 +1099,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.c01e0f4676237b4978a805015867c252"/>
+      <argument type="service" id="service_locator.b17741f2e4d1cce5f7b15e6a46212ace"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -972,6 +1107,8 @@
           <argument type="service" id="form.type_extension.upload.validator"/>
           <argument type="service" id="form.type_extension.csrf"/>
           <argument type="service" id="form.type_extension.form.data_collector"/>
+          <argument type="service" id="craue.form.flow.form_extension"/>
+          <argument type="service" id="easyadmin.form.type.extension"/>
         </argument>
         <argument key="Symfony\Component\Form\Extension\Core\Type\RepeatedType" type="iterator">
           <argument type="service" id="form.type_extension.repeated.validator"/>
@@ -979,10 +1116,14 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\SubmitType" type="iterator">
           <argument type="service" id="form.type_extension.submit.validator"/>
         </argument>
+        <argument key="Symfony\Component\Form\Extension\Core\Type\HiddenType" type="iterator">
+          <argument type="service" id="craue.form.flow.hidden_field_extension"/>
+        </argument>
       </argument>
       <argument type="iterator">
         <argument type="service" id="form.type_guesser.validator"/>
         <argument type="service" id="form.type_guesser.doctrine"/>
+        <argument type="service" id="easyadmin.form.guesser.missing_doctrine_orm_type_guesser"/>
       </argument>
       <argument>null</argument>
     </service>
@@ -1366,6 +1507,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.cs.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.cs.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.cs.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.cs.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.cs.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.cs.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.cs.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
@@ -1373,6 +1518,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.uk.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.uk.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.uk.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.uk.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.uk.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.uk.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.uk.xlf</argument>
           </argument>
           <argument key="sr_Latn" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Latn.xlf</argument>
@@ -1387,6 +1536,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.bg.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.bg.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.bg.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.bg.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.bg.xlf</argument>
           </argument>
           <argument key="th" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
@@ -1400,6 +1551,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ca.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ca.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ca.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.ca.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.ca.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
@@ -1407,6 +1560,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sk.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sk.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sk.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.sk.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.sk.yml</argument>
           </argument>
           <argument key="ro" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
@@ -1414,6 +1569,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ro.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ro.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ro.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.ro.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.ro.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -1421,6 +1578,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.pt_BR.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt_BR.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt_BR.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.pt_BR.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.pt_BR.yml</argument>
           </argument>
           <argument key="id" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
@@ -1436,12 +1595,18 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.hu.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.hu.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.hu.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.hu.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.hu.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fi.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fi.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.fi.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.fi.xlf</argument>
           </argument>
           <argument key="da" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
@@ -1449,6 +1614,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.da.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.da.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.da.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.da.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.da.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
@@ -1463,6 +1630,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.es.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.es.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.es.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.es.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.es.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
@@ -1471,6 +1642,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.it.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.it.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.it.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
@@ -1478,6 +1651,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sl.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.sl.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.sl.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
@@ -1486,6 +1661,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.de.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.de.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.de.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.de.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.de.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
@@ -1497,12 +1676,16 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.pt.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.pt.xlf</argument>
           </argument>
           <argument key="eu" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.eu.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.eu.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.eu.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.eu.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.eu.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.eu.xlf</argument>
           </argument>
           <argument key="hr" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hr.xlf</argument>
@@ -1510,6 +1693,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.hr.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hr.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hr.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.hr.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.hr.xlf</argument>
           </argument>
           <argument key="he" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.he.xlf</argument>
@@ -1524,6 +1709,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.zh_CN.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.zh_CN.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.zh_CN.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.zh_CN.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.zh_CN.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.zh_CN.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
@@ -1532,6 +1721,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.en.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.en.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.en.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.en.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ja.xlf</argument>
@@ -1553,6 +1746,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sv.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.sv.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.sv.xlf</argument>
           </argument>
           <argument key="pl" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pl.xlf</argument>
@@ -1561,6 +1756,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.pl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.pl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.pl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.pl.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.pl.xlf</argument>
           </argument>
           <argument key="fa" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
@@ -1569,6 +1768,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.fa.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.fa.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.fa.yml</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hy.xlf</argument>
@@ -1583,9 +1784,15 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.fr.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.fr.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.fr.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.fr.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.fr.xlf</argument>
           </argument>
           <argument key="zh_TW" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.zh_TW.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.zh_TW.yml</argument>
           </argument>
           <argument key="sr_Cyrl" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
@@ -1602,6 +1809,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.ru.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.ru.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.ru.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.ru.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.ru.xlf</argument>
           </argument>
           <argument key="lt" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lt.xlf</argument>
@@ -1609,6 +1820,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.lt.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lt.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lt.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.lt.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.lt.xlf</argument>
           </argument>
           <argument key="tr" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
@@ -1616,6 +1829,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.tr.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.tr.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.tr.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.tr.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.tr.xlf</argument>
           </argument>
           <argument key="ar" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
@@ -1623,6 +1838,8 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ar.xlf</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.ar.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.ar.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lb.xlf</argument>
@@ -1651,6 +1868,10 @@
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/translations/HWIOAuthBundle.nl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/validators.nl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/translations/CraueFormFlowBundle.nl.yml</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.nl.xlf</argument>
+            <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/translations/messages.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nn.xlf</argument>
@@ -1939,6 +2160,9 @@
         <argument type="service" id="data_collector.dump"/>
       </call>
       <call method="add">
+        <argument type="service" id="easyadmin.data_collector"/>
+      </call>
+      <call method="add">
         <argument type="service" id="data_collector.config"/>
       </call>
     </service>
@@ -2071,6 +2295,38 @@
         <argument type="collection">
           <argument type="service" id="data_collector.router"/>
           <argument>onKernelController</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>%craue.form.flow.event_listener.previous_step_invalid.event%</argument>
+        <argument type="collection">
+          <argument type="service" id="craue.form.flow.event_listener.previous_step_invalid"/>
+          <argument>onPreviousStepInvalid</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>%craue.form.flow.event_listener.flow_expired.event%</argument>
+        <argument type="collection">
+          <argument type="service" id="craue.form.flow.event_listener.flow_expired"/>
+          <argument>onFlowExpired</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.controller</argument>
+        <argument type="collection">
+          <argument type="service" id="easyadmin.listener.controller"/>
+          <argument>onKernelController</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>easy_admin.post_initialize</argument>
+        <argument type="collection">
+          <argument type="service" id="easyadmin.listener.request_post_initialize"/>
+          <argument>initializeRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2220,6 +2476,14 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
+        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -2471,6 +2735,14 @@
         <argument type="collection">
           <argument type="service" id="fos_user.listener.flash"/>
           <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.registration.success</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.email_confirmation"/>
+          <argument>onRegistrationSuccess</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2795,6 +3067,7 @@
     <service id="security.http_utils" class="Symfony\Component\Security\Http\HttpUtils" public="false">
       <argument type="service" id="router.default" on-invalid="null"/>
       <argument type="service" id="router.default" on-invalid="null"/>
+      <argument>{^https?://%s$}i</argument>
     </service>
     <service id="security.validator.user_password" class="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator">
       <tag name="validator.constraint_validator" alias="security.validator.user_password"/>
@@ -2870,6 +3143,9 @@
       <argument type="service" id="security.http_utils"/>
       <argument type="service" id="security.logout.success_handler"/>
       <argument></argument>
+      <call method="addHandler">
+        <argument type="service" id="security.logout.handler.csrf_token_clearing"/>
+      </call>
     </service>
     <service id="security.logout.handler.session" class="Symfony\Component\Security\Http\Logout\SessionLogoutHandler" public="false"/>
     <service id="security.logout.handler.cookie_clearing" class="Symfony\Component\Security\Http\Logout\CookieClearingLogoutHandler" public="false" abstract="true"/>
@@ -3206,6 +3482,9 @@
         <argument key="logout_path">/logout</argument>
       </argument>
       <call method="addHandler">
+        <argument type="service" id="security.logout.handler.csrf_token_clearing"/>
+      </call>
+      <call method="addHandler">
         <argument type="service" id="security.logout.handler.session"/>
       </call>
     </service>
@@ -3359,12 +3638,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5ac64c0736bf99.30789576</argument>
+      <argument>5b09e29291c447.41221233</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5ac64c0736bf99.30789576</argument>
+      <argument>5b09e29291c447.41221233</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3492,6 +3771,12 @@
         <argument type="service" id="hwi_oauth.twig.extension.oauth"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.craue_formflow"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="easyadmin.twig.extension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.dump"/>
       </call>
       <call method="addExtension">
@@ -3580,6 +3865,14 @@
       <call method="addPath">
         <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/views</argument>
         <argument>HWIOAuth</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/views</argument>
+        <argument>CraueFormFlow</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/views</argument>
+        <argument>EasyAdmin</argument>
       </call>
       <call method="addPath">
         <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3737,6 +4030,14 @@
       <call method="addPath">
         <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/hwi/oauth-bundle/Resources/views</argument>
         <argument>HWIOAuth</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/craue/formflow-bundle/Resources/views</argument>
+        <argument>CraueFormFlow</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/easycorp/easyadmin-bundle/src/Resources/views</argument>
+        <argument>EasyAdmin</argument>
       </call>
       <call method="addPath">
         <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3900,7 +4201,7 @@
         <argument>ns0.ovh.net</argument>
       </call>
       <call method="setPort">
-        <argument>587</argument>
+        <argument>25</argument>
       </call>
       <call method="setEncryption">
         <argument>null</argument>
@@ -4385,7 +4686,7 @@
       <argument type="service" id="router.default"/>
       <argument type="service" id="templating.engine.twig"/>
       <argument type="collection">
-        <argument key="confirmation.template">@FOSUser/Registration/email.txt.twig</argument>
+        <argument key="confirmation.template">FOSUserBundle:Registration:email.txt.twig</argument>
         <argument key="resetting.template">@FOSUser/Resetting/email.txt.twig</argument>
         <argument key="from_email" type="collection">
           <argument key="confirmation" type="collection">
@@ -4404,7 +4705,7 @@
       <argument type="service" id="twig"/>
       <argument type="collection">
         <argument key="template" type="collection">
-          <argument key="confirmation">@FOSUser/Registration/email.txt.twig</argument>
+          <argument key="confirmation">FOSUserBundle:Registration:email.txt.twig</argument>
           <argument key="resetting">@FOSUser/Resetting/email.txt.twig</argument>
         </argument>
         <argument key="from_email" type="collection">
@@ -4500,6 +4801,13 @@
       <call method="setContainer">
         <argument type="service" id="service_container"/>
       </call>
+    </service>
+    <service id="fos_user.listener.email_confirmation" class="FOS\UserBundle\EventListener\EmailConfirmationListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="fos_user.mailer.default"/>
+      <argument type="service" id="fos_user.util.token_generator.default"/>
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="session"/>
     </service>
     <service id="fos_user.change_password.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
@@ -4705,6 +5013,288 @@
     <service id="pugx_autocompleter.filter.doctrine_subscriber" class="PUGX\AutocompleterBundle\Listener\FilterSubscriber">
       <tag name="kernel.event_subscriber"/>
     </service>
+    <service id="craue.form.flow.storage_default" class="Craue\FormFlowBundle\Storage\SessionStorage" public="false">
+      <argument type="service" id="session"/>
+    </service>
+    <service id="craue.form.flow.data_manager_default" class="Craue\FormFlowBundle\Storage\DataManager" public="false">
+      <argument type="service" id="craue.form.flow.storage_default"/>
+    </service>
+    <service id="craue.form.flow" class="Craue\FormFlowBundle\Form\FormFlow">
+      <call method="setDataManager">
+        <argument type="service" id="craue.form.flow.data_manager_default"/>
+      </call>
+      <call method="setFormFactory">
+        <argument type="service" id="form.factory"/>
+      </call>
+      <call method="setRequestStack">
+        <argument type="service" id="request_stack"/>
+      </call>
+      <call method="setEventDispatcher">
+        <argument type="service" id="debug.event_dispatcher" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="craue.form.flow.form_extension" class="Craue\FormFlowBundle\Form\Extension\FormFlowFormExtension">
+      <tag name="form.type_extension" alias="form" extended_type="Symfony\Component\Form\Extension\Core\Type\FormType" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType"/>
+    </service>
+    <service id="craue.form.flow.hidden_field_extension" class="Craue\FormFlowBundle\Form\Extension\FormFlowHiddenFieldExtension">
+      <tag name="form.type_extension" alias="hidden" extended_type="Symfony\Component\Form\Extension\Core\Type\HiddenType" extended-type="Symfony\Component\Form\Extension\Core\Type\HiddenType"/>
+    </service>
+    <service id="craue.form.flow.event_listener.previous_step_invalid" class="Craue\FormFlowBundle\EventListener\PreviousStepInvalidEventListener">
+      <tag name="kernel.event_listener" event="%craue.form.flow.event_listener.previous_step_invalid.event%" method="onPreviousStepInvalid"/>
+      <call method="setTranslator">
+        <argument type="service" id="translator.data_collector"/>
+      </call>
+    </service>
+    <service id="craue.form.flow.event_listener.flow_expired" class="Craue\FormFlowBundle\EventListener\FlowExpiredEventListener">
+      <tag name="kernel.event_listener" event="%craue.form.flow.event_listener.flow_expired.event%" method="onFlowExpired"/>
+      <call method="setTranslator">
+        <argument type="service" id="translator.data_collector"/>
+      </call>
+    </service>
+    <service id="twig.extension.craue_formflow" class="Craue\FormFlowBundle\Twig\Extension\FormFlowExtension">
+      <tag name="twig.extension"/>
+      <call method="setFormFlowUtil">
+        <argument type="service" id="craue_formflow_util"/>
+      </call>
+    </service>
+    <service id="craue_formflow_util" class="Craue\FormFlowBundle\Util\FormFlowUtil"/>
+    <service id="easyadmin.cache.manager" class="EasyCorp\Bundle\EasyAdminBundle\Cache\CacheManager">
+      <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/easy_admin</argument>
+    </service>
+    <service id="easyadmin.config.manager" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\ConfigManager">
+      <argument type="service" id="easyadmin.cache.manager"/>
+      <argument type="service" id="property_accessor"/>
+      <argument type="collection">
+        <argument key="entities" type="collection">
+          <argument key="Categorie" type="collection">
+            <argument key="class">AppBundle\Entity\Categorie</argument>
+            <argument key="name">Categorie</argument>
+          </argument>
+          <argument key="Commentaire" type="collection">
+            <argument key="class">AppBundle\Entity\Commentaire</argument>
+            <argument key="name">Commentaire</argument>
+          </argument>
+          <argument key="Groupe" type="collection">
+            <argument key="class">AppBundle\Entity\Groupe</argument>
+            <argument key="name">Groupe</argument>
+          </argument>
+          <argument key="Ingredient" type="collection">
+            <argument key="class">AppBundle\Entity\Ingredient</argument>
+            <argument key="name">Ingredient</argument>
+          </argument>
+          <argument key="Plat" type="collection">
+            <argument key="class">AppBundle\Entity\Plat</argument>
+            <argument key="name">Plat</argument>
+          </argument>
+          <argument key="Reservation" type="collection">
+            <argument key="class">AppBundle\Entity\Reservation</argument>
+            <argument key="name">Reservation</argument>
+          </argument>
+          <argument key="User" type="collection">
+            <argument key="class">AppBundle\Entity\User</argument>
+            <argument key="name">User</argument>
+          </argument>
+        </argument>
+        <argument key="design" type="collection">
+          <argument key="assets" type="collection">
+            <argument key="css" type="collection"/>
+            <argument key="js" type="collection"/>
+            <argument key="favicon" type="collection">
+              <argument key="path">favicon.ico</argument>
+              <argument key="mime_type">image/x-icon</argument>
+            </argument>
+          </argument>
+          <argument key="theme">default</argument>
+          <argument key="color_scheme">dark</argument>
+          <argument key="brand_color">#205081</argument>
+          <argument key="form_theme" type="collection">
+            <argument>@EasyAdmin/form/bootstrap_3_horizontal_layout.html.twig</argument>
+          </argument>
+          <argument key="menu" type="collection"/>
+        </argument>
+        <argument key="site_name">EasyAdmin</argument>
+        <argument key="formats" type="collection">
+          <argument key="date">Y-m-d</argument>
+          <argument key="time">H:i:s</argument>
+          <argument key="datetime">F j, Y H:i</argument>
+        </argument>
+        <argument key="disabled_actions" type="collection"/>
+        <argument key="translation_domain">messages</argument>
+        <argument key="list" type="collection">
+          <argument key="actions" type="collection"/>
+          <argument key="max_results">15</argument>
+        </argument>
+        <argument key="search" type="collection"/>
+        <argument key="edit" type="collection">
+          <argument key="actions" type="collection"/>
+        </argument>
+        <argument key="new" type="collection">
+          <argument key="actions" type="collection"/>
+        </argument>
+        <argument key="show" type="collection">
+          <argument key="actions" type="collection"/>
+          <argument key="max_results">10</argument>
+        </argument>
+      </argument>
+      <argument>true</argument>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.normalizer_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.design_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.menu_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.action_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.metadata_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.property_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.view_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.template_config_pass"/>
+      </call>
+      <call method="addConfigPass">
+        <argument type="service" id="easyadmin.configuration.default_config_pass"/>
+      </call>
+    </service>
+    <service id="easyadmin.query_builder" class="EasyCorp\Bundle\EasyAdminBundle\Search\QueryBuilder">
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="easyadmin.finder" class="EasyCorp\Bundle\EasyAdminBundle\Search\Finder" public="false">
+      <argument type="service" id="easyadmin.query_builder"/>
+      <argument type="service" id="easyadmin.paginator"/>
+    </service>
+    <service id="easyadmin.autocomplete" class="EasyCorp\Bundle\EasyAdminBundle\Search\Autocomplete">
+      <argument type="service" id="easyadmin.config.manager"/>
+      <argument type="service" id="easyadmin.finder"/>
+      <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="easyadmin.paginator" class="EasyCorp\Bundle\EasyAdminBundle\Search\Paginator"/>
+    <service id="easyadmin.router" class="EasyCorp\Bundle\EasyAdminBundle\Router\EasyAdminRouter">
+      <argument type="service" id="easyadmin.config.manager"/>
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="property_accessor"/>
+      <argument type="service" id="request_stack" on-invalid="null"/>
+    </service>
+    <service id="easyadmin.twig.extension" class="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+      <argument type="service" id="property_accessor"/>
+      <argument type="service" id="easyadmin.router"/>
+      <argument>true</argument>
+      <argument type="service" id="security.logout_url_generator" on-invalid="null"/>
+    </service>
+    <service id="easyadmin.listener.controller" class="EasyCorp\Bundle\EasyAdminBundle\EventListener\ControllerListener">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+      <argument type="service" id="debug.controller_resolver"/>
+    </service>
+    <service id="easyadmin.listener.request_post_initialize" class="EasyCorp\Bundle\EasyAdminBundle\EventListener\RequestPostInitializeListener">
+      <tag name="kernel.event_listener" event="easy_admin.post_initialize" method="initializeRequest"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="request_stack" on-invalid="null"/>
+    </service>
+    <service id="easyadmin.data_collector" class="EasyCorp\Bundle\EasyAdminBundle\DataCollector\EasyAdminDataCollector" public="false">
+      <tag name="data_collector" template="@EasyAdmin/data_collector/easyadmin.html.twig" id="easyadmin"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+    </service>
+    <service id="easyadmin.configuration.normalizer_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\NormalizerConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="90"/>
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="easyadmin.configuration.design_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\DesignConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="80"/>
+      <argument type="service" id="service_container"/>
+      <argument>true</argument>
+      <argument>fr</argument>
+    </service>
+    <service id="easyadmin.configuration.menu_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\MenuConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="70"/>
+    </service>
+    <service id="easyadmin.configuration.action_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\ActionConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="60"/>
+    </service>
+    <service id="easyadmin.configuration.metadata_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\MetadataConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="50"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="easyadmin.configuration.property_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\PropertyConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="40"/>
+      <argument type="service" id="form.registry"/>
+    </service>
+    <service id="easyadmin.configuration.view_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\ViewConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="30"/>
+    </service>
+    <service id="easyadmin.configuration.template_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\TemplateConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="20"/>
+      <argument type="service" id="twig.loader.filesystem"/>
+    </service>
+    <service id="easyadmin.configuration.default_config_pass" class="EasyCorp\Bundle\EasyAdminBundle\Configuration\DefaultConfigPass" public="false">
+      <tag name="easyadmin.config_pass" priority="10"/>
+    </service>
+    <service id="easyadmin.form.type" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminFormType">
+      <tag name="form.type"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+      <argument type="collection">
+        <argument key="4" type="service" id="easyadmin.form.type.configurator.autocomplete"/>
+        <argument key="3" type="service" id="easyadmin.form.type.configurator.collection"/>
+        <argument key="2" type="service" id="easyadmin.form.type.configurator.checkbox"/>
+        <argument key="1" type="service" id="easyadmin.form.type.configurator.type"/>
+        <argument key="0" type="service" id="easyadmin.form.type.configurator.entity"/>
+      </argument>
+    </service>
+    <service id="easyadmin.form.type.autocomplete" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType">
+      <tag name="form.type" alias="easyadmin_autocomplete"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+    </service>
+    <service id="easyadmin.form.type.divider" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType">
+      <tag name="form.type" alias="easyadmin_divider"/>
+    </service>
+    <service id="easyadmin.form.type.section" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminSectionType">
+      <tag name="form.type" alias="easyadmin_section"/>
+    </service>
+    <service id="easyadmin.form.type.group" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminGroupType">
+      <tag name="form.type" alias="easyadmin_group"/>
+    </service>
+    <service id="easyadmin.form.type.extension" class="EasyCorp\Bundle\EasyAdminBundle\Form\Extension\EasyAdminExtension">
+      <tag name="form.type_extension" alias="form" extended_type="Symfony\Component\Form\Extension\Core\Type\FormType" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType"/>
+      <argument type="service" id="request_stack" on-invalid="null"/>
+    </service>
+    <service id="easyadmin.form.type_guesser_chain" class="Symfony\Component\Form\FormTypeGuesserChain" public="false">
+      <argument type="collection">
+        <argument type="service" id="form.type_guesser.validator"/>
+        <argument type="service" id="form.type_guesser.doctrine"/>
+        <argument type="service" id="easyadmin.form.guesser.missing_doctrine_orm_type_guesser"/>
+      </argument>
+    </service>
+    <service id="easyadmin.form.type.configurator.autocomplete" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\AutocompleteTypeConfigurator" public="false">
+      <tag name="easyadmin.form.type.configurator" priority="30"/>
+    </service>
+    <service id="easyadmin.form.type.configurator.collection" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\CollectionTypeConfigurator" public="false">
+      <tag name="easyadmin.form.type.configurator" priority="20"/>
+    </service>
+    <service id="easyadmin.form.type.configurator.checkbox" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\CheckboxTypeConfigurator" public="false">
+      <tag name="easyadmin.form.type.configurator" priority="10"/>
+    </service>
+    <service id="easyadmin.form.type.configurator.type" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\TypeConfigurator" public="false">
+      <tag name="easyadmin.form.type.configurator" priority="0"/>
+      <argument type="service" id="easyadmin.config.manager"/>
+    </service>
+    <service id="easyadmin.form.type.configurator.entity" class="EasyCorp\Bundle\EasyAdminBundle\Form\Type\Configurator\EntityTypeConfigurator" public="false">
+      <tag name="easyadmin.form.type.configurator" priority="-20"/>
+    </service>
+    <service id="easyadmin.form.guesser.missing_doctrine_orm_type_guesser" class="EasyCorp\Bundle\EasyAdminBundle\Form\Guesser\MissingDoctrineOrmTypeGuesser">
+      <tag name="form.type_guesser"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -4827,6 +5417,10 @@
           <argument>dump</argument>
           <argument>@Debug/Profiler/dump.html.twig</argument>
         </argument>
+        <argument key="easyadmin.data_collector" type="collection">
+          <argument>easyadmin</argument>
+          <argument>@EasyAdmin/data_collector/easyadmin.html.twig</argument>
+        </argument>
         <argument key="data_collector.config" type="collection">
           <argument>config</argument>
           <argument>@WebProfiler/Collector/config.html.twig</argument>
@@ -4897,28 +5491,60 @@
     </service>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\GroupeController" class="AppBundle\Controller\GroupeController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\GroupeController" class="AppBundle\Controller\GroupeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\PlatController" class="AppBundle\Controller\PlatController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\PlatController" class="AppBundle\Controller\PlatController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ReservationController" class="AppBundle\Controller\ReservationController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\ReservationController" class="AppBundle\Controller\ReservationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\SecurityController" class="AppBundle\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\SecurityController" class="AppBundle\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\GroupeType" class="AppBundle\Form\GroupeType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\GroupeType" class="AppBundle\Form\GroupeType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\PlatType" class="AppBundle\Form\PlatType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\PlatType" class="AppBundle\Form\PlatType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\RegistrationType" class="AppBundle\Form\RegistrationType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\RegistrationType" class="AppBundle\Form\RegistrationType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ReservationType" class="AppBundle\Form\ReservationType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\ReservationType" class="AppBundle\Form\ReservationType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\addStepNewPlat" class="AppBundle\Form\addStepNewPlat" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\addStepNewPlat" class="AppBundle\Form\addStepNewPlat" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\addStepNewReservation" class="AppBundle\Form\addStepNewReservation" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\addStepNewReservation" class="AppBundle\Form\addStepNewReservation" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Twig_ExtensionInterface.0.AppBundle\Twig\Extension\AgeExtension" class="AppBundle\Twig\Extension\AgeExtension" public="false" autowire="true" abstract="true"/>
     <service id="instanceof.Twig\Extension\ExtensionInterface.0.AppBundle\Twig\Extension\AgeExtension" class="AppBundle\Twig\Extension\AgeExtension" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Twig\Extension\AgeExtension" class="AppBundle\Twig\Extension\AgeExtension" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="service_locator.9ca2041958536d6647e29b9c9e4536eb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
+    </service>
+    <service id="service_locator.14a9ca3cfe6a7b0f0288226b7b25e7b9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service" id="autowired.AppBundle\Entity\Categorie"/>
+      </argument>
+    </service>
+    <service id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service" id="autowired.AppBundle\Entity\Categorie"/>
+      </argument>
     </service>
     <service id="service_locator.a43a97555ac0177ba3fc86ee93d61958" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -4940,6 +5566,22 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
+    <service id="service_locator.6747b55692808afecd6907a2369f42f1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.d5df739921b108ae2c581b9ec9d61c84" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="groupe" type="service" id="autowired.AppBundle\Entity\Groupe"/>
+      </argument>
+    </service>
+    <service id="service_locator.50968de0f38536fd9a0e9490fcb3255d" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="groupe" type="service" id="autowired.AppBundle\Entity\Groupe"/>
+      </argument>
+    </service>
     <service id="service_locator.5107f3769c35df59e69a0855783ffe67" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -4956,6 +5598,34 @@
         <argument key="plat" type="service" id="autowired.AppBundle\Entity\Plat"/>
       </argument>
     </service>
+    <service id="service_locator.f16b19383a90f4aca325208342590329" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service" id="autowired.AppBundle\Entity\User"/>
+      </argument>
+    </service>
+    <service id="service_locator.b7f726a5b9d9519a2ad028e7959b76d2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="reservation" type="service" id="autowired.AppBundle\Entity\Reservation"/>
+      </argument>
+    </service>
+    <service id="service_locator.31abd5ade797a4817abd946ee9ba81b2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.3d0f8e54a12ad75d24d404fadf8b54f9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="reservation" type="service" id="autowired.AppBundle\Entity\Reservation"/>
+      </argument>
+    </service>
+    <service id="service_locator.16754270672cc781295bb9d17421810d" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="reservation" type="service" id="autowired.AppBundle\Entity\Reservation"/>
+      </argument>
+    </service>
     <service id="service_locator.fc75823fb104790677784a04333151fe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -4966,28 +5636,50 @@
         <argument key="user" type="service" id="autowired.AppBundle\Entity\User"/>
       </argument>
     </service>
-    <service id="service_locator.c8ddb233fb013822e16256e028397f31" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.e7bfa0a6717bf9a39d1ef6cc254ef158" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="AppBundle\Controller\CategorieController:deleteAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController:editAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController:showAction" type="service" id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f"/>
         <argument key="AppBundle\Controller\CommentaireController:deleteAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController:editAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController:showAction" type="service" id="service_locator.36cb63d4cfd1916d2214c90f093a98ee"/>
+        <argument key="AppBundle\Controller\GroupeController:deleteAction" type="service" id="service_locator.50968de0f38536fd9a0e9490fcb3255d"/>
+        <argument key="AppBundle\Controller\GroupeController:editAction" type="service" id="service_locator.50968de0f38536fd9a0e9490fcb3255d"/>
+        <argument key="AppBundle\Controller\GroupeController:showAction" type="service" id="service_locator.d5df739921b108ae2c581b9ec9d61c84"/>
         <argument key="AppBundle\Controller\PlatController:annulerAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\PlatController:confirmAction" type="service" id="service_locator.b7f726a5b9d9519a2ad028e7959b76d2"/>
         <argument key="AppBundle\Controller\PlatController:deleteAction" type="service" id="service_locator.844b489ed677153b4d2180d2ae12e278"/>
         <argument key="AppBundle\Controller\PlatController:editAction" type="service" id="service_locator.844b489ed677153b4d2180d2ae12e278"/>
-        <argument key="AppBundle\Controller\PlatController:listeAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\PlatController:listeAction" type="service" id="service_locator.f16b19383a90f4aca325208342590329"/>
+        <argument key="AppBundle\Controller\PlatController:reservAction" type="service" id="service_locator.b7f726a5b9d9519a2ad028e7959b76d2"/>
         <argument key="AppBundle\Controller\PlatController:reserveAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
         <argument key="AppBundle\Controller\PlatController:showAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\ReservationController:deleteAction" type="service" id="service_locator.16754270672cc781295bb9d17421810d"/>
+        <argument key="AppBundle\Controller\ReservationController:editAction" type="service" id="service_locator.16754270672cc781295bb9d17421810d"/>
+        <argument key="AppBundle\Controller\ReservationController:showAction" type="service" id="service_locator.3d0f8e54a12ad75d24d404fadf8b54f9"/>
         <argument key="AppBundle\Controller\UserController:showAction" type="service" id="service_locator.61c4bc70092b00e9393797dce8125338"/>
+        <argument key="AppBundle\Controller\CategorieController::deleteAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController::editAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController::showAction" type="service" id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f"/>
         <argument key="AppBundle\Controller\CommentaireController::deleteAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController::editAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController::showAction" type="service" id="service_locator.36cb63d4cfd1916d2214c90f093a98ee"/>
+        <argument key="AppBundle\Controller\GroupeController::deleteAction" type="service" id="service_locator.50968de0f38536fd9a0e9490fcb3255d"/>
+        <argument key="AppBundle\Controller\GroupeController::editAction" type="service" id="service_locator.50968de0f38536fd9a0e9490fcb3255d"/>
+        <argument key="AppBundle\Controller\GroupeController::showAction" type="service" id="service_locator.d5df739921b108ae2c581b9ec9d61c84"/>
         <argument key="AppBundle\Controller\PlatController::annulerAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\PlatController::confirmAction" type="service" id="service_locator.b7f726a5b9d9519a2ad028e7959b76d2"/>
         <argument key="AppBundle\Controller\PlatController::deleteAction" type="service" id="service_locator.844b489ed677153b4d2180d2ae12e278"/>
         <argument key="AppBundle\Controller\PlatController::editAction" type="service" id="service_locator.844b489ed677153b4d2180d2ae12e278"/>
-        <argument key="AppBundle\Controller\PlatController::listeAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\PlatController::listeAction" type="service" id="service_locator.f16b19383a90f4aca325208342590329"/>
+        <argument key="AppBundle\Controller\PlatController::reservAction" type="service" id="service_locator.b7f726a5b9d9519a2ad028e7959b76d2"/>
         <argument key="AppBundle\Controller\PlatController::reserveAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
         <argument key="AppBundle\Controller\PlatController::showAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
+        <argument key="AppBundle\Controller\ReservationController::deleteAction" type="service" id="service_locator.16754270672cc781295bb9d17421810d"/>
+        <argument key="AppBundle\Controller\ReservationController::editAction" type="service" id="service_locator.16754270672cc781295bb9d17421810d"/>
+        <argument key="AppBundle\Controller\ReservationController::showAction" type="service" id="service_locator.3d0f8e54a12ad75d24d404fadf8b54f9"/>
         <argument key="AppBundle\Controller\UserController::showAction" type="service" id="service_locator.61c4bc70092b00e9393797dce8125338"/>
       </argument>
     </service>
@@ -5007,14 +5699,24 @@
         <argument key="translation.loader.yml" type="service" id="translation.loader.yml"/>
       </argument>
     </service>
-    <service id="service_locator.c01e0f4676237b4978a805015867c252" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.b17741f2e4d1cce5f7b15e6a46212ace" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteType" type="service" id="pugx_autocompleter.autocomplete"/>
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType" type="service" id="pugx_autocompleter.filter_autocomplete"/>
+        <argument key="AppBundle\Form\CategorieType" type="service" id="AppBundle\Form\CategorieType"/>
         <argument key="AppBundle\Form\CommentaireType" type="service" id="AppBundle\Form\CommentaireType"/>
+        <argument key="AppBundle\Form\GroupeType" type="service" id="AppBundle\Form\GroupeType"/>
         <argument key="AppBundle\Form\PlatType" type="service" id="AppBundle\Form\PlatType"/>
         <argument key="AppBundle\Form\RegistrationType" type="service" id="AppBundle\Form\RegistrationType"/>
+        <argument key="AppBundle\Form\ReservationType" type="service" id="AppBundle\Form\ReservationType"/>
+        <argument key="AppBundle\Form\addStepNewPlat" type="service" id="AppBundle\Form\addStepNewPlat"/>
+        <argument key="AppBundle\Form\addStepNewReservation" type="service" id="AppBundle\Form\addStepNewReservation"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType" type="service" id="easyadmin.form.type.autocomplete"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType" type="service" id="easyadmin.form.type.divider"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminFormType" type="service" id="easyadmin.form.type"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminGroupType" type="service" id="easyadmin.form.type.group"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminSectionType" type="service" id="easyadmin.form.type.section"/>
         <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\ProfileFormType" type="service" id="fos_user.profile.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\RegistrationFormType" type="service" id="fos_user.registration.form.type"/>
@@ -5024,6 +5726,9 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
       </argument>
+    </service>
+    <service id="security.logout.handler.csrf_token_clearing" class="Symfony\Component\Security\Http\Logout\CsrfTokenClearingLogoutHandler" public="false">
+      <argument type="service" id="security.csrf.token_storage"/>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
       <argument>request</argument>
@@ -5204,9 +5909,12 @@
         <argument key="twig" type="service" id="twig"/>
       </argument>
     </service>
+    <service id="autowired.AppBundle\Entity\Categorie" class="AppBundle\Entity\Categorie" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\Commentaire" class="AppBundle\Entity\Commentaire" public="false" autowire="true"/>
+    <service id="autowired.AppBundle\Entity\Groupe" class="AppBundle\Entity\Groupe" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\Plat" class="AppBundle\Entity\Plat" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\User" class="AppBundle\Entity\User" public="false" autowire="true"/>
+    <service id="autowired.AppBundle\Entity\Reservation" class="AppBundle\Entity\Reservation" public="false" autowire="true"/>
     <service id="service_locator.39e66930232432ca5ba91e98fdd8a17b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5230,7 +5938,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>SYCKkrNxZo</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5238,7 +5946,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>1h7xtLWmnZ</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5246,7 +5954,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>zGULP67RiQ</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5254,7 +5962,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>f8uplM9akx</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>w0rF3SVyLTMu1fQ17NeKOV</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5370,6 +6078,9 @@
     <service id="hwi_oauth.registration.form.factory" alias="fos_user.registration.form.factory"/>
     <service id="hwi_oauth.registration.form" alias="fos_user.registration.form.factory"/>
     <service id="hwi_oauth.user_checker" alias="security.user_checker"/>
+    <service id="craue.form.flow.storage" alias="craue.form.flow.storage_default"/>
+    <service id="craue.form.flow.data_manager" alias="craue.form.flow.data_manager_default"/>
+    <service id="easy_admin.property_accessor" alias="property_accessor"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>
