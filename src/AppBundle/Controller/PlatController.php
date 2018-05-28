@@ -302,10 +302,10 @@ class PlatController extends Controller
      * @Route("/{id}/annuler", name="plats_annuler")
      * @Method({"GET", "POST"})
      */
-    public function annulerAction(Plat $plat)
+    public function annulerAction(Reservation $reservation)
     {
         $em = $this->getDoctrine()->getManager();
-
+    $plat = $reservation->getPlat();
         $idUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
         $plat->getReservation()->setAcheteur(null);
         $plat->getReservation()->setIsClosed(false);

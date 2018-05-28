@@ -50,6 +50,8 @@ class CommentaireController extends Controller
         $commentaire->setAuteur($user);
         $commentaire->setPlat($idPlat);
 
+        $plat= $em->getRepository('AppBundle\Entity\Plat')->find($idPlat);
+        $commentaire->setUser($plat->getUserPoste());
         $form = $this->createForm('AppBundle\Form\CommentaireType', $commentaire);
         $form->handleRequest($request);
 

@@ -205,7 +205,7 @@
                     <div class="EventPage-Desktop__reviews">
                         <div name="reviews-list" id="reviews-list">
                             <div class="vz-review-head row"><h2>Commentaires</h2>
-                                {% for commentaire in plat.commentaires %}
+                                {% for commentaire in plat.getUserPoste().ownCommentaires %}
 
                                 <span class="vz-translation-btn-wrapper vz-translation"><a
                                             class="vz-translation-btn"><i type="planet" color="gray" height="20px"
