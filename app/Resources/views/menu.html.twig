@@ -228,12 +228,13 @@
                             <div class="">
                                 <div class="vz-event-section">
                                     <div class="vz-events-list">
+                                        <h4>Nous avons trouver <span class="nbPlatDispo"></span> plats pour vous dans votre secteur </h4>
+
                                         {% for plat in plats %}
 
                                             {% if plat.groupe.id == "78" %}
                                                 {% if 'now'|date('y-m-d H:i:s', "Europe/Paris") <= plat.dureeValide|date('y-m-d H:i:s') %}
                                                     {% if plat.reservation.acheteur == null %}
-                                                        <h4>Nous avons trouver {{ plat|length }} plats pour dans votre secteur </h4>
                                                         <div class="vz-EventCard vz-SearchEventCard">
                                                             <button class="vz-wishlist-button EventCard__wishlist-button">
                                                                 <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
@@ -356,6 +357,7 @@
                     });
                 });
 
+                $(".nbPlatDispo").text($(".vz-EventCard").length);
             });
 
 

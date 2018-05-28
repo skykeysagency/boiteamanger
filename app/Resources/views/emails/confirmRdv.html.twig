@@ -654,10 +654,6 @@
                                                     Adresse: {{ plat.getReservation().getNum() }} {{ plat.getReservation().getAdresse() }},{{ plat.getReservation().getCp() }} {{ plat.getReservation().getVille() }} <br>
                                                     Le contacter par mail: <a href="mailto:{{ vendeur.getEmail() }}"/></p>
                                             </td>
-                                            <td class="column_cell px tc" style="box-sizing: border-box;vertical-align: top;width: 100%;min-width: 100%;padding-top: 16px;padding-bottom: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 16px;line-height: 23px;color: #888888;mso-line-height-rule: exactly;text-align: center;padding-left: 16px;padding-right: 16px;">
-                                                    <p>N'hesitez pas à donner votre avis après avoir degusté votre plat: <a href="{{ url('commentaire_new', { 'id': plat.id }) }}" style="text-decoration: none;line-height: inherit;color: #ffffff;"><span style="text-decoration: none;line-height: inherit;color: #ffffff;">Noter</span></a>
-                                            </td>
-
                                         </tr>
                                         </tbody>
                                     </table>
@@ -710,6 +706,8 @@
                                             <tbody>
                                             <tr>
                                                 <td class="active_b" style="box-sizing: border-box;vertical-align: top;background-color: #35bec5;line-height: 20px;font-family: Helvetica, Arial, sans-serif;mso-line-height-rule: exactly;border-radius: 4px;text-align: center;font-weight: bold;font-size: 17px;padding: 13px 22px;"><a href="#" style="text-decoration: none;line-height: inherit;color: #ffffff;"><span style="text-decoration: none;line-height: inherit;color: #ffffff;">Aller sur le site</span></a></td>
+                                                             <p>N'hesitez pas à donner votre avis après avoir degusté votre plat: <a href="{{ url('commentaire_new', { 'id': plat.id }) }}" style="text-decoration: none;line-height: inherit;color: #036a88;"><span style="text-decoration: none;line-height: inherit;color: #00b8d4;">Noter</span></a>
+
                                             </tr>
                                             </tbody>
                                         </table>
