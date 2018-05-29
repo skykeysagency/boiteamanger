@@ -117,6 +117,8 @@ class DigestAuthenticationListener implements ListenerInterface
             $this->logger->info('Digest authentication successful.', array('username' => $digestAuth->getUsername(), 'received' => $digestAuth->getResponse()));
         }
 
+        $this->migrateSession($request);
+
         $this->tokenStorage->setToken(new UsernamePasswordToken($user, $user->getPassword(), $this->providerKey));
     }
 
@@ -132,6 +134,14 @@ class DigestAuthenticationListener implements ListenerInterface
         }
 
         $event->setResponse($this->authenticationEntryPoint->start($request, $authException));
+    }
+
+    private function migrateSession(Request $request)
+    {
+        if (!$request->hasSession() || !$request->hasPreviousSession()) {
+            return;
+        }
+        $request->getSession()->migrate(true);
     }
 }
 
