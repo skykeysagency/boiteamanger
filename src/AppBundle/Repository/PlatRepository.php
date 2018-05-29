@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\AppBundle;
 
 /**
  * PlatRepository
@@ -10,5 +11,35 @@ namespace AppBundle\Repository;
  */
 class PlatRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByArrondissement($arr){
+
+    //   $conn = $this->getEntityManager()->getConnection();
+    //    $sql="SELECT * FROM plat p, reservation r WHERE r.plat_id=p.id AND r.cp= :arr";
+    //    try {
+    //        $stmt = $conn->prepare($sql);
+    //    } catch (DBALException $e) {
+    //    }
+    //    try {
+    //        $stmt->execute(array('arr' => $arr));
+    //    } catch (DBALException $e) {
+    //    }
+    //    return $stmt->getResult();
+
+        $conn = $this->getEntityManager();
+        $qb = $conn->createQueryBuilder();
+
+// this returns an array
+
+        $plats = $qb->select(array('p'))
+            ->from('AppBundle:Plat', 'p')
+            ->join('AppBundle:Reservation', 'r')
+            ->where('p.id = r.plat')
+            ->andWhere('r.cp = :arr')
+            ->setParameter('arr', $arr)
+            ->orderBy('p.creeA', 'ASC')
+            ->getQuery()
+            ->getResult();
+    return $plats;
+    }
 
 }

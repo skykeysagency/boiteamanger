@@ -50,3 +50,9 @@ services:
             - ['pass properties as array']
 
 
+    AppBundle.form.reservationFlow:
+            class: AppBundle\Form\reservationFlow
+            parent: craue.form.flow
+            autowire: true
+            autoconfigure: false
+            public: true

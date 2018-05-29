@@ -24,16 +24,85 @@ class Commentaire
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=500)
+     * @ORM\Column(name="contenu", type="string", length=500, nullable=true)
      */
     private $contenu;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="commentaires")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
+     */
+    private $auteur;
+
+    /**
+     * @return User
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * @param User $auteur
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+    }
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="note", type="integer")
+     */
+    private $note;
+
+    /**
+     * @return int
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param int $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
      * @var Plat
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Plat",inversedBy="commentaire")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Plat",inversedBy="commentaires")
      * @ORM\JoinColumn(name="plat_id",referencedColumnName="id")
      */
     private $plat;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",inversedBy="ownCommentaires")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
     public function __construct()
     {

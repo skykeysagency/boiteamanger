@@ -2,79 +2,50 @@
 
 
 {% block body %}
-    <div style="height: 675px;" class="parallax-container">
-        <div class="parallax "><img src="{{ asset('background.jpg') }}" alt="Unsplashed background img 2"
-                                    style="filter: blur(3px);"></div>
+    <div class="parallax-container" >
+        <div class="parallax ">
+            <img src="http://fooddy.ancorathemes.com/wp-content/uploads/revslider/slider1/slide1.jpg" alt="Unsplashed background img 2" style="filter: blur(3px);"></div>
         <br><br><br><br><br><br><br>
-        <div class="section">
-            <div class="row">
-                <div class="container center">
-                    <h1 class="header center teal-text">Manger Mieux !</h1>
-                    <br>
-                    <div class="row center">
-                        <h5 class="header light white-text container">Trouve ou propose aux étudiants de ton
-                            université des repas
-                            sains
-                            et équilibrés à un coût abordable !</h5>
+        <div class="row">
+            <div class="col s6" >
+                <div class="section" >
+                    <div class="row">
+                        <div class="container center">
+                            <h1 class="header center yellow-text text-accent-3 ">Commander un plat</h1>
+                            <br>
+                            <div class="row center">
+                                <h5 class="header light white-text container">Commandez ce que vous voulez dans votre ville </h5>
+                            </div>
+                            <br>
+                            <div class="row center">
+                                <a href="{{ path('menu') }}" id="download-button"
+                                   class="btn-large amber">Voir les plats</a>
+                            </div>
+                            <br><br>
+                        </div>
                     </div>
-                    <br>
-                    <div class="row center">
-                        <a href="{{ path('menu') }}" id="download-button"
-                           class="btn-large waves-effect waves-light teal lighten-1">Consulter nos plats</a>
-                    </div>
-                    <br><br>
                 </div>
             </div>
+            <div class="col s6">
+                <div class="section">
+                    <div class="row">
+                        <div class="container center">
+                            <h1 class="header center yellow-text text-accent-3">Poster un plat</h1>
+                            <br>
+                            <div class="row center">
+                                <h5 class="header light white-text container">Vous voulez partager votre plats avec une personne au choix ?</h5>
+                            </div>
+                            <br>
+                            <div class="row center">
+                                <a href="{{ path('menu') }}" id="download-button"
+                                   class="btn-large amber">Poster votre plat</a>
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>
+                </div></div>
         </div>
-
     </div>
-
-    <div class="section grey lighten-2">
-        <br><br>
-        <h4 class="center">Les bon plats du moment !</h4>
-        <br><br><br><br>
-        <div class="container ">
-            <div class="carousel carousel-slider center" data-indicators="true">
-
-                <div class="carousel-item blue white-text" href="#one!">
-                    <h2>Pâtes à la carbonara</h2>
-
-                    <p class="white-text container">Les pâtes à la carbonara est un plat traditionnel italien. La recette 100% italienne ne veut pas que l'on ajoute de crème fraîche, habitude typiquement française. Découvrez donc la recette en pas à pas pour cuisiner des pâtes à la carbonara comme une vraie Mamma Italienne !</p>
-                    <p class='corps'><i class="tiny material-icons ">timer</i>24-Mar-18 09:03</p>
-                    <a class="btn waves-effect white grey-text darken-text-2">Commander</a>
-
-                </div>
-                <div class="carousel-item amber white-text" href="#two!">
-
-
-                    <h2>Curry de poulet</h2>
-
-                    <p class="white-text container">n curry de poulet au lait de coco idéal en automne et hiver !</p>
-                    <p class='corps'><i class="tiny material-icons ">timer</i>24-Mar-18 09:03</p>
-                    <a class="btn waves-effect white grey-text darken-text-2">Commander</a>
-
-
-                </div>
-                <div class="carousel-item green white-text" href="#three!">
-                    <h2>Risotto balls</h2>
-
-                    <p class="white-text container">Des risotto balls sont aussi appelés arrancini en Italie, ce sont des boulettes de risotto frites.</p>
-                    <p class='corps'><i class="tiny material-icons ">timer</i>24-Mar-18 09:03</p>
-                    <a class="btn waves-effect white grey-text darken-text-2">Commander</a>
-                </div>
-                <div class="carousel-item blue white-text" href="#four!">
-                    <h2>Potatoes Maison</h2>
-
-                    <p class="white-text container">Les enfants sont fans de fastfood mais nous beaucoup moins... sauf si c'est fait maison !</p>
-                    <p class='corps'><i class="tiny material-icons ">timer</i>24-Mar-18 09:03</p>
-                    <a class="btn waves-effect white grey-text darken-text-2">Commander</a>
-                </div>
-            </div>
-        </div>
-        <br><br><br><br>
-    </div>
-
-
 
 
     <div id="tuto" class="container">
@@ -116,13 +87,191 @@
 
         <br><br><br><br><br><br>
     </div>
+
+
+    <div class="section grey lighten-2">
+        <br><br>
+        <h4 class="center">Les bon plats du moment !</h4>
+        <br><br><br><br>
+        <div class="container ">
+            <div class="carousel carousel-slider center" data-indicators="true">
+
+                <div class="carousel-item blue white-text" href="#one!">
+                    <h2>Pâtes à la carbonara</h2>
+
+                    <p class="white-text container">Les pâtes à la carbonara est un plat traditionnel italien. La recette 100% italienne ne veut pas que l'on ajoute de crème fraîche, habitude typiquement française. Découvrez donc la recette en pas à pas pour cuisiner des pâtes à la carbonara comme une vraie Mamma Italienne !</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <div class="container duree" data-due-date="2018/04/19 20:15:00">
+                        <div class="row">
+                            <div class="col s4 countdown_hours">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
+                                    <span class="col s12 hours" style="color:black;"></span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Heures</h6>
+                            </div>
+                            <div class="col s4 countdown_minutes">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
+                                    <span class="col s12 minutes" style="color:black;"></span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Minutes</h6>
+                            </div>
+                            <div class="col s4 countdown_seconds">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px; font-size: 20px">
+                                    <span class="col s12 seconds" style="color:black;"></span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Secondes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                    <a class="btn white grey-text darken-text-2">Commander</a>
+
+                </div>
+                <div class="carousel-item amber white-text" href="#two!">
+
+
+                    <h2>Curry de poulet</h2>
+
+                    <p class="white-text container">n curry de poulet au lait de coco idéal en automne et hiver !</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s4 countdown_hours">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">18</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Heures</h6>
+                            </div>
+                            <div class="col s4 countdown_minutes">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">5</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Minutes</h6>
+                            </div>
+                            <div class="col s4 countdown_seconds">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">23</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Secondes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                    <a class="btn  white grey-text darken-text-2">Commander</a>
+
+
+                </div>
+                <div class="carousel-item green white-text" href="#three!">
+                    <h2>Risotto balls</h2>
+
+                    <p class="white-text container">Des risotto balls sont aussi appelés arrancini en Italie, ce sont des boulettes de risotto frites.</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s4 countdown_hours">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">18</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Heures</h6>
+                            </div>
+                            <div class="col s4 countdown_minutes">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">5</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Minutes</h6>
+                            </div>
+                            <div class="col s4 countdown_seconds">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">23</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Secondes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                    <a class="btn  white grey-text darken-text-2">Commander</a>
+                </div>
+                <div class="carousel-item blue white-text" href="#four!">
+                    <h2>Potatoes Maison</h2>
+
+                    <p class="white-text container">Les enfants sont fans de fastfood mais nous beaucoup moins... sauf si c'est fait maison !</p>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <p class='corps'><i class="tiny material-icons ">timer</i>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s4 countdown_hours">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">18</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Heures</h6>
+                            </div>
+                            <div class="col s4 countdown_minutes">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">5</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Minutes</h6>
+                            </div>
+                            <div class="col s4 countdown_seconds">
+                                <span class="col s4"></span>
+                                <h5 class="col s4 circle white darken-1 valign-wrapper countdown_digits" style="height: 70px;">
+                                    <span class="col s12">23</span>
+                                </h5>
+                                <span class="col s4"></span>
+                                <h6 class="col s12 countdown_label">Secondes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                    <a class="btn white grey-text darken-text-2">Commander</a>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+    </div>
+
+
     {% block javascripts %}
         {{ parent() }}
+        <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>
+
         <script>
             $(document).ready(function () {
                 $('.carousel.carousel-slider').carousel({fullWidth: true});
                 $('.parallax').parallax();
+
+                $(".duree").each(function() {
+                    $(this).countdown($(this).data("due-date"), function(event) {
+                        $(".hours").text(event.strftime('%H'));
+                        $(".minutes").text(event.strftime('%M'));
+                        $(".seconds").text(event.strftime('%S'));
+                    });
+                });
             });
+
         </script>
     {% endblock %}
 {% endblock %}

@@ -8,31 +8,33 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
     {% block stylesheets %}
+
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/vizeat.min.css') }}" />
+
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import Materialize-Stepper CSS -->
+        <link rel="stylesheet" href="{{ asset('css/materialize-stepper.css')}}">
     {% endblock %}
 
 </head>
 
-
+{% block nav %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{{ path('plat_index') }}">Mes plats</a></li>
         <li><a href="{{ path('plat_new') }}">Poster un plat</a></li>
         <li class="divider"></li>
-        <li><a href="{{ path('accueil') }}">Accueil</a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content">
-        {% for plat in app.user.plats %}
-            <li><a href="{{ path('plat_listeCommande', {'id' : plat.id }) }}">Mes Commandes</a></li>
-        {% endfor %}
+        <li><a href="{{ path('plat_listeCommande', {'id' : app.user.id }) }}">Mes Commandes</a></li>
         <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
         <li class="divider"></li>
         <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
@@ -42,16 +44,21 @@
             <div class="nav-wrapper blue-grey lighten-1">
                 <div class="row">
                     <div class="col s2">
-                        <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
-                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
-                                 src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
-                        </a>
+                        <a id="logo" href="{{ path('accueil') }}" class="valign-wrapper">
+                            <a class="vz-header-logo" alt="tup my lunch logo" class="responsive-img container">
+
+                            </a>
                     </div>
                 </div>
                 <div style="margin-top: -100px;">
                     <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="{{ path('accueil') }}" class="white-text" >
+                                <i class="tiny material-icons left">home</i>Accueil
+                            </a>
+                        </li>
                         <li><a href="{{ path('menu') }}" class="white-text">
-                                <i class="tiny material-icons left">shopping_basket</i>Menu</a>
+                                <i class="tiny material-icons left">local_pizza</i>Menu</a>
                         </li>
                         <li>
                             <a class="dropdown-button white-text" data-activates="dropdown1">
@@ -78,7 +85,7 @@
                 <div class="row">
                     <div class="col s2">
                         <a id="logo" href="{{ path('menu') }}" class="valign-wrapper">
-                            <img style="width: 75px; height: 75px; margin-top: -5px; margin-left: 0px;"
+                            <img style="width: 35%; height: 35%; margin-top: -5px; margin-left: 0px;"
                                  src="{{ asset('logoMangerMieux.png') }}" alt="" class="responsive-img container">
                         </a>
                     </div>
@@ -92,7 +99,7 @@
                                 <i class="tiny material-icons left">lock</i>Connexion</a>
                         </li>
                         <li><a href="{{ path('fos_user_security_login') }}" class="white-text">
-                                <i class="tiny material-icons left">menu</i>Publiez un repas</a>
+                                <i class="tiny material-icons left">publish</i>Publiez un repas</a>
                         </li>
                     </ul>
                 </div>
@@ -100,11 +107,12 @@
         </nav>
     </div>
 {% endif %}
+{% endblock %}
 
 
 <div role="main">
-{% block body %}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 </div>
 
 
@@ -116,31 +124,22 @@
         </div>
     </footer>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
-            <i class="large material-icons ">add</i>
-        </a>
-        <ul>
-            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-    </div>
-
-
 {% endblock %}
 
 {% block javascripts %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.countdown.js') }}"></script>
+    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js') }}"></script>
     <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="{{ asset('js/materialize-stepper.min.js') }}"></script>
+
+    <script type="text/javascript">
         $(document).ready(function () {
             $('.dropdown-button').dropdown({
                     inDuration: 300,
@@ -148,7 +147,7 @@
                     constrainWidth: false, // Does not change width of dropdown to that of the activator
                     hover: true, // Activate on hover
                     gutter: 0, // Spacing from edge
-                    belowOrigin: false, // Displays dropdown below the button
+                    belowOrigin: true, // Displays dropdown below the button
                     alignment: 'left', // Displays dropdown with edge aligned to the left of button
                     stopPropagation: false // Stops event propagation
                 }

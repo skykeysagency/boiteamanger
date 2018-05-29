@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for participant in groupe.participant %}
+    {% if app.user.id == participant.id %}
+
+    <h1>{{ groupe.nom }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Privé?</th>
+                <td>Ce groupe est{% if groupe.isPrivate %} privée{% else %} public{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Participant</th>
+                <td>{% for participant in groupe.participant %}
+
+                        {{ participant }}
+                        {% if participant.id != groupe.proprietaire and app.user.id == groupe.proprietaire %}
+                            <a href='{{ path('del_participant', {'userId': participant.id, 'groupeId' : groupe.id}) }}'>Supprimer</a>
+                        {% endif %}
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+
+                <li>
+                    <a href="{{ path('plat_newwithgroupe',{ 'id': groupe.id }) }}">Poster un plat</a>
+                </li>
+                <li>
+                    <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">Ajouter des membres</a>
+                </li>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupe_index') }}">Back to the list</a>
+        </li>
+        {%  if app.user.id == groupe.proprietaire %}
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+        {% endif %}
+    </ul>
+
+    {% endif %}
+    {% endfor %}
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script>
+
+            $(document).ready(function () {
+                'use strict';
+                $('#form_titre').autocompleter({
+                    url_list: '/search-article',
+                    url_get: '/?term='
+                });
+
+                $("#ui-id-1").click(function(){
+                    var id = $("#PlatType").val();
+
+                    if(id.toString().length > 0){
+                        $(location).attr('href', '/plat/'+id.toString());
+                    }
+                });
+
+
+
+                $(".duree").each(function() {
+                    $(this).countdown($(this).data("due-date"), function(event) {
+                        $(this).text(event.strftime('%H:%M:%S'));
+                    });
+                });
+
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

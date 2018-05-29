@@ -3,6 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToMany;
 use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -82,12 +86,134 @@ class User extends FOSUser
      */
     protected $plats;
 
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="participant")
+     * @ORM\JoinTable(name="user_groupe",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
+     * )
+     *
+     */
+    protected $groupe;
+
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Reservation", mappedBy="vendeur")
+     *
+     */
+    protected $reservVendeur;
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Reservation", mappedBy="acheteur")
+     *
+     */
+    protected $reservAcheteur;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $noteTot;
+
+    /**
+     * @return int
+     */
+    public function getNoteTot()
+    {
+        return $this->noteTot;
+    }
+
+    /**
+     * @param int $noteTot
+     */
+    public function setNoteTot($noteTot)
+    {
+        $this->noteTot = $noteTot;
+    }
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $noteMoyenne;
+
+    /**
+     * @return float
+     */
+    public function getNoteMoyenne()
+    {
+        return $this->noteMoyenne;
+    }
+
+    /**
+     * @param float $noteMoyenne
+     */
+    public function setNoteMoyenne($noteMoyenne)
+    {
+        $this->noteMoyenne = $noteMoyenne;
+    }
+
+    /**
+     *
+     *
+     * @OneToMany(targetEntity="Commentaire", mappedBy="auteur")
+     *
+     */
+    protected $commentaires;
+
+    /**
+     * @return ArrayCollection|User[]
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param mixed $commentaires
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire",mappedBy="user")
+     */
+    protected $ownCommentaires;
+
+    /**
+     * @return mixed
+     */
+    public function getOwnCommentaires()
+    {
+        return $this->ownCommentaires;
+    }
+
+    /**
+     * @param mixed $ownCommentaires
+     */
+    public function setOwnCommentaires($ownCommentaires)
+    {
+        $this->ownCommentaires = $ownCommentaires;
+    }
+
     public function __construct()
     {
         parent::__construct();
         $this->plats = new ArrayCollection();
 
         $this->platsPoste = new ArrayCollection();
+
+        $this->groupe = new ArrayCollection();
+
+        $this->ownCommentaires = new ArrayCollection();
+
     }
 
     /**
@@ -128,6 +254,22 @@ class User extends FOSUser
     public function getImageUser()
     {
         return $this->imageUser;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -302,4 +444,78 @@ class User extends FOSUser
     {
         $this->platsPoste->removeElement($platsPoste);
     }
+
+    /**
+     * Set groupe
+     *
+     * @param Groupe $groupe
+     *
+     * @return User
+     */
+    public function setGroupe($groupe)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return ArrayCollection|\Doctrine\Common\Collections\Collection|Groupe[]
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+
+    /**
+     * @param Groupe $Group
+     */
+    public function addUserGroup(Groupe $Group)
+    {
+        if ($this->groupe->contains($Group)) {
+            return;
+        }
+        $this->groupe->add($Group);
+        $Group->addUser($this);
+    }
+    /**
+     * @param Groupe $Group
+     */
+    public function removeUserGroup(Groupe $Group)
+    {
+        if (!$this->groupe->contains($Group)) {
+            return;
+        }
+        $this->groupe->removeElement($Group);
+        $Group->removeUser($this);
+    }
+
+
+    /**
+     * Add commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->ownCommentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->ownCommentaires->removeElement($commentaire);
+    }
+
 }
