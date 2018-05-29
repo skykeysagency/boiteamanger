@@ -116,7 +116,7 @@ class User extends FOSUser
 
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $noteTot;
 
@@ -138,7 +138,7 @@ class User extends FOSUser
 
     /**
      * @var float
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $noteMoyenne;
 
@@ -167,7 +167,7 @@ class User extends FOSUser
     protected $commentaires;
 
     /**
-     * @return mixed
+     * @return ArrayCollection|User[]
      */
     public function getCommentaires()
     {
@@ -182,6 +182,27 @@ class User extends FOSUser
         $this->commentaires = $commentaires;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire",mappedBy="user")
+     */
+    protected $ownCommentaires;
+
+    /**
+     * @return mixed
+     */
+    public function getOwnCommentaires()
+    {
+        return $this->ownCommentaires;
+    }
+
+    /**
+     * @param mixed $ownCommentaires
+     */
+    public function setOwnCommentaires($ownCommentaires)
+    {
+        $this->ownCommentaires = $ownCommentaires;
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -190,6 +211,9 @@ class User extends FOSUser
         $this->platsPoste = new ArrayCollection();
 
         $this->groupe = new ArrayCollection();
+
+        $this->ownCommentaires = new ArrayCollection();
+
     }
 
     /**
@@ -469,5 +493,29 @@ class User extends FOSUser
         $Group->removeUser($this);
     }
 
+
+    /**
+     * Add commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->ownCommentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->ownCommentaires->removeElement($commentaire);
+    }
 
 }

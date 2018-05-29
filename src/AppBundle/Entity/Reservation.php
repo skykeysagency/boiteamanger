@@ -93,7 +93,7 @@ class Reservation
 
     /**
      * @OneToOne(targetEntity="Plat", inversedBy="reservation")
-     * @JoinColumn(name="plat_id", referencedColumnName="id")
+     * @JoinColumn(name="plat_id", referencedColumnName="id", onDelete="cascade")
      */
     private $plat;
 

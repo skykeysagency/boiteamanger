@@ -42,7 +42,7 @@ class Plat
     /**
      * @ManyToMany(targetEntity="Categorie", inversedBy="plat")
      * @JoinTable(name="plat_categorie",
-     *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id")},
+     *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id", onDelete="cascade")},
      *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
