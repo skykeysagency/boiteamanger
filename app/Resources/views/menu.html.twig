@@ -22,11 +22,36 @@
 
                     <div class="vz-filter-wrapper">
                             <div class="vz-filter vz-text-primary vz-border-primary">
-                                <a class="vz-filter-button">
+                                <a class="vz-filter-button dropdown-button " data-activates='dropdownArrondissement'>
                                     <i type="map" color="red" class="vz-icon vz-icon-small vz-icon-map vz-icon-red"></i>
                                     <span class="vz-text">Carte</span>
                                 </a>
                             </div>
+                        <ul id='dropdownArrondissement' class='dropdown-content'>
+                            <div style="max-height: 280px">
+                                <li><a href="{{ path('menu') }}" class="black-text">Tout Paris</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75001'}) }}" class="black-text">75001</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75002'}) }}" class="black-text">75002</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75003'}) }}" class="black-text">75003</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75004'}) }}" class="black-text">75004</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75005'}) }}" class="black-text">75005</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75006'}) }}" class="black-text">75006</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75007'}) }}" class="black-text">75007</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75008'}) }}" class="black-text">75008</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75009'}) }}" class="black-text">75009</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75010'}) }}" class="black-text">75010</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75011'}) }}" class="black-text">75011</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75012'}) }}" class="black-text">75012</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75013'}) }}" class="black-text">75013</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75014'}) }}" class="black-text">75014</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75015'}) }}" class="black-text">75015</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75016'}) }}" class="black-text">75016</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75017'}) }}" class="black-text">75017</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75018'}) }}" class="black-text">75018</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75019'}) }}" class="black-text">75019</a></li>
+                                <li><a href="{{ path('menu', {'arr': '75020'}) }}" class="black-text">75020</a></li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -360,6 +385,17 @@
                 $(".nbPlatDispo").text($(".vz-EventCard").length);
             });
 
+
+            $('.dropdown-button').dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrainWidth: false, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                stopPropagation: false // Stops event propagation
+            });
 
         </script>
     {% endblock %}
