@@ -7,7 +7,6 @@ parameters:
     database_password: Jmfxzb9v
     mailer_transport: smtp
     mailer_host: ns0.ovh.net
-    mailer_port: 587
     mailer_user: contact@skykeys.fr
     mailer_password: Jmfxzb9v
     secret: ThisTokenIsNotSoSecretChangeIt
