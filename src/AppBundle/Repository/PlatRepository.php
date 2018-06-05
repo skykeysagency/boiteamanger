@@ -12,19 +12,6 @@ use AppBundle\AppBundle;
 class PlatRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findByArrondissement($arr){
-
-    //   $conn = $this->getEntityManager()->getConnection();
-    //    $sql="SELECT * FROM plat p, reservation r WHERE r.plat_id=p.id AND r.cp= :arr";
-    //    try {
-    //        $stmt = $conn->prepare($sql);
-    //    } catch (DBALException $e) {
-    //    }
-    //    try {
-    //        $stmt->execute(array('arr' => $arr));
-    //    } catch (DBALException $e) {
-    //    }
-    //    return $stmt->getResult();
-
         $conn = $this->getEntityManager();
         $qb = $conn->createQueryBuilder();
 

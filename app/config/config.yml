@@ -83,6 +83,10 @@ fos_user:
         form:
             type: AppBundle\Form\RegistrationType
             validation_groups: [AppBundleRegistration]
+    profile:
+        form:
+            type: AppBundle\Form\ProfileFormType
+
 
 
 hwi_oauth:
