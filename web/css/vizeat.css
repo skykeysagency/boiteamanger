@@ -1195,7 +1195,6 @@
     width: 15px;
 }
 .vz-review-rating-container .vz-review-icon:not(:last-child) {
-    width: 20px;
 }
 .vz-review-rating-container .vz-review-icon.star {
     background-image: url(https://static.eatwith.com/31efad406e0cf9c295fc380f446bdfe0.png);
@@ -39081,4 +39080,36 @@ html {
     .menulist {
         width: 85%;
     }
+}
+
+
+
+.caption div {
+    box-shadow: 0 0 5px #C8C8C8;
+    transition: all 0.3s ease 0s;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.img-circle {
+    border-radius: 0;
+}
+
+.ratio {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
 }

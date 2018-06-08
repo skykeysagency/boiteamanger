@@ -102,6 +102,7 @@ class ProfileFormType extends BaseType
             ->add('tel')
             ->add('email')
             ->add('imageUser', FileType::class, array('data_class' => null, 'required' => false))
+            ->add('aboutMe')
 
         ;
     }

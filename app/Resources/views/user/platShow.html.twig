@@ -1,0 +1,56 @@
+<div class="col s12" style="padding: 0">
+    <!-- medium -->
+    {% for plat in listPlat %}
+        <div class="col s6">
+            <div class="vz-EventCard vz-SearchEventCard" style="max-height: 300px">
+                <button class="vz-wishlist-button EventCard__wishlist-button">
+                    <i class="icon-wishlist"></i><!-- react-empty: 5515 -->
+                </button>
+                <div class="EventCard-HeroContainer" style="max-height: 150px">
+                    <div class="EventCard__priceTag">
+                        <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
+                    </div>
+                    <div class="EventCard__image"
+                         style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
+
+                    </div>
+                </div>
+                <div class="EventCard-InfoContainer">
+                    <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
+                         class="EventCard__hostPic avatar img-responsive img-circle">
+                    <div class="EventCard-HostInfo">
+                        {% for cat in plat.categorie %}
+                            <span class="EventCard__eventType">{{ cat.libelle }}</span>
+                        {% endfor %}
+                        <div class="EventCard__eventTitleContainer"><a class="EventCard__eventTitle">{{ plat.nomPlat }}</a>
+                        </div>
+               {#         <div class="vz-review-rating-container col s3 right-align">
+                            {% if plat.commentaires.note < 1.5 %}
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif plat.commentaires.note <= 2.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif plat.commentaires.note < 3.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif plat.commentaires.note <4.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif plat.commentaires.note < 5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% endif %}
+                        </div>
+                        #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

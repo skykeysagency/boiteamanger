@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <body class="loaded">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -30,29 +29,50 @@
                     <div id="profile-page" class="section">
                         <!-- profile-page-header -->
                         <div id="profile-page-header" class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/user-profile-bg.jpg" alt="user background">
-                            </div>
+
                             <div class="col-lg-2">
 
                             </div>
 
                             <div class="card-content">
                                 <div class="row">
-                                    <figure class="card-profile-image col s2" style="width: 200px; height: 200px;">
-                                        <img src="{{ asset('uploads/images/' ~ user.imageUser) }}" alt="profile image" class="circle z-depth-2 responsive-img activator"style="width:200px; height: 200px;">
+                                    <figure class="col s2 ratio img-responsive img-circle">
+                                        <img src="{{ asset('uploads/images/' ~ user.imageUser) }}" alt="profile image" class="circle z-depth-2 responsive-img activator">
                                     </figure>
                                     <div class="col s2 offset-s1">
-                                        <h4 class="card-title grey-text text-darken-4">{{ user.username }}</h4>
+                                        <h4 class="card-title grey-text text-darken-4">{{ user.prenom }} {{ user.nom }}</h4>
                                         <p class="medium-small grey-text">-</p>
                                     </div>
                                     <div class="col s2 center-align">
-                                        <h4 class="card-title grey-text text-darken-4">{{ user.plats | length }} {% if user.plats | length == 1 %}plat{% else %}plats{% endif %}</h4>
+                                        <h4 class="card-title grey-text text-darken-4">{{ user.plats | length }} <span>{% if user.plats | length == 1 %}plat{% else %}plats{% endif %}</span></h4>
                                         <p class="medium-small grey-text">-</p>
                                     </div>
                                     <div class="col s2 center-align">
-                                        <h4 class="card-title grey-text text-darken-4">{{ user.noteMoyenne | slice(0,3) }}/5</h4>
-                                        <p class="medium-small grey-text">-</p>
+                                        <h4 class="card-title grey-text text-darken-4">{{ user.noteMoyenne | slice(0,3) }} ({{ user.noteTot }})</h4>
+
+                                        <div class="vz-review-rating-container col s12 center-align">
+                                            {% if user.noteMoyenne < 1.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne <= 2.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne < 3.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne <4.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne < 5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                     {% if app.user == user %}
                                     <div class="col s1 right-align">
@@ -65,19 +85,6 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="card-reveal" style="display: none; transform: translateY(0px);">
-                                <p>
-                                    <span class="card-title grey-text text-darken-4">{{ user.username }} <i class="mdi-navigation-close right"></i></span>
-                                    <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</span>
-                                </p>
-
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-
-                                <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
-                                <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
-                                <p><i class="mdi-social-cake cyan-text text-darken-2"></i> 18th June 1990</p>
-                                <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> BAR - AUS</p>
-                            </div>
                         </div>
                         <!--/ profile-page-header -->
 
@@ -89,8 +96,32 @@
                                 <!-- Profile About  -->
                                 <div class="card amber darken-2">
                                     <div class="card-content white-text center-align">
-                                        <p class="card-title"><i class="mdi-social-group-add"></i>{{ user.noteMoyenne | slice(0,3) }}</p>
-                                        <p>/5</p>
+                                        <p class="card-title"><i class="mdi-social-group-add"></i>{{ user.noteMoyenne | slice(0,3) }} ({{ user.noteTot }})</p>
+                                        <p>
+                                        <div class="vz-review-rating-container col s12 center-align">
+                                            {% if user.noteMoyenne < 1.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne <= 2.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne < 3.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne <4.5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% elseif user.noteMoyenne < 5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                            {% endif %}
+                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- Profile About  -->
@@ -98,8 +129,8 @@
                                 <!-- Profile About  -->
                                 <div class="card light-blue">
                                     <div class="card-content white-text">
-                                        <span class="card-title">About Me!</span>
-                                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                        <span class="card-title">A propos de moi!</span>
+                                        <p>{{ user.aboutMe }}</p>
                                     </div>
                                 </div>
                                 <!-- Profile About  -->
@@ -169,7 +200,7 @@
                                 <div id="profile-page-wall-share" class="row">
                                     <div class="col s12">
                                         <ul class="tabs tab-profile z-depth-1 light-blue" style="width: 100%;">
-                                            <li class="tab col s5"><a class="white-text waves-effect waves-light active" href="#profile-commentaires"><i class="mdi-editor-border-color"></i>Commentaires</a>
+                                            <li class="tab col s5"><a class="white-text waves-effect waves-light active" href="#profile-commentaires">Commentaires</a>
                                             </li>
                                             <li class="tab col s3"><a class="white-text waves-effect waves-light" href="#profile-plats"><i class="mdi-image-camera-alt"></i> Plats</a>
                                             </li>
@@ -189,142 +220,38 @@
                                 <!--/ profile-page-wall-share -->
 
                                 <!-- profile-page-wall-posts -->
-                                <div id="profile-commentaires" class="row">
-                                    <div class="col s12">
-                                        <!-- medium -->
-                                        {% for com in user.ownCommentaires %}
-                                        <div id="profile-page-wall-post" class="card">
-                                            <div class="card-profile-title">
-                                                <div class="row">
-                                                    <div class="col s1">
-                                                        <img src="{{ asset('uploads/images/' ~ com.auteur.imageUser) }}" alt="" class="circle responsive-img valign profile-post-uer-image">
-                                                    </div>
-                                                    <div class="col s10">
-                                                        <p class="grey-text text-darken-4 margin">{{ com.auteur }}</p>
-                                                        <span class="grey-text text-darken-1 ultra-small">(Ajouter date et heure à la commancde ?)Shared publicly  -  26 Jun 2015</span>
-                                                    </div>
-                                                    <div class="col s1 right-align">
-                                                        <i class="mdi-navigation-expand-more"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col s12">
-                                                        <span class="card-title text-success col s9"><a style="margin-left: 5px;">{{ com.plat.nomPlat }}</a></span>
-
-                                                        <div class="vz-review-rating-container col s3 right-align">
-                                                            {% if com.note < 1.5 %}
-                                                                <span class="vz-review-icon star active"></span>
-                                                            {% elseif com.note <= 2.5 %}
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                            {% elseif com.note < 3.5 %}
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                            {% elseif com.note <4.5 %}
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                            {% elseif com.note < 5 %}
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                                <span class="vz-review-icon star active"></span>
-                                                            {% endif %}
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-content">
-                                                <p>{{ com.contenu }}</p>
-                                            </div>
-                                    </div>
-                                        {% endfor %}
+                                <div id="profile-commentaires" name="profile-commentaires" class="row">
+                                    {% include 'user/commentaireShow.html.twig' %}
                                 </div>
-                                <!--/ profile-page-wall-posts -->
 
                             </div>
                             <!--/ profile-page-wall -->
 
-                                <div id="profile-plats" class="row" style="display: none;">
-                                    <div class="col s12">
-                                        <!-- medium -->
-                                        {% for plat in user.platsPoste %}
-                                            <div id="profile-page-wall-post" class="card">
-                                                <div class="card-profile-title">
-                                                    <div class="row">
-                                                        <div class="col s1">
-                                                            <img src="{{ asset('uploads/images/' ~ plat.imagePlat) }}" alt="" class="circle responsive-img valign profile-post-uer-image">
-                                                        </div>
-                                                        <div class="col s10">
-                                                            <p class="grey-text text-darken-4 margin">{{ plat.userPoste }}</p>
-                                                            <span class="grey-text text-darken-1 ultra-small">Publié le  -  {{ plat.creeA |date("F jS \\a\\t g:ia") }}</span>
-                                                        </div>
-                                                        <div class="col s1 right-align">
-                                                            <i class="mdi-navigation-expand-more"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col s12">
-                                                            <span class="card-title text-success col s9"><a style="margin-left: 5px;">{{ plat.nomPlat }}</a></span>
-
-                                                    {# <div class="vz-review-rating-container col s3 right-align">
-                                                                {% if plat.commentaires.note < 1.5 %}
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                {% elseif plat.commentaires.note <= 2.5 %}
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                {% elseif plat.commentaires.note < 3.5 %}
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                {% elseif plat.commentaires.note <4.5 %}
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                {% elseif plat.commentaires.note < 5 %}
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                    <span class="vz-review-icon star active"></span>
-                                                                {% endif %}
-                                                            </div>#}
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-content">
-                                                    <p>{{ plat.descriptionPlat }}</p>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
+                                <div id="profile-plats" name="profile-plats" class="row">
+                                    {% include 'user/platShow.html.twig' %}
                                 </div>
 
                         </div>
                     </div>
                 </div>
-                </div>
-            </section></div>
+            </section>
+        </div>
+    </div>
         <!--end container-->
 
         <!-- END CONTENT -->
 
         <!-- //////////////////////////////////////////////////////////////////////////// -->
-
-    </div>
     <!-- END WRAPPER -->
-
 
     <!-- END MAIN -->
 
 
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
 
 {% endblock %}
