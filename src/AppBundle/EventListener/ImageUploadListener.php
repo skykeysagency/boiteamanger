@@ -39,9 +39,12 @@ class ImageUploadListener implements EventSubscriber
      */
     public function preUpdate(PreUpdateEventArgs $args)
     {
-        $oldImage = $args->getOldValue('imageUser');
 
-        if($args->getNewValue('imageUser')==null){
+        if($args->hasChangedField('imageUser')){
+            $oldImage = $args->getOldValue('imageUser');
+        }
+
+        if(isset($oldImage) && $args->getNewValue('imageUser')==null){
             $entity = $args->getEntity();
             $entity->setImageUser($oldImage);
             $this->uploadFile($entity);
