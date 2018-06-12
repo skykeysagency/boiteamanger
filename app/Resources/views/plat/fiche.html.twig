@@ -46,7 +46,7 @@
                                 #}
 
                                 <div class="__freeCancellation" ><i class="__iconCheck"></i>
-                                    Annulation gratuite jusqu'au {{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, hh:mm ") }}</div>
+                                    Annulation gratuite jusqu'au {{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, HH:mm ") }}</div>
                                 <div class="EventPage-HostCard __hostCard">
                                     <div class="__header"><a href="{{ path('user_show', {'id': plat.userPoste}) }}"><img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="__avatar avatar img-responsive img-circle"></a><span style="font-size: 15px">Rencontrez<span class="__hostname" dir="auto"> {{ plat.getUserPoste().username }}</span></span><i class="__iconChevron"></i></div>
                                     <div class="__description" dir="auto"><i class="__iconQuote"></i>
@@ -130,7 +130,7 @@
                     <div class="EventPage-Desktop__BasicInfo">
                         <div class="__item">
                             <div class="__itemContent"><i class="__icon __time"></i>
-                                <div class="__text">Valable jusqu'au {% if plat.dureeValide %}{{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "cccc d MMMM, hh:mm ") }}{% endif %}</div>
+                                <div class="__text">Valable jusqu'au {% if plat.dureeValide %}{{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "cccc d MMMM, HH:mm ") }}{% endif %}</div>
                             </div>
                         </div>
                         <div class="__item">
