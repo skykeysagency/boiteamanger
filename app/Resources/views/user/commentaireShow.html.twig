@@ -9,7 +9,7 @@
                     </div>
                     <div class="col s10">
                         <p class="grey-text text-darken-4 margin">{{ com.auteur }}</p>
-                        <span class="grey-text text-darken-1 ultra-small">(Ajouter date et heure) Shared publicly  -  26 Jun 2015</span>
+                        <span class="grey-text text-darken-1 ultra-small">Partagé le  -  {{ com.date|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, HH:mm ") }}</span>
                     </div>
                     <div class="col s1 right-align">
                         <i class="mdi-navigation-expand-more"></i>
