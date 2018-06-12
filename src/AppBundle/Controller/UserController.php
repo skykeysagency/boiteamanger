@@ -40,7 +40,7 @@ class UserController extends Controller
         //);
 
         $listPlat = $db->getRepository('AppBundle:Plat')->findBy(['userPoste' => $user->getId()],['creeA' => 'ASC'],4);
-        dump($listPlat);
+
         $listCom = $db->getRepository('AppBundle:Commentaire')->findByPage(
             $request->query->getInt('page', 1),
             4,

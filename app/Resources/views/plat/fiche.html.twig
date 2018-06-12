@@ -3,45 +3,19 @@
 {% block body %}
     <div class="EventPage-Desktop">
         <div class="inline-carousel">
-            <div class="inline-carousel__pager" style="width: 1680px;">
+            <div class="inline-carousel__pager" >
                 <div tabindex="0" class="inline-carousel__frame" style="position: relative; overflow: hidden;">
-                    <div class="inline-carousel__track"
-                         style="transform: translate3d(-420px, 0px, 0px); width: 10920px;">
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
-                        <div class="inline-carousel__view" draggable="false"
-                             style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 840px; height: 519px; display: inline-block; vertical-align: top;"></div>
+                    <div class="inline-carousel__track">
+
+                                <div class="col-lg-offset-0 ">
+                        <div class="inline-carousel__view" draggable="false" style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 100%; height: 519px; display: inline-block; vertical-align: top;"></div>
+                                </div>
+
+                        <div class="col-lg-1">
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel__arrow-nav carousel__arrow-nav--left">
-                <div class="carousel__arrow-nav__icon"></div>
-            </button>
-            <button class="carousel__arrow-nav carousel__arrow-nav--right">
-                <div class="carousel__arrow-nav__icon"></div>
-            </button>
         </div>
         <div class="container">
             <div class="row">
@@ -64,18 +38,17 @@
                                         <a class="__submitButton __active" href="{{ path('plat_reserve', { 'id': plat.id }) }}">Commander</a>
                                     </div>
                                 </div>
+<!-------------------------------------- Emplacement de messenger ------------------------------------------------>
+            {#
                                 <div class="__contactHost"><i class="__iconChat"></i>Des
                                     questions? <a class="__contactHostBtn" href=""> Contactez le luncher</a><i
                                             class="__iconChevron"></i></div>
+                                #}
+
                                 <div class="__freeCancellation" ><i class="__iconCheck"></i>
-                                    Annulation gratuite jusqu'à {{ plat.dureeValide|date('Y/m/d H:i:s') }}</div>
+                                    Annulation gratuite jusqu'au {{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, hh:mm ") }}</div>
                                 <div class="EventPage-HostCard __hostCard">
-                                    <div class="__header"><a href="{{ path('user_show', {'id': plat.userPoste}) }}"><img
-                                                    src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
-                                                    class="__avatar avatar img-responsive img-circle"></a><span>Rencontrez
-                                           <span class="__hostname"
-                                                 dir="auto">{{ plat.getUserPoste().username }}</span></span><i
-                                                class="__iconChevron"></i></div>
+                                    <div class="__header"><a href="{{ path('user_show', {'id': plat.userPoste}) }}"><img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="__avatar avatar img-responsive img-circle"></a><span style="font-size: 15px">Rencontrez<span class="__hostname" dir="auto"> {{ plat.getUserPoste().username }}</span></span><i class="__iconChevron"></i></div>
                                     <div class="__description" dir="auto"><i class="__iconQuote"></i>
                                     </div>
 
@@ -105,8 +78,8 @@
                         <div class="col-lg-9 col-sm-7">
                             <ul class="__subNav">
                                 <li class="__subNavItem" style="display: inline;"><a
-                                            class="__subNavLink __active"><span>Description du plat</span></a></li>
-                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink"><span><div
+                                            class="__subNavLink __active" href="#menu"><span>Description du plat</span></a></li>
+                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink" href="#reviews"><span><div
                                                     class="__subNavReviews"><!-- react-text: 3462 -->Commentaires
                                                 <!-- /react-text --><span class="vz-review-rating">
                                                     <div class="vz-review-rating-container">
@@ -134,7 +107,7 @@
                                                                              </div>
                                                     <span class="vz-review-count"> ({{ plat.getUserPoste().noteTot }})</span></span></div></span></a>
                                 </li>
-                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink"><span>Le quartier</span></a>
+                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink" href="#place"><span>Le quartier </span></a>
                                 </li>
                                 <li class="__subNavItem" style="display: none;"><a href="javascript:void(0)"
                                                                                    hidden=""><span
@@ -157,7 +130,7 @@
                     <div class="EventPage-Desktop__BasicInfo">
                         <div class="__item">
                             <div class="__itemContent"><i class="__icon __time"></i>
-                                <div class="__text">Valable jusqua {% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</div>
+                                <div class="__text">Valable jusqu'au {% if plat.dureeValide %}{{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "cccc d MMMM, hh:mm ") }}{% endif %}</div>
                             </div>
                         </div>
                         <div class="__item">
@@ -182,12 +155,14 @@
                     <div class="EventPage-Menu__content"><!-- react-text: 2899 --><!-- /react-text -->
                         <div>
                             <p class="EventPage__event-description__body">
-                                <bdi dir="auto">{{ plat.descriptionPlat }}<br></bdi>
+                                <bdi dir="auto"><br></bdi>
                                 <bdi dir="auto"><!-- react-text: 2948 --><!-- /react-text --><br></bdi>
                             </p>
                         </div>
                         <div class="__signature">
                             <div class="__signatureContent">
+                                <br>
+                                {{ plat.descriptionPlat }}
                                 <div class="__hostName"> {{ plat.getUserPoste().username }} </div>
                             </div>
                         </div>
@@ -205,18 +180,17 @@
                     <div class="EventPage-Desktop__reviews">
                         <div name="reviews-list" id="reviews-list">
                             <div class="vz-review-head row"><h2>Commentaires</h2>
-                                {% for commentaire in plat.getUserPoste().ownCommentaires %}
+            {#
 
-                                <span class="vz-translation-btn-wrapper vz-translation"><a
-                                            class="vz-translation-btn"><i type="planet" color="gray" height="20px"
-                                                                          width="20px"
-                                                                          class="vz-icon vz-icon-planet vz-icon-gray"
-                                                                          style="width: 20px; height: 20px; background-size: contain;"></i><span>Traduire</span></a><br></span>
+            <----------------------Ancien affichage-------------------->
+
+
+            {% for commentaire in plat.getUserPoste().ownCommentaires %}
                             </div>
                             <div>
                                 <div class="EventPage-Desktop__ReviewCard">
                                     <div class="__reviewBasicInfo"><a href="/users/478784"><img
-                                                    src="{{ asset('uploads/images/' ~ app.user.imageUser) }}"
+                                                    src="{{ asset('uploads/images/' ~ plat.userPoste.imageUser) }}"
                                                     class="__userAvatar avatar img-responsive img-circle"></a>
                                         <div class="__userName" dir="auto"><!-- react-text: 3500 -->{{ plat.getUserPoste().username }}
                                             <!-- /react-text -->
@@ -256,16 +230,13 @@
                                 </div>
                                 {% endfor %}
 
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12" style="text-align: center;">
-                                    <ul class="pagination">
-                                        <li class="active"><a role="button" href="#">1</a></li>
-                                        <li class=""><a role="button" href="#">2</a></li>
-                                        <li class=""><a role="button" href="#"><span aria-label="Next">›</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
+
+
+                                #}
+
+                                {% include 'user/commentaireShow.html.twig' %}
+
+
                             </div>
                         </div>
                     </div>
@@ -281,273 +252,8 @@
                         <div><span>Quartier et Accès</span><br><span class="__smallText">L'adresse complète sera communiquée une fois la réservation confirmée</span>
                         </div>
                     </h3>
-                    <div style="height: 192px;">
-                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-                            <!-- react-empty: 3230 -->
-                            <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
-                                <div class="gm-style"
-                                     style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
-                                    <div tabindex="0"
-                                         style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur), default;">
-                                        <div style="z-index: 1; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);">
-                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
-                                                    <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -202, -10);">
-                                                        <div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                        <div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;">
-                                                            <div style="width: 256px; height: 256px;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;">
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 30;">
-                                                    <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -202, -10);">
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 256px; top: 0px;">
-                                                            <canvas width="512" height="512" draggable="false"
-                                                                    style="width: 256px; height: 256px; -webkit-user-select: none; position: absolute; left: 0px; top: 0px;"></canvas>
-                                                        </div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 0px; top: 0px;">
-                                                            <canvas width="512" height="512" draggable="false"
-                                                                    style="width: 256px; height: 256px; -webkit-user-select: none; position: absolute; left: 0px; top: 0px;"></canvas>
-                                                        </div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 0px; top: -256px;">
-                                                            <canvas width="512" height="512" draggable="false"
-                                                                    style="width: 256px; height: 256px; -webkit-user-select: none; position: absolute; left: 0px; top: 0px;"></canvas>
-                                                        </div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 256px; top: -256px;">
-                                                            <canvas width="512" height="512" draggable="false"
-                                                                    style="width: 256px; height: 256px; -webkit-user-select: none; position: absolute; left: 0px; top: 0px;"></canvas>
-                                                        </div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 512px; top: -256px;"></div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: 512px; top: 0px;"></div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: -256px; top: 0px;"></div>
-                                                        <div style="width: 256px; height: 256px; position: absolute; left: -256px; top: -256px;"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div>
-                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div>
-                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
-                                                <div style="position: absolute; z-index: 1; transform: matrix(1, 0, 0, 1, -202, -10);">
-                                                    <div style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14554!3i6448!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=62159"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14551!3i6449!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=106300"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14552!3i6448!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=130049"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14553!3i6448!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=96104"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14552!3i6449!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=72355"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14554!3i6449!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=4465"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14553!3i6449!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=38410"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                    <div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;">
-                                                        <img draggable="false" alt=""
-                                                             src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i14551!3i6448!4i256!2m3!1e0!2sm!3i423123608!3m14!2sfr-FR!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjE3fHAudjpvbnxwLnM6LTc1LHMudDoxN3xzLmU6bHxwLnY6b2ZmLHMudDoyfHMuZTpsLnR8cC52Om9mZixzLnQ6MnxzLmU6Z3xwLnY6b2ZmLHMudDozN3xzLmU6Zy5mfHAudjpvbixzLnQ6Mzd8cy5lOmcuc3xwLnY6b24scy50OjM3fHMuZTpsLnR8cC52Om9uLHMudDo0MHxzLmU6Zy5mfHAudjpvbixzLnQ6Mzh8cy5lOmcuZnxwLnY6b24scy50OjM4fHMuZTpnLnN8cC52Om9uLHMudDozOHxzLmU6bC50fHAudjpvbixzLnQ6NDl8cy5lOmcuc3xwLnY6b258cC5jOiNmZkZENzg1NHxwLnc6MC41LHMudDo2fHMuZTpnLmZ8cC52Om9ufHAuYzojZmY2MmM1ZWU!4e0!5m1!5f2!23i1301875&amp;token=32923"
-                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="gm-style-pbc"
-                                             style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; transition-duration: 0ms; opacity: 0;">
-                                            <p class="gm-style-pbt"></p></div>
-                                        <div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;">
-                                            <div style="z-index: 1; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"></div>
-                                            <div style="z-index: 4; position: absolute; left: 50%; top: 50%; transform: translate(0px, 0px);">
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div>
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div>
-                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
-                                                    <div style="z-index: -202; cursor: pointer; display: none;">
-                                                        <div style="width: 30px; height: 27px; overflow: hidden; position: absolute;">
-                                                            <img alt=""
-                                                                 src="https://maps.gstatic.com/mapfiles/undo_poly.png"
-                                                                 draggable="false"
-                                                                 style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 90px; height: 27px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <iframe frameborder="0" src="about:blank"
-                                            style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe>
-                                    <div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
-                                        <a target="_blank"
-                                           href="https://maps.google.com/maps?ll=35.728014,139.763428&amp;z=14&amp;t=m&amp;hl=fr-FR&amp;gl=US&amp;mapclient=apiv3"
-                                           title="Cliquez ici pour afficher cette zone sur Google&nbsp;Maps"
-                                           style="position: static; overflow: visible; float: none; display: inline;">
-                                            <div style="width: 66px; height: 26px; cursor: pointer;"><img alt=""
-                                                                                                          src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png"
-                                                                                                          draggable="false"
-                                                                                                          style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
-                                            </div>
-                                        </a></div>
-                                    <div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 222px; top: 6px;">
-                                        <div style="padding: 0px 0px 10px; font-size: 16px;">Données
-                                            cartographiques
-                                        </div>
-                                        <div style="font-size: 13px;">Données cartographiques ©2018 Google,
-                                            ZENRIN
-                                        </div>
-                                        <div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;">
-                                            <img alt=""
-                                                 src="https://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png"
-                                                 draggable="false"
-                                                 style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                        </div>
-                                    </div>
-                                    <div class="gmnoprint"
-                                         style="z-index: 1000001; position: absolute; right: 113px; bottom: 0px; width: 233px;">
-                                        <div draggable="false" class="gm-style-cc"
-                                             style="-webkit-user-select: none; height: 14px; line-height: 14px;">
-                                            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
-                                                <div style="width: 1px;"></div>
-                                                <div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div>
-                                            </div>
-                                            <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
-                                                <a style="text-decoration: none; cursor: pointer; display: none;">Données
-                                                    cartographiques</a><span>Données cartographiques ©2018 Google, ZENRIN</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="gmnoscreen"
-                                         style="position: absolute; right: 0px; bottom: 0px;">
-                                        <div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">
-                                            Données cartographiques ©2018 Google, ZENRIN
-                                        </div>
-                                    </div>
-                                    <div class="gmnoprint gm-style-cc" draggable="false"
-                                         style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;">
-                                        <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
-                                            <div style="width: 1px;"></div>
-                                            <div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div>
-                                        </div>
-                                        <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
-                                            <a href="https://www.google.com/intl/fr-FR_US/help/terms_maps.html"
-                                               target="_blank"
-                                               style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Conditions
-                                                d'utilisation</a></div>
-                                    </div>
-                                    <button draggable="false" title="Passer en plein écran"
-                                            aria-label="Passer en plein écran" type="button"
-                                            style="background-image: none; background-color: rgb(255, 255, 255); border: 0px; margin: 10px 14px; padding: 0px; position: absolute; cursor: pointer; -webkit-user-select: none; width: 25px; height: 25px; overflow: hidden; top: 0px; right: 0px; background-position: initial initial; background-repeat: initial initial;">
-                                        <img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/sv9.png"
-                                             draggable="false" class="gm-fullscreen-control"
-                                             style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
-                                    </button>
-                                    <div draggable="false" class="gm-style-cc"
-                                         style="-webkit-user-select: none; height: 14px; line-height: 14px; display: none; position: absolute; right: 0px; bottom: 0px;">
-                                        <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
-                                            <div style="width: 1px;"></div>
-                                            <div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div>
-                                        </div>
-                                        <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
-                                            <a target="_blank" rel="noopener"
-                                               title="Signaler à Google une erreur dans la carte routière ou les images"
-                                               href="https://www.google.com/maps/@35.7280145,139.7634285,14z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3"
-                                               style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Signaler
-                                                une erreur cartographique</a></div>
-                                    </div>
-                                    <div class="gmnoprint gm-bundled-control" draggable="false" controlwidth="0"
-                                         controlheight="0"
-                                         style="margin: 10px; -webkit-user-select: none; position: absolute; display: none; top: 0px; left: 0px;">
-                                        <div class="gmnoprint" style="display: none; position: absolute;">
-                                            <div draggable="false"
-                                                 style="-webkit-user-select: none; -webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255);">
-                                                <button draggable="false" title="Zoom avant"
-                                                        aria-label="Zoom avant" type="button"
-                                                        style="background-image: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; -webkit-user-select: none; background-position: initial initial; background-repeat: initial initial;">
-                                                    <div style="overflow: hidden; position: absolute;"><img
-                                                                alt=""
-                                                                src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png"
-                                                                draggable="false"
-                                                                style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 240px; height: 108px;">
-                                                    </div>
-                                                </button>
-                                                <div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; background-color: rgb(230, 230, 230);"></div>
-                                                <button draggable="false" title="Zoom arrière"
-                                                        aria-label="Zoom arrière" type="button"
-                                                        style="background-image: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; -webkit-user-select: none; background-position: initial initial; background-repeat: initial initial;">
-                                                    <div style="overflow: hidden; position: absolute;"><img
-                                                                alt=""
-                                                                src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png"
-                                                                draggable="false"
-                                                                style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 240px; height: 108px;">
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom"
-                                         draggable="false" controlwidth="0" controlheight="0"
-                                         style="margin: 10px; -webkit-user-select: none; position: absolute; display: none; bottom: 14px; right: 0px;">
-                                        <div class="gmnoprint" controlwidth="28" controlheight="0"
-                                             style="display: none; position: absolute;">
-                                            <div title="Faire pivoter le plan à 90°"
-                                                 style="width: 28px; height: 28px; overflow: hidden; position: absolute; background-color: rgb(255, 255, 255); -webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; cursor: pointer; display: none;">
-                                                <img alt=""
-                                                     src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png"
-                                                     draggable="false"
-                                                     style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                            </div>
-                                            <div class="gm-tilt"
-                                                 style="width: 0px; height: 0px; overflow: hidden; position: absolute; background-color: rgb(255, 255, 255); -webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; top: 0px; cursor: pointer;">
-                                                <img alt=""
-                                                     src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png"
-                                                     draggable="false"
-                                                     style="position: absolute; left: 0px; top: 0px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="height: 192px;" id="map">
+<!-------------------------Place de la map google--------------------->
                     </div>
                 </div>
             </div>
@@ -584,14 +290,12 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="EventCard-InfoContainer">
-                                                                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}"
-                                                                                 class="EventCard__hostPic avatar img-responsive img-circle">
+                                                                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="EventCard__hostPic avatar img-responsive img-circle">
                                                                             <div class="EventCard-HostInfo">
                                                                                 <small class="EventCard__hostText">
                                                                                     <!-- react-text: 5529 -->
                                                                                     Rencontrez
-                                                                                    <!-- /react-text --><a dir="auto"
-                                                                                                           href="/users/73237">{{ plat.getUserPoste().username }}</a>
+                                                                                    <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
                                                                                     <!-- react-text: 5531 --> à <!-- /react-text -->
                                                                                     <!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
                                                                                     <!-- /react-text --></small>
@@ -707,4 +411,99 @@
         </ul>
     </div>#}
     <br><br>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        function initMap() {
+
+            var cp = {{ plat.reservation.cp }};
+            switch(cp) {
+                case 75001:
+                    var geo = {lat: 48.8640493, lng: 2.331052600000021};
+                    break;
+                case 75002:
+                    var geo = {lat: 48.8675641, lng: 2.3439899999999625};
+                    break;
+                case 75003:
+                    var geo = {lat: 48.8634799, lng: 2.3591145000000324};
+                    break;
+                case 75004:
+                    var geo = {lat: 48.8534275, lng: 2.3582787999999937};
+                    break;
+                case 75005:
+                    var geo = {lat: 48.8434912, lng: 2.351833899999974};
+                    break;
+                case 75006:
+                    var geo = {lat: 48.8488576, lng: 2.3354223000000047};
+                    break;
+                case 75007:
+                    var geo = {lat: 48.85433450000001, lng: 2.3134029000000282};
+                    break;
+                case 75008:
+                    var geo = {lat: 48.8718722, lng: 2.3176432000000204};
+                    break;
+                case 75009:
+                    var geo = {lat: 48.8790183, lng: 2.337906299999986};
+                    break;
+                case 75010:
+                    var geo = {lat: 48.8785618, lng: 2.360368900000026};
+                    break;
+                case 75011:
+                    var geo = {lat: 48.85799300000001, lng: 2.3811530000000403};
+                    break;
+                case 75012:
+                    var geo = {lat: 48.8293647, lng: 2.426540599999953};
+                    break;
+                case 75013:
+                    var geo = {lat: 48.830759, lng: 2.359203999999977};
+                    break;
+                case 750014:
+                    var geo = {lat: 48.8314408, lng: 2.3255684000000656};
+                    break;
+                case 75015:
+                    var geo = {lat: 48.8421616, lng: 2.2927664999999706};
+                    break;
+                case 75016:
+                    var geo = {lat: 48.8530933, lng: 2.2487625999999636};
+                    break;
+                case 75017:
+                    var geo = {lat: 48.891986, lng: 2.319287000000031};
+                    break;
+                case 75018:
+                    var geo = {lat: 48.891305, lng: 2.352986699999974};
+                    break;
+                case 75019:
+                    var geo = {lat: 48.89061359999999, lng: 2.3867083000000093};
+                    break;
+                case 75020:
+                    var geo = {lat: 48.8599825, lng: 2.4066411999999673};
+                    break;
+
+            }
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: geo
+            });
+       ////    var marker = new google.maps.Marker({
+       //        position: geo,
+       //        map: map
+       //    });
+            var cityCircle = new google.maps.Circle({
+                //strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: map.center,
+                radius: 1000
+            });
+
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZp6Z4MQBZsENJAfEMP-Dd0X3TTl5IHQE&callback=initMap">
+    </script>
 {% endblock %}
