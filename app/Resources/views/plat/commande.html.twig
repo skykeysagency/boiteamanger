@@ -19,17 +19,28 @@
         {% for plat in user.plats %}
             <tr>
                 <td class="center">{{ plat.nomPlat }}</td>
-                <td class="center">{{ plat.categoriePlat }}</td>
+                <td class="center">{% for cat in plat.categorie %}
+                        {{ cat.getLibelle() }},
+                    {% endfor %}</td>
                 <td class="center">{{ plat.descriptionPlat }}</td>
                 {% if plat.userPoste.tel is defined %}
+                    <td class="center">{{ plat.userPoste.Email }}</td>
+
+  {# <------------------------------------------------pour prochaine release----------------------------------------------->
                     <td class="center">{{ plat.userPoste.tel }}</td>
+                    TODO: afficher numero de telephone du vendeur.
+     <------------------------------------------------pour prochaine release----------------------------------------------->
+
+                    #}
                 {% else %}
                     <td class="center">Non renseigné</td>
                 {% endif %}
                 <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
                 <td>
                     <div>
-                        <a href="{{ path('plats_annuler', { 'id': plat.id }) }}">Annuler la commande</a>
+                        {% if 'now'|date('y-m-d H:i:s', "Europe/Paris") <= plat.dureeValide|date('y-m-d H:i:s') %}
+                            <a href="{{ path('plats_annuler', { 'id': plat.id }) }}">Annuler la commande</a>
+                        {% endif %}
                     </div>
                 </td>
             </tr>

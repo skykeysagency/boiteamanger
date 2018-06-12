@@ -28,11 +28,29 @@ class DefaultController extends Controller
      */
     public function menuAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $plats = $em->getRepository('AppBundle:Plat')->findAll();
+        $arr = $request->query->get('arr');
 
-        return $this->render('menu.html.twig', array(
-            'plats' => $plats,
-        ));
+        $em = $this->getDoctrine()->getManager();
+
+
+        if(!$arr){
+            $plats = $em->getRepository('AppBundle:Plat')->findAll();
+            return $this->render('menu.html.twig', array(
+                'plats' => $plats,
+            ));
+
+
+        }else{
+
+            $platsArr = $em->getRepository('AppBundle:Plat')->findByArrondissement($arr);
+
+
+            return $this->render('menu.html.twig', array(
+                'plats' => $platsArr,
+            ));
+
+        }
+
+
     }
 }

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="row center">
+    <div class="col s12 m4 l2">
+    </div>
+    <div class="col s12 m4 l8">
+        <div id="desc" class="container">
+            <h1>Groupes list</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for groupe in groupes %}
+                    {% if groupe.isPrivate %}
+                    {% for participant in groupe.participant %}
+                    {% if app.user.id == participant.id %}
+                    <tr>
+                        <td><a href="{{ path('groupe_show', { 'id': groupe.id }) }}">{{ groupe.id }}</a></td>
+                        <td>{{ groupe.nom }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('groupe_show', { 'id': groupe.id }) }}">show</a>
+                                </li>
+                                {% if app.user.id == groupe.proprietaire %}
+                                <li>
+                                    <a href="{{ path('groupe_edit', { 'id': groupe.id }) }}">edit</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% else %}
+                        <tr>
+                            <td><a href="{{ path('groupe_show', { 'id': groupe.id }) }}">{{ groupe.id }}</a></td>
+                            <td>{{ groupe.nom }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                    </li>
+                                    {% if app.user.id == groupe.proprietaire %}
+                                        <li>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col s12 m4 l2"></div>
+</div>
+    <ul>
+        <li>
+            <a href="{{ path('groupe_new') }}">Create a new groupe</a>
+        </li>
+    </ul>
+{% endblock %}

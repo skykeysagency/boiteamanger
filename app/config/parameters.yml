@@ -8,5 +8,5 @@ parameters:
     mailer_transport: smtp
     mailer_host: ns0.ovh.net
     mailer_user: contact@skykeys.fr
-    mailer_password: Jmfxzb9v
+    mailer_password: Jmfxzb9v874456
     secret: ThisTokenIsNotSoSecretChangeIt

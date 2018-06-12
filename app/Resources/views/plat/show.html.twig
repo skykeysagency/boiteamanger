@@ -16,7 +16,9 @@
             </tr>
             <tr>
                 <th class="center">Categorie plat</th>
-                <td class="center">{{ plat.categoriePlat }}</td>
+                <td class="center">{% for cat in plat.categorie %}
+                {{ cat.getLibelle() }},
+                {% endfor %}</td>
             </tr>
             <tr>
                 <th class="center">Description plat</th>

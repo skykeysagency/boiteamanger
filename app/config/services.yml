@@ -41,7 +41,7 @@ services:
         class: AppBundle\EventListener\ImageUploadListener
         arguments: ['@app.image_uploader']
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist, lazy: true  }
             - { name: doctrine.event_listener, event: preUpdate }
     my.oauth_aware.user_provider.service:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
@@ -50,3 +50,20 @@ services:
             - ['pass properties as array']
 
 
+    AppBundle.form.reservationFlow:
+            class: AppBundle\Form\reservationFlow
+            parent: craue.form.flow
+            autowire: true
+            autoconfigure: false
+            public: true
+
+    AppBundle.profile.form.type:
+            class: AppBundle\Form\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: appbundle_user_profile }
+
+    twig.extension.intl:
+            class: Twig_Extensions_Extension_Intl
+            tags:
+                - { name: twig.extension }

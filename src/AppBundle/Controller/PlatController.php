@@ -2,7 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\addReservationChild;
+use AppBundle\Entity\Groupe;
 use AppBundle\Entity\Plat;
+use AppBundle\Entity\Reservation;
+use AppBundle\Entity\User;
+use AppBundle\Form\reservationFlow;
+use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,15 +40,111 @@ class PlatController extends Controller
     }
 
     /**
-     * Creates a new plat entity.
-     *
+     * Create new plat with 2Step form
      * @Route("/new", name="plat_new")
      * @Method({"GET", "POST"})
+     * @throws \Exception
      */
-    public function newAction(Request $request)
+    public function newAction(){
+        $formData = new addReservationChild(); // Your form data class. Has to be an object, won't work properly with an array.
+
+        $flow = $this->get('AppBundle.form.reservationFlow'); // must match the flow's service id
+        $flow->bind($formData);
+
+        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
+        $formData->getPlat()->setUserPoste($userId);
+
+
+        // form of the current step
+        $form = $flow->createForm();
+        if ($flow->isValid($form)) {
+            $flow->saveCurrentStepData($form);
+
+            if ($flow->nextStep()) {
+                // form for the next step
+                $form = $flow->createForm();
+            } else {
+                //si l'heure est inferieur à l'heure actuelle, on ajoute un jour
+                if($formData->getReservation()->getDate()<new \DateTime('now')){
+                    $formData->getReservation()->setDate($formData->getReservation()->getDate()->add(new DateInterval('P1D')));
+
+                }
+                $formData->getReservation()->setVendeur($userId);
+                $formData->getReservation()->setPlat($formData->getPlat());
+
+                // flow finished
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($formData->getPlat());
+                $em->persist($formData->getReservation());
+                $em->flush();
+
+                $flow->reset(); // remove step data from the session
+
+                return $this->redirect($this->generateUrl('menu')); // redirect when done
+            }
+        }
+
+        return $this->render('plat/new.html.twig', array(
+            'flow' => $flow,
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
+//    /**
+//     * Creates a new plat entity.
+//     *
+//     * @Route("/new", name="plat_new")
+//     * @Method({"GET", "POST"})
+//     */
+//    public function newAction(Request $request)
+//    {
+//        $plat = new Plat();
+//        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
+//        $plat->setUserPoste($userId);
+//        $form = $this->createForm('AppBundle\Form\PlatType', $plat);
+//
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            // Récupère user connecté
+//            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+//
+//            $user->setPlatsPoste($plat);
+//            $plat->setUserPoste($user);
+//
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($plat);
+//            $em->flush($user, $plat);
+//
+//            return $this->redirectToRoute('plat_show', array('id' => $plat->getId()));
+//        }
+//
+//        return $this->render('plat/new.html.twig', array(
+//            'plat' => $plat,
+//            'form' => $form->createView(),
+//        ));
+//    }
+
+
+    /**
+     * Creates a new plat entity.
+     *
+     * @Route("/new/{id}", name="plat_newwithgroupe")
+     * @Method({"GET", "POST"})
+     */
+    public function newWithGroupeAction(Request $request, $id)
     {
         $plat = new Plat();
+        $userId= $this->container->get('security.token_storage')->getToken()->getUser();
+        $plat->setUserPoste($userId);
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $repo->find($id);
+        $plat->setGroupe($groupe);
         $form = $this->createForm('AppBundle\Form\PlatType', $plat);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,6 +167,8 @@ class PlatController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
 
     /**
      * Finds and displays a plat entity.
@@ -155,15 +259,19 @@ class PlatController extends Controller
     public function reserveAction(Plat $plat)
     {
         $em = $this->getDoctrine()->getManager();
-
         // Récupère user connecté
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $plat->getReservation()->setAcheteur($user);
 
         $tel = $plat->getUserPoste()->getTel();
 
         $plat->addUser($user);
         $user->addPlat($plat);
-        $em->flush($plat, $user);
+        $em->persist($plat);
+        $em->persist($user);
+        $em->flush();
+        $this->sendMailDemandeReservation($plat->getUserPoste()->getEmail(),$plat->getUserPoste()->getUsername(),$user,$plat->getNomPlat(),$plat->getReservation());
 
         return $this->render('plat/confirmation.html.twig', array(
             'plat' => $plat,
@@ -178,17 +286,10 @@ class PlatController extends Controller
      * @Route("/{id}/listeCommande", name="plat_listeCommande")
      * @Method({"GET", "POST"})
      */
-    public function listeAction(Plat $plat)
+    public function listeAction(User $user)
     {
-        // Récupère user connecté
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-
-        $tel = $plat->getUserPoste()->getTel();
-
         return $this->render('plat/commande.html.twig', array(
-            'plat' => $plat,
             'user' => $user,
-            'tel' => $tel,
         ));
 
 
@@ -200,21 +301,119 @@ class PlatController extends Controller
      * @Route("/{id}/annuler", name="plats_annuler")
      * @Method({"GET", "POST"})
      */
-    public function annulerAction(Plat $plat)
+    public function annulerAction(Reservation $reservation)
     {
         $em = $this->getDoctrine()->getManager();
-
+    $plat = $reservation->getPlat();
         $idUser = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        $plat->getReservation()->setAcheteur(null);
+        $plat->getReservation()->setIsClosed(false);
 
         $utilisateur = $em->getRepository('AppBundle\Entity\User')->findOneBy(['id' => $idUser]);
         $plat->removeUser($utilisateur);
         $utilisateur->removePlat($plat);
-        $em->flush($plat, $utilisateur);
+        $em->persist($plat);
+        $em->persist($utilisateur);
+        $em->flush();
 
         return $this->render('plat/commande.html.twig', array(
             'plat' => $plat,
             'user' => $utilisateur,
         ));
 
+    }
+
+    /**
+     *
+     * @Route("/{id}/confirm", name="plats_confirm")
+     * @Method({"GET", "POST"})
+     * @param Reservation $reservation
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function confirmAction(reservation $reservation)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $reservation->setIsClosed(true);
+        $this->sendMailConfirmation($reservation->getAcheteur()->getEmail(),$user,$reservation->getVendeur(),$reservation->getPlat());
+
+        $em->persist($reservation);
+        $em->flush();
+
+        return $this->render('reservation/resumeReservation.html.twig', array(
+            'reservation' => $reservation,
+            'user' =>$user
+        ));
+
+    }
+
+    /**
+     * @Route("/{id}/reserv", name="reserv")
+     *
+     */
+    public function reservAction(reservation $reservation)
+    {
+        return $this->render('confirm.html.twig', array(
+        'reservation' => $reservation
+        ));
+    }
+
+    public function sendMailDemandeReservation($mail,$vendeur,$acheteur,$plat,$reservation){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] ".$acheteur.' veut manger avec vous !')
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/demandeReservation.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur,
+                        'reservation' => $reservation)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
+    public function sendMailConfirmation($mail,$acheteur,$vendeur,$plat){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] ".$vendeur.' a accepté de manger avec vous !')
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/confirmRdv.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur,)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
+    public function sendMailAnnulation($mail,$acheteur,$vendeur,$plat){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("[Tup'My Lucnch] Information importante concernant une commande")
+            ->setFrom('contact@skykeys.fr')
+            ->setTo($mail)
+            ->setBody(
+                $this->renderView(
+                    'emails/annulRdv.html.twig',
+                    array('acheteur' => $acheteur,
+                        'plat' => $plat,
+                        'mail' => $mail,
+                        'vendeur' => $vendeur,)
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
     }
 }

@@ -1,7 +1,342 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="utilisateur" class="center container">
+    <div class="EventPage-Desktop">
+        <div class="inline-carousel">
+            <div class="inline-carousel__pager" >
+                <div tabindex="0" class="inline-carousel__frame" style="position: relative; overflow: hidden;">
+                    <div class="inline-carousel__track">
+
+                                <div class="col-lg-offset-0 ">
+                        <div class="inline-carousel__view" draggable="false" style="background-image: url('{{ asset('uploads/images/' ~ plat.imagePlat) }}'); width: 100%; height: 519px; display: inline-block; vertical-align: top;"></div>
+                                </div>
+
+                        <div class="col-lg-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-7" style="height: 0px;">
+                    <div class="vz-booking-form-wrapper">
+                        <div class="sticky-outer-wrapper" style="">
+                            <div class="sticky-inner-wrapper"
+                                 style="position: relative; transform: translate3d(0px, 0px, 0px);">
+                                <div class="vz-booking-form-section">
+
+                                    <div class="EventPage-Desktop__FormCard">
+                                        <div class="__container">
+                                            <center><div class="__priceContainer"><span><span class="__price">
+                                                    {{ plat.prix }}&nbsp;€
+                                                     </span>
+                                              </span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <a class="__submitButton __active" href="{{ path('plat_reserve', { 'id': plat.id }) }}">Commander</a>
+                                    </div>
+                                </div>
+<!-------------------------------------- Emplacement de messenger ------------------------------------------------>
+            {#
+                                <div class="__contactHost"><i class="__iconChat"></i>Des
+                                    questions? <a class="__contactHostBtn" href=""> Contactez le luncher</a><i
+                                            class="__iconChevron"></i></div>
+                                #}
+
+                                <div class="__freeCancellation" ><i class="__iconCheck"></i>
+                                    Annulation gratuite jusqu'au {{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, HH:mm ") }}</div>
+                                <div class="EventPage-HostCard __hostCard">
+                                    <div class="__header"><a href="{{ path('user_show', {'id': plat.userPoste}) }}"><img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="__avatar avatar img-responsive img-circle"></a><span style="font-size: 15px">Rencontrez<span class="__hostname" dir="auto"> {{ plat.getUserPoste().username }}</span></span><i class="__iconChevron"></i></div>
+                                    <div class="__description" dir="auto"><i class="__iconQuote"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- react-empty: 2835 -->
+        <section class="__section whiteBackground" id="presentation">
+            <div class="container">
+                <div class="row">
+                    <div class="__colContent col-lg-8 col-sm-7">
+                        <div class="__eventTitle-container"><h1 class="__eventTitle" dir="auto">{{ plat.nomPlat }}</h1></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="EventPage__stickyMenu">
+            <div class="sticky-outer-wrapper" style="">
+                <div class="sticky-inner-wrapper"
+                     style="position: relative; z-index: 400; transform: translate3d(0px, 0px, 0px);">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-sm-7">
+                            <ul class="__subNav">
+                                <li class="__subNavItem" style="display: inline;"><a
+                                            class="__subNavLink __active" href="#menu"><span>Description du plat</span></a></li>
+                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink" href="#reviews"><span><div
+                                                    class="__subNavReviews"><!-- react-text: 3462 -->Commentaires
+                                                <!-- /react-text --><span class="vz-review-rating">
+                                                    <div class="vz-review-rating-container">
+                                                                             {% if plat.getUserPoste().noteMoyenne < 1.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne <= 2.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 3.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne <4.5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% elseif plat.getUserPoste().noteMoyenne < 5 %}
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                                 <span class="vz-review-icon star active"></span>
+                                                                             {% endif %}
+                                                                             </div>
+                                                    <span class="vz-review-count"> ({{ plat.getUserPoste().noteTot }})</span></span></div></span></a>
+                                </li>
+                                <li class="__subNavItem" style="display: inline;"><a class="__subNavLink" href="#place"><span>Le quartier </span></a>
+                                </li>
+                                <li class="__subNavItem" style="display: none;"><a href="javascript:void(0)"
+                                                                                   hidden=""><span
+                                                class="__onlyFixed"><i
+                                                    class="vz-icon vz-icon-go-up vz-icon-red __goUpIcon"
+                                                    type="go-up" color="red" height="26px" width="26px"
+                                                    style="width: 26px; height: 26px; background-size: contain;"></i></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="__section __basicInfoSection whiteBackground">
+        <div class="container">
+            <div class="row">
+                <div class="__colContent slideable col-lg-8 col-sm-7">
+                    <div class="EventPage-Desktop__BasicInfo">
+                        <div class="__item">
+                            <div class="__itemContent"><i class="__icon __time"></i>
+                                <div class="__text">Valable jusqu'au {% if plat.dureeValide %}{{ plat.dureeValide|localizeddate('none', 'none', 'none', "Europe/Paris", "cccc d MMMM, HH:mm ") }}{% endif %}</div>
+                            </div>
+                        </div>
+                        <div class="__item">
+                            <div class="__itemContent"><i class="__icon __diets"></i>
+                                <div class="__text">{% for cat in plat.categorie %}
+                                        {{ cat.getLibelle() }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="__section whiteBackground" id="menu">
+        <div class="container">
+            <div class="row">
+                <div class="__colContent col-lg-8 col-sm-7"><h3 class="__title" dir="auto">À propos du plat</h3>
+                    <div class="EventPage-Menu">
+                    </div>
+                    <div class="EventPage-Menu__content"><!-- react-text: 2899 --><!-- /react-text -->
+                        <div>
+                            <p class="EventPage__event-description__body">
+                                <bdi dir="auto"><br></bdi>
+                                <bdi dir="auto"><!-- react-text: 2948 --><!-- /react-text --><br></bdi>
+                            </p>
+                        </div>
+                        <div class="__signature">
+                            <div class="__signatureContent">
+                                <br>
+                                {{ plat.descriptionPlat }}
+                                <div class="__hostName"> {{ plat.getUserPoste().username }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="__section" id="reviews">
+        <div class="container">
+            <div class="row">
+                <div class="__colContent slideable col-lg-8 col-sm-7"><h3 class="__title" dir="auto">Ils en
+                        parlent</h3>
+                    <div class="EventPage-Desktop__reviews">
+                        <div name="reviews-list" id="reviews-list">
+                            <div class="vz-review-head row"><h2>Commentaires</h2>
+            {#
+
+            <----------------------Ancien affichage-------------------->
+
+
+            {% for commentaire in plat.getUserPoste().ownCommentaires %}
+                            </div>
+                            <div>
+                                <div class="EventPage-Desktop__ReviewCard">
+                                    <div class="__reviewBasicInfo"><a href="/users/478784"><img
+                                                    src="{{ asset('uploads/images/' ~ plat.userPoste.imageUser) }}"
+                                                    class="__userAvatar avatar img-responsive img-circle"></a>
+                                        <div class="__userName" dir="auto"><!-- react-text: 3500 -->{{ plat.getUserPoste().username }}
+                                            <!-- /react-text -->
+                                            <div class="vz-review-rating-container">
+                                                {% if commentaire.note == 1 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                {% elseif commentaire.note == 2 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                {% elseif commentaire.note == 3 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                {% elseif commentaire.note == 4 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                {% elseif commentaire.note == 5 %}
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                <span class="vz-review-icon star active"></span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="__body" dir="auto">
+                                        <div class="layout-expandable">
+                                            <div class="__content">
+                                                <bdi dir="auto">{{ commentaire.contenu }}
+                                                </bdi>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+
+                                #}
+
+                                {% include 'user/commentaireShow.html.twig' %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="__section __placeSection whiteBackground" id="place">
+        <div class="container">
+            <div class="row">
+                <div class="__colContent col-lg-8 col-sm-7">
+                    <h3 class="__title" dir="auto">
+                        <div><span>Quartier et Accès</span><br><span class="__smallText">L'adresse complète sera communiquée une fois la réservation confirmée</span>
+                        </div>
+                    </h3>
+                    <div style="height: 192px;" id="map">
+<!-------------------------Place de la map google--------------------->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <div id="you-shall-stop-there"></div><!-- react-empty: 3044 -->
+    <section class="__section">
+        <div class="container"><h3 class="__title"><span class="__grayer">Plat</span> similaires</h3>
+            <div class="EventPage-section-SimilarEvents">
+                <div class="">
+                    <div name="eventsList">
+                        <div class="container menulist">
+                            <div class="row">
+                                <div class="vz-col-events col-xl-12">
+                                    <div>
+                                        <div class="">
+                                            <div class="vz-event-section">
+                                                <div class="vz-events-list">
+                                                    {% for plat in plat %}
+                                                        {% if plat.groupe.id == "78" %}
+                                                            {% if 'now'|date('y-m-d H:i:s') <= plat.dureeValide|date('y-m-d H:i:s') %}
+                                                                {% if plat.reservation.acheteur == null %}
+
+
+                                                                    <div class="vz-EventCard vz-SearchEventCard">
+                                                                        <div class="EventCard-HeroContainer">
+                                                                            <div class="EventCard__priceTag">
+                                                                                <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
+                                                                            </div>
+                                                                            <div class="EventCard__image"
+                                                                                 style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="EventCard-InfoContainer">
+                                                                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="EventCard__hostPic avatar img-responsive img-circle">
+                                                                            <div class="EventCard-HostInfo">
+                                                                                <small class="EventCard__hostText">
+                                                                                    <!-- react-text: 5529 -->
+                                                                                    Rencontrez
+                                                                                    <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
+                                                                                    <!-- react-text: 5531 --> à <!-- /react-text -->
+                                                                                    <!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
+                                                                                    <!-- /react-text --></small>
+                                                                                {% for cat in plat.categorie %}
+                                                                                    <span class="EventCard__eventType">{{ cat.libelle }}</span>
+                                                                                {% endfor %}
+                                                                                <div class="EventCard__eventTitleContainer"><a
+                                                                                            class="EventCard__eventTitle"
+                                                                                            dir="auto"
+                                                                                            href='{{ path('fos_user_security_login') }}'>{{ plat.nomPlat }}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="EventCard-MoreInfoContainer">
+                                                                            <div class="EventCard-RatingContainer"><span
+                                                                                        class="vz-review-rating"><div
+                                                                                            class="vz-review-rating-container"><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span><span
+                                                                                                class="vz-review-icon star active"></span></div><span
+                                                                                            class="vz-review-count"> (18)</span></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></div></div></div></div>
+            </div>
+        </div>
+    </section>
+    </div>
+    {#<div id="utilisateur" class="center container">
         <br><br>
         <h4 class="light">Description Plat</h4>
         <br><br>
@@ -19,7 +354,9 @@
             </tr>
             <tr>
                 <th class="center">Categorie plat</th>
-                <td class="center">{{ plat.categoriePlat }}</td>
+                <td class="center">{% for cat in plat.categorie %}
+                        {{ cat.getLibelle() }},
+                    {% endfor %}</td>
             </tr>
             <tr>
                 <th class="center">Description plat</th>
@@ -45,10 +382,8 @@
         <h4 class="light">Commentaire</h4>
         <br>
         {% for commentaire in plat.commentaires %}
-
             <div class="section no-pad-bot container">
                 <div class='card horizontal'>
-
                     <div class='card-stacked'>
                         <div class='card-content'>
                             <a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">
@@ -56,7 +391,6 @@
                                      class="circle"
                                      style="border:1px rgb(225, 225, 225) solid;  max-width:65px;">
                             </a>
-
                             <p class='corps'>{{ commentaire.contenu }}</p>
                         </div>
                     </div>
@@ -75,6 +409,101 @@
                 <a href="{{ path('menu') }}">Retour</a>
             </li>
         </ul>
-    </div>
+    </div>#}
     <br><br>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        function initMap() {
+
+            var cp = {{ plat.reservation.cp }};
+            switch(cp) {
+                case 75001:
+                    var geo = {lat: 48.8640493, lng: 2.331052600000021};
+                    break;
+                case 75002:
+                    var geo = {lat: 48.8675641, lng: 2.3439899999999625};
+                    break;
+                case 75003:
+                    var geo = {lat: 48.8634799, lng: 2.3591145000000324};
+                    break;
+                case 75004:
+                    var geo = {lat: 48.8534275, lng: 2.3582787999999937};
+                    break;
+                case 75005:
+                    var geo = {lat: 48.8434912, lng: 2.351833899999974};
+                    break;
+                case 75006:
+                    var geo = {lat: 48.8488576, lng: 2.3354223000000047};
+                    break;
+                case 75007:
+                    var geo = {lat: 48.85433450000001, lng: 2.3134029000000282};
+                    break;
+                case 75008:
+                    var geo = {lat: 48.8718722, lng: 2.3176432000000204};
+                    break;
+                case 75009:
+                    var geo = {lat: 48.8790183, lng: 2.337906299999986};
+                    break;
+                case 75010:
+                    var geo = {lat: 48.8785618, lng: 2.360368900000026};
+                    break;
+                case 75011:
+                    var geo = {lat: 48.85799300000001, lng: 2.3811530000000403};
+                    break;
+                case 75012:
+                    var geo = {lat: 48.8293647, lng: 2.426540599999953};
+                    break;
+                case 75013:
+                    var geo = {lat: 48.830759, lng: 2.359203999999977};
+                    break;
+                case 750014:
+                    var geo = {lat: 48.8314408, lng: 2.3255684000000656};
+                    break;
+                case 75015:
+                    var geo = {lat: 48.8421616, lng: 2.2927664999999706};
+                    break;
+                case 75016:
+                    var geo = {lat: 48.8530933, lng: 2.2487625999999636};
+                    break;
+                case 75017:
+                    var geo = {lat: 48.891986, lng: 2.319287000000031};
+                    break;
+                case 75018:
+                    var geo = {lat: 48.891305, lng: 2.352986699999974};
+                    break;
+                case 75019:
+                    var geo = {lat: 48.89061359999999, lng: 2.3867083000000093};
+                    break;
+                case 75020:
+                    var geo = {lat: 48.8599825, lng: 2.4066411999999673};
+                    break;
+
+            }
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: geo
+            });
+       ////    var marker = new google.maps.Marker({
+       //        position: geo,
+       //        map: map
+       //    });
+            var cityCircle = new google.maps.Circle({
+                //strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: map.center,
+                radius: 1000
+            });
+
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZp6Z4MQBZsENJAfEMP-Dd0X3TTl5IHQE&callback=initMap">
+    </script>
 {% endblock %}

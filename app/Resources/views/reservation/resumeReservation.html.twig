@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="center-block">
+<h3>Le rendez-vous est confirmé</h3>
+
+Félicitation! <br>
+
+Vous avez accepté de partager votre repas ("{{ reservation.getPlat().getNomPlat() }}") avec {{ reservation.getAcheteur().getUsername() }}. <br>
+Vous trouverez le recapitulatif ci-dessous <br>
+
+Numero de commande: {{ reservation.getPlat().getReservation().getId() }}<br>
+Plat: {{ reservation.getPlat().getNomPlat() }} <br>
+Heure: {{ reservation.getDate() |date('Y/m/d H:i:s') }}<br>
+<br>
+<br>
+<br>
+Nom du vendeur: {{ reservation.getVendeur().getUsername() }}<br>
+Adresse: {{ reservation.getNum() }} {{ reservation.getAdresse() }},{{ reservation.getCp() }} {{ reservation.getVille() }} <br>
+EMail: {{ reservation.getVendeur().getEmail() }}
+<br>
+</div>
+
+{% endblock %}

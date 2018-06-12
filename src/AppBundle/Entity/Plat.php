@@ -2,11 +2,15 @@
 
 namespace AppBundle\Entity;
 
+use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use AppBundle\Entity\User;
 
 
 /**
@@ -34,12 +38,15 @@ class Plat
      */
     private $nomPlat;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categoriePlat", type="string", length=255)
+     * @ManyToMany(targetEntity="Categorie", inversedBy="plat")
+     * @JoinTable(name="plat_categorie",
+     *     joinColumns={@JoinColumn(name="plat_id", referencedColumnName="id", onDelete="cascade")},
+     *     inverseJoinColumns={@JoinColumn(name="cat_id", referencedColumnName="id", onDelete="CASCADE")}
+     * )
      */
-    private $categoriePlat;
+    private $categorie;
 
     /**
      * @var string
@@ -67,7 +74,7 @@ class Plat
     /**
      * @var prix
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="integer", nullable=true)
      */
 
     private $prix;
@@ -87,7 +94,8 @@ class Plat
     private $commentaires;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="plats")
+     *
      */
     private $users;
 
@@ -98,12 +106,60 @@ class Plat
      */
     private $userPoste;
 
+    /**
+     * @var Groupe
+     * @ORM\ManyToOne(targetEntity="Groupe", inversedBy="plat")
+     * @ORM\JoinTable(name="plat_groupe",
+     *     joinColumns={@ORM\JoinColumn(name="plat_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
+     * )
+     */
+    private $groupe;
+
+    /**
+     * @OneToOne(targetEntity="Reservation", mappedBy="plat")
+     */
+    private $reservation;
+
+    /**
+     * @return mixed
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param mixed $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+    /**
+     * @return Groupe
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+    /**
+     * @param Groupe $groupe
+     */
+    public function setGroupe(Groupe $groupe)
+    {
+        $this->groupe = $groupe;
+    }
+
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
 
-        $this->dureeValide = (new \DateTime('now'))->modify('+1 days');
-        $this->creeA = (new \DateTime('now'));
+        $this->dureeValide = (new \DateTime('now', new DateTimeZone("Europe/Paris")))->modify('+1 days');
+        $this->creeA = (new \DateTime('now', new DateTimeZone("Europe/Paris")));
 
         $this->commentaires = new ArrayCollection();
 
@@ -218,27 +274,27 @@ class Plat
     }
 
     /**
-     * Set categoriePlat
+     * Set categorie
      *
-     * @param string $categoriePlat
+     * @param string $categorie
      *
      * @return Plat
      */
-    public function setCategoriePlat($categoriePlat)
+    public function setCategorie($categorie)
     {
-        $this->categoriePlat = $categoriePlat;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     /**
-     * Get categoriePlat
+     * Get categorie
      *
      * @return string
      */
-    public function getCategoriePlat()
+    public function getCategorie()
     {
-        return $this->categoriePlat;
+        return $this->categorie;
     }
 
     /**

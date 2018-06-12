@@ -8,6 +8,8 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\AppBundle;
+use Doctrine\Common\EventSubscriber;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -15,7 +17,7 @@ use AppBundle\Entity\Plat;
 use AppBundle\Entity\User;
 use AppBundle\ImageUpload;
 
-class ImageUploadListener
+class ImageUploadListener implements EventSubscriber
 {
     private $uploader;
 
@@ -31,11 +33,28 @@ class ImageUploadListener
         $this->uploadFile($entity);
     }
 
+    /**
+     * @ORM\PreUpdate
+     * @param PreUpdateEventArgs $args
+     */
     public function preUpdate(PreUpdateEventArgs $args)
     {
-        $entity = $args->getEntity();
 
-        $this->uploadFile($entity);
+        if($args->hasChangedField('imageUser')){
+            $oldImage = $args->getOldValue('imageUser');
+        }
+
+        if(isset($oldImage) && $args->getNewValue('imageUser')==null){
+            $entity = $args->getEntity();
+            $entity->setImageUser($oldImage);
+            $this->uploadFile($entity);
+
+        }else{
+            $entity = $args->getEntity();
+            $this->uploadFile($entity);
+        }
+
+
     }
 
     private function uploadFile($entity)
@@ -66,5 +85,18 @@ class ImageUploadListener
         }
 
         return;
+    }
+
+    /**
+     * Returns an array of events this subscriber wants to listen to.
+     *
+     * @return array
+     */
+    public function getSubscribedEvents()
+    {
+        return array(
+            'prePersist',
+            'preUpdate',
+        );
     }
 }

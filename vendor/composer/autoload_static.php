@@ -22,6 +22,7 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
+            'Twig\\Extensions\\' => 16,
             'Twig\\' => 5,
             'Tests\\' => 6,
         ),
@@ -59,6 +60,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         array (
             'Monolog\\' => 8,
         ),
+        'J' => 
+        array (
+            'JavierEguiluz\\Bundle\\EasyAdminBundle\\' => 37,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -79,6 +84,7 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         'E' => 
         array (
             'EasyCorp\\Bundle\\EasyDeployBundle\\' => 33,
+            'EasyCorp\\Bundle\\EasyAdminBundle\\' => 32,
         ),
         'D' => 
         array (
@@ -93,6 +99,7 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         ),
         'C' => 
         array (
+            'Craue\\FormFlowBundle\\' => 21,
             'Composer\\CaBundle\\' => 18,
         ),
         'B' => 
@@ -106,6 +113,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\Extensions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/extensions/src',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -214,6 +225,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'JavierEguiluz\\Bundle\\EasyAdminBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easycorp/easyadmin-bundle/legacy',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
@@ -237,6 +252,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         'EasyCorp\\Bundle\\EasyDeployBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/easycorp/easy-deploy-bundle/src',
+        ),
+        'EasyCorp\\Bundle\\EasyAdminBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easycorp/easyadmin-bundle/src',
         ),
         'Doctrine\\ORM\\' => 
         array (
@@ -270,6 +289,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle',
         ),
+        'Craue\\FormFlowBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/craue/formflow-bundle',
+        ),
         'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
@@ -294,6 +317,10 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
         ),
         'T' => 
         array (
+            'Twig_Extensions_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/extensions/lib',
+            ),
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
@@ -304,6 +331,13 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
+            ),
+        ),
+        'P' => 
+        array (
+            'Pagerfanta\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/pagerfanta/pagerfanta/src',
             ),
         ),
         'D' => 

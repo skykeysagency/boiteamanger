@@ -1,0 +1,54 @@
+<div class="col s12">
+    <!-- medium -->
+    {% for com in listCom %}
+        <div id="profile-page-wall-post" class="card">
+            <div class="card-profile-title">
+                <div class="row">
+                    <div class="col s1 ratio img-responsive img-circle" style="margin-left: 5px;">
+                        <img src="{{ asset('uploads/images/' ~ com.auteur.imageUser) }}" alt="" class="circle responsive-img valign profile-post-uer-image">
+                    </div>
+                    <div class="col s10">
+                        <p class="grey-text text-darken-4 margin">{{ com.auteur }}</p>
+                        <span class="grey-text text-darken-1 ultra-small">Partagé le  -  {{ com.date|localizeddate('none', 'none', 'none', "Europe/Paris", "d MMMM, HH:mm ") }}</span>
+                    </div>
+                    <div class="col s1 right-align">
+                        <i class="mdi-navigation-expand-more"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <span class="card-title text-success col s9"><a style="margin-left: 5px;">{{ com.plat.nomPlat }}</a></span>
+
+                        <div class="vz-review-rating-container col s3 right-align">
+                            {% if com.note < 1.5 %}
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif com.note <= 2.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif com.note < 3.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif com.note <4.5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% elseif com.note < 5 %}
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                                <span class="vz-review-icon star active"></span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <p>{{ com.contenu }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{{ pagination(listCom, 'page') }}

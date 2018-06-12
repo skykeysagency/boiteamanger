@@ -18,7 +18,10 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new PUGX\AutocompleterBundle\PUGXAutocompleterBundle()
+            new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Tiloweb\PaginationBundle\TilowebPaginationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

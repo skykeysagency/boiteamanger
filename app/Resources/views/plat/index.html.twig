@@ -19,7 +19,9 @@
         {% for plat in app.user.platsPoste %}
                 <tr>
                     <td class="center">{{ plat.nomPlat }}</td>
-                    <td class="center">{{ plat.categoriePlat }}</td>
+                    <td class="center">{% for cat in plat.categorie %}
+                            {{ cat.getLibelle() }},
+                        {% endfor %}</td>
                     <td class="center">{{ plat.descriptionPlat }}</td>
                     <td class="center">{% if plat.dureeValide %}{{ plat.dureeValide|date('d-M-y h:m') }}{% endif %}</td>
                     <td class="center">{% if plat.creeA %}{{ plat.creeA|date('d-M-y h:m') }}{% endif %}</td>
