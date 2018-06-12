@@ -1,3 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="center-block">
 <h3>Le rendez-vous est confirmé</h3>
 
 Félicitation! <br>
@@ -12,6 +16,9 @@ Heure: {{ reservation.getDate() |date('Y/m/d H:i:s') }}<br>
 <br>
 <br>
 Nom du vendeur: {{ reservation.getVendeur().getUsername() }}<br>
-adresse: {{ reservation.getNum() }} {{ reservation.getAdresse() }},{{ reservation.getCp() }} {{ reservation.getVille() }} <br>
-mail: {{ reservation.getVendeur().getEmail() }}
+Adresse: {{ reservation.getNum() }} {{ reservation.getAdresse() }},{{ reservation.getCp() }} {{ reservation.getVille() }} <br>
+EMail: {{ reservation.getVendeur().getEmail() }}
 <br>
+</div>
+
+{% endblock %}
