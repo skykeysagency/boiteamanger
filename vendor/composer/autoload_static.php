@@ -340,6 +340,13 @@ class ComposerStaticInitaf1feea10d23427a7c8e109d54e01896
                 0 => __DIR__ . '/..' . '/pagerfanta/pagerfanta/src',
             ),
         ),
+        'O' => 
+        array (
+            'Octopush\\Api\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/octopush/sms-api/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\DBAL\\' => 

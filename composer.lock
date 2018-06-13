@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "2992d2d8047bfe50ece340c4581aff5f",
+
     "packages": [
         {
             "name": "blackknight467/star-rating-bundle",
@@ -1629,6 +1630,45 @@
             "time": "2017-06-19T01:22:40+00:00"
         },
         {
+            "name": "octopush/sms-api",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/octopush/sms-api-php.git",
+                "reference": "ed903f4c608bdb78246e6a035f232bb003b78dd5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/octopush/sms-api-php/zipball/ed903f4c608bdb78246e6a035f232bb003b78dd5",
+                "reference": "ed903f4c608bdb78246e6a035f232bb003b78dd5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-libxml": "*",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Octopush\\Api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saša Stamenković",
+                    "email": "umpirsky@gmail.com"
+                }
+            ],
+            "description": "Octopush - Send SMS like a PRO",
+            "time": "2016-09-27T11:37:55+00:00"
+        },
+        {
+
             "name": "pagerfanta/pagerfanta",
             "version": "v1.1.0",
             "source": {
@@ -3085,6 +3125,7 @@
             "time": "2018-05-25T12:43:13+00:00"
         },
         {
+
             "name": "tiloweb/pagination-bundle",
             "version": "dev-master",
             "target-dir": "Tiloweb/PaginationBundle",
@@ -3129,6 +3170,7 @@
             "time": "2017-12-09T13:33:25+00:00"
         },
         {
+
             "name": "twig/extensions",
             "version": "v1.5.1",
             "source": {
