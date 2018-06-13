@@ -34,6 +34,19 @@ class AnnuaireController extends Controller
         // Cherche plat grâce au nom
         $plat = $em->getRepository('AppBundle:Plat')->findOneBy(array('id' => $idPlat)); // Renvoie un objet
 
+
+        $i=0;
+        $cat[0]=null;
+        foreach ($plat->getCategorie() as $a){
+
+            $cat[$i]=$a->getId();
+            $i+=1;
+        }
+
+        $listPlat = $em->getRepository('AppBundle:Plat')->findFourRandByCat($cat[0]);
+
+
+
         $user = $plat->getUserPoste();
 
         $listCom = $em->getRepository('AppBundle:Commentaire')->findByPage(
@@ -45,7 +58,8 @@ class AnnuaireController extends Controller
         if ($plat != null) {
             return $this->render('plat/fiche.html.twig', array(
                 'plat' => $plat,
-                'listCom' => $listCom
+                'listCom' => $listCom,
+                'listPlat' => $listPlat
             ));
         } else {
             return $this->render('menu.html.twig');

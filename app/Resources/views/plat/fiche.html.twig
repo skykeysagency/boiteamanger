@@ -262,7 +262,7 @@
     </section>
     <div id="you-shall-stop-there"></div><!-- react-empty: 3044 -->
     <section class="__section">
-        <div class="container"><h3 class="__title"><span class="__grayer">Plat</span> similaires</h3>
+        <div class="container"><h3 class="__title"><span class="__grayer">Plat</span> similaires</h3></div>
             <div class="EventPage-section-SimilarEvents">
                 <div class="">
                     <div name="eventsList">
@@ -273,60 +273,7 @@
                                         <div class="">
                                             <div class="vz-event-section">
                                                 <div class="vz-events-list">
-                                                    {% for plat in plat %}
-                                                        {% if plat.groupe.id == "78" %}
-                                                            {% if 'now'|date('y-m-d H:i:s') <= plat.dureeValide|date('y-m-d H:i:s') %}
-                                                                {% if plat.reservation.acheteur == null %}
-
-
-                                                                    <div class="vz-EventCard vz-SearchEventCard">
-                                                                        <div class="EventCard-HeroContainer">
-                                                                            <div class="EventCard__priceTag">
-                                                                                <span>{% if plat.prix %}{{ plat.prix }}€{% else %}Gratuit{% endif %}</span>
-                                                                            </div>
-                                                                            <div class="EventCard__image"
-                                                                                 style="background-image: url({{ asset('uploads/images/' ~ plat.imagePlat) }});">
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="EventCard-InfoContainer">
-                                                                            <img src="{{ asset('uploads/images/' ~ plat.getUserPoste().imageUser) }}" class="EventCard__hostPic avatar img-responsive img-circle">
-                                                                            <div class="EventCard-HostInfo">
-                                                                                <small class="EventCard__hostText">
-                                                                                    <!-- react-text: 5529 -->
-                                                                                    Rencontrez
-                                                                                    <!-- /react-text --><a dir="auto" href="/users/73237">{{ plat.getUserPoste().username }}</a>
-                                                                                    <!-- react-text: 5531 --> à <!-- /react-text -->
-                                                                                    <!-- react-text: 5532 -->{{ plat.getReservation().getCp() }}
-                                                                                    <!-- /react-text --></small>
-                                                                                {% for cat in plat.categorie %}
-                                                                                    <span class="EventCard__eventType">{{ cat.libelle }}</span>
-                                                                                {% endfor %}
-                                                                                <div class="EventCard__eventTitleContainer"><a
-                                                                                            class="EventCard__eventTitle"
-                                                                                            dir="auto"
-                                                                                            href='{{ path('fos_user_security_login') }}'>{{ plat.nomPlat }}</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="EventCard-MoreInfoContainer">
-                                                                            <div class="EventCard-RatingContainer"><span
-                                                                                        class="vz-review-rating"><div
-                                                                                            class="vz-review-rating-container"><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span><span
-                                                                                                class="vz-review-icon star active"></span></div><span
-                                                                                            class="vz-review-count"> (18)</span></span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                {% endif %}
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endfor %}
+                                                    {% include 'plat/platShowLigne.html.twig' %}
                                                 </div>
                                             </div>
                                         </div>

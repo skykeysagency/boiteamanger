@@ -111,6 +111,49 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
+    public function findFourRandByCat($cat1)
+    {
+
+        $conn = $this->getEntityManager();
+        $qb = $conn->createQueryBuilder();
+
+
+        $now = date('Y-m-d H:m:s');
+
+        $dql = $qb->select('plat')
+            ->from('AppBundle:Plat', 'plat')
+
+            ->where(':cat MEMBER OF plat.categorie')
+            ->andWhere('plat.dureeValide > :now')
+            //->andWhere('rand() > 0.9')
+
+
+            ->setParameter('cat', $cat1)
+            ->setParameter('now', $now)
+
+            //->orderBy('rand()')
+
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+
+
+     //   $conn = $this->getEntityManager()->getConnection();
+     //   $sql="SELECT p.id FROM plat p, plat_categorie pc, categorie c WHERE p.id=pc.plat_id AND pc.cat_id=c.id AND c.libelle = :cat";
+     //   try {
+     //       $stmt = $conn->prepare($sql);
+     //   } catch (DBALException $e) {
+     //   }
+     //   try {
+     //       $stmt->execute(array('cat' => $cat1));
+     //   } catch (DBALException $e) {
+     //   }
+     //   return $stmt->fetchColumn();
+
+        return $dql;
+    }
+
+
 
 
 }
