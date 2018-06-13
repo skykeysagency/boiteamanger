@@ -67,11 +67,10 @@ class PlatController extends Controller
                 //si l'heure est inferieur à l'heure actuelle, on ajoute un jour
                 if($formData->getReservation()->getDate()<new \DateTime('now')){
                     $formData->getReservation()->setDate($formData->getReservation()->getDate()->add(new DateInterval('P1D')));
-                    dump($formData->getReservation()->getDate());
+
                 }
                 $formData->getReservation()->setVendeur($userId);
                 $formData->getReservation()->setPlat($formData->getPlat());
-                dump($formData->getReservation());
 
                 // flow finished
                 $em = $this->getDoctrine()->getManager();

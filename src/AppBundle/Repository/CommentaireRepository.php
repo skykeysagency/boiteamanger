@@ -3,6 +3,8 @@
 namespace AppBundle\Repository;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * CommentaireRepository
@@ -40,5 +42,27 @@ class CommentaireRepository extends EntityRepository
         } catch (DBALException $e) {
         }
         return $stmt->fetchColumn();
+    }
+
+    public function findByPage($page = 1, $max = 10, $user)
+    {
+        $dql = $this->createQueryBuilder('com')
+            ->where(':user = com.auteur')
+            ->setParameter('user', $user);
+        $dql->orderBy('com.date', 'DESC');
+
+        $firstResult = ($page - 1) * $max;
+
+        $query = $dql->getQuery();
+        $query->setFirstResult($firstResult);
+        $query->setMaxResults($max);
+
+        $paginator = new Paginator($query);
+
+        if(($paginator->count() <=  $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('Page not found');
+        }
+
+        return $paginator;
     }
 }

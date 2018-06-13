@@ -82,6 +82,31 @@ class Commentaire
     private $plat;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+
+
+    private $date;
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",inversedBy="ownCommentaires")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")

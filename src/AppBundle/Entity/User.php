@@ -18,6 +18,7 @@ use AppBundle\Entity\Plat;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends FOSUser
 {
@@ -63,6 +64,7 @@ class User extends FOSUser
 
     /**
      * @ORM\Column(type="string", length=14)
+     * @Assert\NotBlank(message="Please enter your num.", groups={"Registration", "Profile"})
      */
     protected $tel;
 
@@ -75,8 +77,9 @@ class User extends FOSUser
     /**
      * @ORM\Column(type="text")
      *
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg", groups={"image"})
+     * @Assert\File(mimeTypes={ "image/jpeg" }, groups={"image"})
      */
     private $imageUser;
 
@@ -119,6 +122,28 @@ class User extends FOSUser
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $noteTot;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $aboutMe;
+
+    /**
+     * @return string
+     */
+    public function getAboutMe()
+    {
+        return $this->aboutMe;
+    }
+
+    /**
+     * @param string $aboutMe
+     */
+    public function setAboutMe($aboutMe)
+    {
+        $this->aboutMe = $aboutMe;
+    }
 
     /**
      * @return int
@@ -325,7 +350,7 @@ class User extends FOSUser
     {
         $email = is_null($email) ? '' : $email;
         parent::setEmail($email);
-        $this->setUsername($email);
+        //$this->setUsername($email);
 
         return $this;
     }

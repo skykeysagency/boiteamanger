@@ -27,6 +27,7 @@
 </head>
 
 {% block nav %}
+    <body>
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{{ path('plat_index') }}">Mes plats</a></li>
@@ -123,7 +124,7 @@
             Copyright © 2018  <a class="brown-text text-lighten-3" href="{{ path('accueil') }}">Tup'My Lunch</a>
         </div>
     </footer>
-
+    </body>
 {% endblock %}
 
 {% block javascripts %}
