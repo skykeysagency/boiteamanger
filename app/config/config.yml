@@ -94,19 +94,20 @@ hwi_oauth:
         confirmation: true
         registration_form: fos_user.registration.form.factory
     firewall_names: [main]
-
     fosub:
-
         username_iterations: 30
         properties:
-            facebook: facebookID
-
-
+            facebook: facebook_id
+            google: googleID
     resource_owners:
         facebook:
-            type:                facebook
+            type: facebook
             client_id:           189609251826575
             client_secret:       3ee547671970a76757a6a16d1d599a4b
+            scope:               "email, public_profile, user_birthday"
+            infos_url:     "https://graph.facebook.com/me?fields=id,email,first_name,last_name,gender,birthday,picture.type(square)"
+            paths:
+                profilepicture: picture.data.url
             options:
                 display: popup
             login_path: /login
