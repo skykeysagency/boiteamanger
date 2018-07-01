@@ -38,6 +38,9 @@
         <li><a href="{{ path('plat_listeCommande', {'id' : app.user.id }) }}">Mes Commandes</a></li>
         <li><a href="{{ path('user_show', { 'id': app.user.id }) }}">Mon Profil</a></li>
         <li class="divider"></li>
+        <li><a href="{{ path('groupe_index') }}">Mes Groupes</a></li>
+        <li><a href="{{ path('groupe_new') }}">Nouveau Groupe</a></li>
+        <li class="divider"></li>
         <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
     </ul>
     <div class="navbar-fixed">

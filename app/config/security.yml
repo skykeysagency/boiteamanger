@@ -47,7 +47,7 @@ security:
                 failure_path:      /login
 
                 oauth_user_provider:
-                          service: my.oauth_aware.user_provider.service
+                          service: my.custom.user_provider
 
     access_control:
             - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

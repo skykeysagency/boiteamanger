@@ -32,14 +32,15 @@ class User extends FOSUser
     /**
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true)
      */
-    private $facebookID;
+    protected $facebook_id;
 
     /**
      * @ORM\Column(name="google_id", type="string", length=255, nullable=true)
      */
-    private $googleID;
+    protected $googleID;
 
     private $facebookAccessToken;
+
     /**
      * @ORM\Column(type="string", length=20)
      */
@@ -383,12 +384,12 @@ class User extends FOSUser
     }
 
     /**
-     * @param string $facebookID
+     * @param string $facebook_id
      * @return User
      */
-    public function setFacebookID($facebookID)
+    public function setfacebook_id($facebook_id)
     {
-        $this->facebookID = $facebookID;
+        $this->facebook_id = $facebook_id;
 
         return $this;
     }
@@ -396,9 +397,9 @@ class User extends FOSUser
     /**
      * @return string
      */
-    public function getFacebookID()
+    public function getfacebook_id()
     {
-        return $this->facebookID;
+        return $this->facebook_id;
     }
 
     /**

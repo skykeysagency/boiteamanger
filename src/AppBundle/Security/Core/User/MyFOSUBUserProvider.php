@@ -3,9 +3,11 @@
 namespace AppBundle\Security\Core\User;
 
 
+use AppBundle\Entity\User;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseFOSUBProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class MyFOSUBUserProvider  extends BaseFOSUBProvider
 {
@@ -42,9 +44,33 @@ class MyFOSUBUserProvider  extends BaseFOSUBProvider
 
         // if null just create new user and set it properties
         if (null === $user) {
+            $data = $response->getResponse();
+            if($data['gender']=="male"){
+                $genre = 1;
+            }else{
+                $genre = 0;
+            }
+
+
             $username = $response->getRealName();
             $user = new User();
-            $user->setUsername($username);
+
+
+            $secret = md5(uniqid(rand(), true));
+            $user->setPassword($secret);
+
+            $user->setUsername($response->getEmail());
+            $user->setEmail($response->getEmail());
+            $user->setNom($response->getLastName());
+            $user->setPrenom($response->getFirstName());
+            $user->setDnaiss(new \DateTime($data['birthday']));
+            $user->setGenre($genre);
+            $user->setImageUser($response->getProfilePicture());
+            $user->setTel(null);
+            $user->setEnabled(true);
+
+
+            $this->userManager->createUser();
 
             // ... save user to database
 
@@ -57,7 +83,4 @@ class MyFOSUBUserProvider  extends BaseFOSUBProvider
 
         return $user;
     }
-}
-{
-
 }
