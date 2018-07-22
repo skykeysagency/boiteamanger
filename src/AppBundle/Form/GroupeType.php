@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolver;use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class GroupeType extends AbstractType
 {
@@ -50,7 +50,11 @@ class GroupeType extends AbstractType
                     },
                     'label' => 'Ajouer des utilisateurs à un groupe : ',
                     'multiple' => true,
-                ));
+                )) ->add('imageGroup', FileType::class, array(
+                    'label' => 'Image(JPG)',
+                    'data_class' => null,
+                ))
+                ;
            });
 
 

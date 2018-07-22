@@ -50,6 +50,7 @@ class PlatType extends AbstractType
                 'label' => 'Image(JPG)',
                 'data_class' => null,
             ))
+
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $plat = $event->getData();
                 $userId = $plat->getUserPoste();

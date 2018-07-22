@@ -4,6 +4,7 @@
     max-height: 70px;
     max-width: 70px;
 }
+
 @keyframes compass_needle {
     from {
         transform: rotate(-45deg);

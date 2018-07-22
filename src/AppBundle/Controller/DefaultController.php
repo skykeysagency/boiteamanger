@@ -35,8 +35,10 @@ class DefaultController extends Controller
 
         if(!$arr){
             $plats = $em->getRepository('AppBundle:Plat')->findAll();
+            $groupes = $em->getRepository('AppBundle:Groupe')->findAll();
             return $this->render('menu.html.twig', array(
                 'plats' => $plats,
+                'groupes' => $groupes,
             ));
 
 

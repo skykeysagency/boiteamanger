@@ -63,7 +63,7 @@ class User extends FOSUser
     protected $genre;
 
     /**
-     * @ORM\Column(type="string", length=14)
+     * @ORM\Column(type="string", length=14, nullable=true)
      * @Assert\NotBlank(message="Please enter your num.", groups={"Registration", "Profile"})
      */
     protected $tel;

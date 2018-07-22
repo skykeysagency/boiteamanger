@@ -96,11 +96,9 @@ hwi_oauth:
     firewall_names: [main]
 
     fosub:
-
         username_iterations: 30
         properties:
             facebook: facebookID
-
 
     resource_owners:
         facebook:
@@ -124,7 +122,7 @@ hwi_oauth:
 services:
    my.custom.user_provider:
         class:        AppBundle\Security\Core\User\MyFOSUBUserProvider
-        arguments: ['@fos_user.user_manager', { facebook: facebook_id }]
+        arguments: ['@fos_user.user_manager', facebook: facebook_id ]
 
 easy_admin:
     entities:

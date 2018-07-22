@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Groupe
@@ -70,6 +71,16 @@ class Groupe
     {
         return $this->plat;
     }
+
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $imageGroup;
+
 
     /**
      * @param Plat[] $plat
@@ -219,4 +230,80 @@ class Groupe
         $user->removeUserGroup($this);
     }
 
+
+    /**
+     * Set imageGroup.
+     *
+     * @param string $imageGroup
+     *
+     * @return Groupe
+     */
+    public function setImageGroup($imageGroup)
+    {
+        $this->imageGroup = $imageGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get imageGroup.
+     *
+     * @return string
+     */
+    public function getImageGroup()
+    {
+        return $this->imageGroup;
+    }
+
+    /**
+     * Add participant.
+     *
+     * @param \AppBundle\Entity\User $participant
+     *
+     * @return Groupe
+     */
+    public function addParticipant(\AppBundle\Entity\User $participant)
+    {
+        $this->participant[] = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Remove participant.
+     *
+     * @param \AppBundle\Entity\User $participant
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeParticipant(\AppBundle\Entity\User $participant)
+    {
+        return $this->participant->removeElement($participant);
+    }
+
+    /**
+     * Add plat.
+     *
+     * @param \AppBundle\Entity\Plat $plat
+     *
+     * @return Groupe
+     */
+    public function addPlat(\AppBundle\Entity\Plat $plat)
+    {
+        $this->plat[] = $plat;
+
+        return $this;
+    }
+
+    /**
+     * Remove plat.
+     *
+     * @param \AppBundle\Entity\Plat $plat
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePlat(\AppBundle\Entity\Plat $plat)
+    {
+        return $this->plat->removeElement($plat);
+    }
 }

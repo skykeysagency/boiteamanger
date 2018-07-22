@@ -17,6 +17,10 @@ hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /connect
 
+#plats:
+#    type:     rest
+#    resource: AppBundle\Controller\PlatController
+
 facebook_login:
     path: /login/check-facebook
 
